@@ -1,12 +1,16 @@
 package com.exploremore.entity;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,13 +34,14 @@ public class CourseEntity {
 	@Column(name="image_url")
 	private String imageUrl;
 	
-	@Column(name = "category_id")
-	private int categoryId;
+	@ManyToOne
+	@JoinColumn(name="category_id")
+	private CategoryEntity categoryId;
 
 	public CourseEntity() {
 	}
 
-	public CourseEntity(int id, String name, String description, BigDecimal price, String imageUrl, int categoryId) {
+	public CourseEntity(int id, String name, String description, BigDecimal price, String imageUrl, CategoryEntity categoryId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -48,6 +53,14 @@ public class CourseEntity {
 
 	public int getId() {
 		return id;
+	}
+
+	public CategoryEntity getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(CategoryEntity categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public void setId(int id) {
@@ -65,6 +78,7 @@ public class CourseEntity {
 	public String getDescription() {
 		return description;
 	}
+
 
 	public void setDescription(String description) {
 		this.description = description;
@@ -86,13 +100,7 @@ public class CourseEntity {
 		this.imageUrl = imageUrl;
 	}
 
-	public int getCategoryId() {
-		return categoryId;
-	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
 
 	@Override
 	public String toString() {
