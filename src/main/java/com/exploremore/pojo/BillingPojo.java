@@ -2,7 +2,7 @@ package com.exploremore.pojo;
 
 public class BillingPojo {
 
-	private String id;
+	private int id;
 	private String streetName;
 	private String city;
 	private String state;
@@ -12,7 +12,7 @@ public class BillingPojo {
 	public BillingPojo() {
 	}
 
-	public BillingPojo(String id, String streetName, String city, String state, int zipCode, int userId) {
+	public BillingPojo(int id, String streetName, String city, String state, int zipCode, int userId) {
 		super();
 		this.id = id;
 		this.streetName = streetName;
@@ -22,11 +22,11 @@ public class BillingPojo {
 		this.userId = userId;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -14,7 +14,7 @@ public class BillingEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private String id;
+	private int id;
 
 	@Column(name = "street_name")
 	private String streetName;
@@ -34,7 +34,7 @@ public class BillingEntity {
 	public BillingEntity() {
 	}
 
-	public BillingEntity(String id, String streetName, String city, String state, int zipCode, int userId) {
+	public BillingEntity(int id, String streetName, String city, String state, int zipCode, int userId) {
 		super();
 		this.id = id;
 		this.streetName = streetName;
@@ -44,11 +44,11 @@ public class BillingEntity {
 		this.userId = userId;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
