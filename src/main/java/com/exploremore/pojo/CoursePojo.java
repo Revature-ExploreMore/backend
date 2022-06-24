@@ -13,7 +13,6 @@ public class CoursePojo {
 
 	public CoursePojo() {
 	}
-
 	public CoursePojo(int id, String name, String description, BigDecimal price, String imageUrl) {
 		super();
 		this.id = id;
@@ -63,7 +62,6 @@ public class CoursePojo {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-
 
 	public CategoryPojo getCategoryId() {
 		return categoryId;

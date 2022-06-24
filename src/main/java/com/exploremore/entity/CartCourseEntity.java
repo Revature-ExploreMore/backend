@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,21 +17,23 @@ public class CartCourseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name = "course_id")
+	private CourseEntity course;
 
-	@Column(name = "course_id")
-	private int courseId;
-
-	@Column(name = "cart_id")
-	private int cartId;
+	@ManyToOne
+	@JoinColumn(name="cart_id", nullable=false)
+	private CartEntity cart;
 
 	public CartCourseEntity() {
 	}
 
-	public CartCourseEntity(int id, int courseId, int cartId) {
+	public CartCourseEntity(int id, CourseEntity course, CartEntity cart) {
 		super();
 		this.id = id;
-		this.courseId = courseId;
-		this.cartId = cartId;
+		this.course = course;
+		this.cart = cart;
 	}
 
 	public int getId() {
@@ -40,25 +44,27 @@ public class CartCourseEntity {
 		this.id = id;
 	}
 
-	public int getCourseId() {
-		return courseId;
+	public CourseEntity getCourse() {
+		return course;
 	}
 
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
+	public void setCourse(CourseEntity course) {
+		this.course = course;
 	}
 
-	public int getCartId() {
-		return cartId;
+	public CartEntity getCart() {
+		return cart;
 	}
 
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
+	public void setCart(CartEntity cart) {
+		this.cart = cart;
 	}
 
 	@Override
 	public String toString() {
-		return "CartCoursePojo [id=" + id + ", courseId=" + courseId + ", cartId=" + cartId + "]";
+		return "CartCourseEntity [id=" + id + ", course=" + course + ", cart=" + cart + "]";
 	}
+
+	
 
 }
