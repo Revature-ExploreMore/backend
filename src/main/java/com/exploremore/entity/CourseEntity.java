@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "course")
@@ -35,7 +33,8 @@ public class CourseEntity {
 	private String imageUrl;
 	
 	@ManyToOne
-	@JoinColumn(name="category_id")
+	@JoinColumn(name = "category_id")
+
 	private CategoryEntity categoryId;
 
 	public CourseEntity() {
@@ -100,6 +99,14 @@ public class CourseEntity {
 		this.imageUrl = imageUrl;
 	}
 
+
+	public CategoryEntity getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(CategoryEntity categoryId) {
+		this.categoryId = categoryId;
+	}
 
 
 	@Override
