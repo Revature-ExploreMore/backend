@@ -9,19 +9,20 @@ public class CoursePojo {
 	private String description;
 	private BigDecimal price;
 	private String imageUrl;
-	private int categoryId;
+	private CategoryPojo categoryId;
 
 	public CoursePojo() {
 	}
 
-	public CoursePojo(int id, String name, String description, BigDecimal price, String imageUrl, int categoryId) {
+
+	public CoursePojo(int id, String name, String description, BigDecimal price, String imageUrl) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.imageUrl = imageUrl;
-		this.categoryId = categoryId;
+	
 	}
 
 	public int getId() {
@@ -64,11 +65,11 @@ public class CoursePojo {
 		this.imageUrl = imageUrl;
 	}
 
-	public int getCategoryId() {
+	public CategoryPojo getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(CategoryPojo categoryId) {
 		this.categoryId = categoryId;
 	}
 
