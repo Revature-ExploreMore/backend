@@ -34,4 +34,60 @@ public class CourseServiceImpl implements CourseService {
 		return allCoursesPojo;
 	}
 
+
+	@Autowired
+	CourseDao courseDao;
+	
+	public CourseServiceImpl() {
+		
+	}
+
+	@Override
+	public CoursePojo getCourseById(int id) {
+		Optional<CourseEntity> courseEntityOpt = courseDao.findById(id);
+		CoursePojo coursePojo = null;
+		if(courseEntityOpt.isPresent()) {
+			CourseEntity fetchedCourseEntity = courseEntityOpt.get();
+			coursePojo = new CoursePojo();
+			BeanUtils.copyProperties(fetchedCourseEntity, coursePojo);
+		}
+		return coursePojo;
+	}
+
+	@Override
+	public List<CoursePojo> getAllByCategory(String categoryName) {
+		List<CourseEntity> allCoursesEntity = courseDao.findByCategoryId_CategoryName(categoryName);
+		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
+		for(CourseEntity fetchedCoursesEntity: allCoursesEntity) {
+			CoursePojo returnCoursePojo = new CoursePojo();
+			
+			
+			
+			returnCoursePojo.setId(fetchedCoursesEntity.getId());
+			returnCoursePojo.setName(fetchedCoursesEntity.getName());
+			returnCoursePojo.setDescription(fetchedCoursesEntity.getDescription());
+			returnCoursePojo.setPrice(fetchedCoursesEntity.getPrice());
+			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());
+			
+			CategoryPojo catPojo = new CategoryPojo();
+			catPojo.setId(fetchedCoursesEntity.getCategoryId().getId());
+			catPojo.setCategoryName(fetchedCoursesEntity.getCategoryId().getCategoryName());
+			
+			returnCoursePojo.setCategoryId(catPojo);
+		
+			allCoursesPojo.add(returnCoursePojo);
+		}
+		return allCoursesPojo;
+	}
+
+
 }
+
+
+
+
+
+
+
+
+

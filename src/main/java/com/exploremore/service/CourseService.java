@@ -9,4 +9,8 @@ public interface CourseService {
 		List<CoursePojo> getAllCourses();
 		
 
+	CoursePojo getCourseById( int id);
+	
+	List<CoursePojo> getAllByCategory(String categoryName);
+ 	
 }
