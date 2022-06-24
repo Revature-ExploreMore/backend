@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -16,9 +19,9 @@ public class CategoryEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-
 	@Column(name = "category_name")
 	private String categoryName;
+
 
 	public CategoryEntity() {
 	}
@@ -27,6 +30,7 @@ public class CategoryEntity {
 		super();
 		this.id = id;
 		this.categoryName = categoryName;
+		
 	}
 
 	public int getId() {
