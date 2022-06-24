@@ -2,16 +2,18 @@ package com.exploremore.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cart_entity")
+@Table(name = "cart")
 public class CartEntity {
 
 	@Id
@@ -36,12 +38,15 @@ public class CartEntity {
 	
 	@Column(name="order_id")
 	private int orderId;
+	
+	@OneToMany(mappedBy="cart")
+	private Set<CartCourseEntity> cartCourses;
 
 	public CartEntity() {
 	}
 
 	public CartEntity(int id, LocalDateTime createdAt, LocalDateTime modifiedAt, boolean isRemoved, BigDecimal cartTotal,
-			int userId, int orderId) {
+			int userId, int orderId, Set<CartCourseEntity> cartCourses) {
 		super();
 		this.id = id;
 		this.createdAt = createdAt;
@@ -50,6 +55,7 @@ public class CartEntity {
 		this.cartTotal = cartTotal;
 		this.userId = userId;
 		this.orderId = orderId;
+		this.cartCourses = cartCourses;
 	}
 
 	public int getId() {
@@ -108,10 +114,21 @@ public class CartEntity {
 		this.orderId = orderId;
 	}
 
+	public Set<CartCourseEntity> getCartCourses() {
+		return cartCourses;
+	}
+
+	public void setCartCourses(Set<CartCourseEntity> cartCourses) {
+		this.cartCourses = cartCourses;
+	}
+
 	@Override
 	public String toString() {
-		return "CartPojo [id=" + id + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + ", isRemoved="
-				+ isRemoved + ", cartTotal=" + cartTotal + ", userId=" + userId + ", orderId=" + orderId + "]";
+		return "CartEntity [id=" + id + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + ", isRemoved="
+				+ isRemoved + ", cartTotal=" + cartTotal + ", userId=" + userId + ", orderId=" + orderId
+				+ ", cartCourses=" + cartCourses + "]";
 	}
+
+	
 
 }

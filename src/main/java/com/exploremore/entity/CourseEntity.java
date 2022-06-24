@@ -1,6 +1,7 @@
 package com.exploremore.entity;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "course_details")
+@Table(name = "course")
 public class CourseEntity {
 
 	@Id
@@ -33,7 +37,8 @@ public class CourseEntity {
 	private String imageUrl;
 	
 	@ManyToOne
-	@JoinColumn(name = "category_id")
+	@JoinColumn(name="category_id")
+
 	private CategoryEntity categoryId;
 
 	public CourseEntity() {
@@ -53,6 +58,14 @@ public class CourseEntity {
 		return id;
 	}
 
+	public CategoryEntity getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(CategoryEntity categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -68,6 +81,7 @@ public class CourseEntity {
 	public String getDescription() {
 		return description;
 	}
+
 
 	public void setDescription(String description) {
 		this.description = description;

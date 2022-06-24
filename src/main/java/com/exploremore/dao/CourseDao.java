@@ -10,6 +10,8 @@ import com.exploremore.entity.CourseEntity;
 @Repository
 public interface CourseDao extends JpaRepository<CourseEntity, Integer>{
 
+
 	List<CourseEntity> findByCategoryId_CategoryName(String categoryName);
+
 
 }
