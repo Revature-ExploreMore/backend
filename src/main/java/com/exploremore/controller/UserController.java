@@ -13,7 +13,7 @@ import com.exploremore.service.UserService;
 public class UserController {
 	
 	@Autowired
-	UserService employeeService;
+	UserService userService;
 	
 
 }
