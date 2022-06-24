@@ -37,7 +37,7 @@ public class CourseEntity {
 	private String imageUrl;
 	
 	@ManyToOne
-	@JoinColumn(name = "category_id")
+	@JoinColumn(name="category_id")
 
 	private CategoryEntity categoryId;
 
@@ -110,8 +110,6 @@ public class CourseEntity {
 	public void setCategoryId(CategoryEntity categoryId) {
 		this.categoryId = categoryId;
 	}
-
-
 
 	@Override
 	public String toString() {
