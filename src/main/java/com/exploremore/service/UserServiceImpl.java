@@ -1,6 +1,9 @@
 package com.exploremore.service;
 
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +13,8 @@ import com.exploremore.pojo.UserPojo;
 
 @Service
 public class UserServiceImpl implements UserService{
+	
+	final static Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 	
 	@Autowired
 	UserDao userDao;
