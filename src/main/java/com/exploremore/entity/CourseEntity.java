@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
 @Entity
 @Table(name = "course")
 public class CourseEntity {
@@ -32,15 +36,13 @@ public class CourseEntity {
 	@Column(name="image_url")
 	private String imageUrl;
 	
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-
-	private CategoryEntity categoryId;
+	@Column(name="category_id")
+	private int categoryId;
 
 	public CourseEntity() {
 	}
 
-	public CourseEntity(int id, String name, String description, BigDecimal price, String imageUrl, CategoryEntity categoryId) {
+	public CourseEntity(int id, String name, String description, BigDecimal price, String imageUrl, int categoryId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -52,14 +54,6 @@ public class CourseEntity {
 
 	public int getId() {
 		return id;
-	}
-
-	public CategoryEntity getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(CategoryEntity categoryId) {
-		this.categoryId = categoryId;
 	}
 
 	public void setId(int id) {
@@ -77,7 +71,6 @@ public class CourseEntity {
 	public String getDescription() {
 		return description;
 	}
-
 
 	public void setDescription(String description) {
 		this.description = description;
@@ -99,20 +92,19 @@ public class CourseEntity {
 		this.imageUrl = imageUrl;
 	}
 
-
-	public CategoryEntity getCategoryId() {
+	public int getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(CategoryEntity categoryId) {
+	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
 
-
 	@Override
 	public String toString() {
-		return "CoursePojo [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
+		return "CourseEntity [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
 				+ ", imageUrl=" + imageUrl + ", categoryId=" + categoryId + "]";
 	}
 
+	
 }

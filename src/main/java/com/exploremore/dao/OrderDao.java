@@ -9,6 +9,6 @@ import com.exploremore.entity.OrderEntity;
 public interface OrderDao extends JpaRepository<OrderEntity, Integer>{
 
 	List<OrderEntity> findByOrderId(int id);
-	
+
 
 }

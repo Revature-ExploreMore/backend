@@ -2,11 +2,9 @@ package com.exploremore.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +25,8 @@ public class CourseServiceImpl implements CourseService {
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for (CourseEntity fetchedEntity : allCoursesEntity) {
 			CategoryPojo category = new CategoryPojo();
-			category.setId(fetchedEntity.getCategoryId().getId());
-			category.setCategoryName(fetchedEntity.getCategoryId().getCategoryName());
+//			category.setId(fetchedEntity.getCategoryId().getId());							**these 2 lines are causing errors
+//			category.setCategoryName(fetchedEntity.getCategoryId().getCategoryName());		   please fix before merging
 			CoursePojo currCourse = new CoursePojo(fetchedEntity.getId(), fetchedEntity.getName(),
 					fetchedEntity.getDescription(), fetchedEntity.getPrice(), 
 					fetchedEntity.getImageUrl());
@@ -38,9 +36,6 @@ public class CourseServiceImpl implements CourseService {
 		return allCoursesPojo;
 	}
 
-	@Autowired
-	CourseDao courseDao;
-	
 	public CourseServiceImpl() {
 		
 	}
@@ -73,8 +68,8 @@ public class CourseServiceImpl implements CourseService {
 			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());
 			
 			CategoryPojo catPojo = new CategoryPojo();
-			catPojo.setId(fetchedCoursesEntity.getCategoryId().getId());
-			catPojo.setCategoryName(fetchedCoursesEntity.getCategoryId().getCategoryName());
+//			catPojo.setId(fetchedCoursesEntity.getCategoryId().getId());						** these two lines are causing error
+//			catPojo.setCategoryName(fetchedCoursesEntity.getCategoryId().getCategoryName());		please fix before merging
 			
 			returnCoursePojo.setCategoryId(catPojo);
 		
@@ -82,28 +77,9 @@ public class CourseServiceImpl implements CourseService {
 		}
 		return allCoursesPojo;
 	}
-	
-	
-	
+
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
