@@ -9,4 +9,5 @@ import com.exploremore.entity.UserEntity;
 public interface UserDao extends JpaRepository<UserEntity, Integer> {
 	
 	List<UserEntity> findByUsernameAndPassword(String username, String password);
+
 }
