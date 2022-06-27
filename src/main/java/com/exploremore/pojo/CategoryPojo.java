@@ -5,6 +5,7 @@ public class CategoryPojo {
 	private int id;
 	private String categoryName;
 
+
 	public CategoryPojo() {
 	}
 
@@ -34,5 +35,7 @@ public class CategoryPojo {
 	public String toString() {
 		return "CategoryPojo [id=" + id + ", categoryName=" + categoryName + "]";
 	}
+
+	
 
 }

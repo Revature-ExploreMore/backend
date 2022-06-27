@@ -1,5 +1,7 @@
 package com.exploremore.service;
 
-public interface BillingService {
+import com.exploremore.pojo.BillingPojo;
 
+public interface BillingService {
+	BillingPojo addBillingAddress(BillingPojo billingPojo);
 }

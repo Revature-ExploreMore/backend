@@ -1,18 +1,20 @@
 package com.exploremore.pojo;
 
+import java.sql.Date;
+
 public class PaymentPojo {
 
 	private int id;
 	private String cardType;
 	private String cardNumber;
-	private String expDate;
+	private Date expDate;
 	private int cvv;
 	private int userId;
 
 	public PaymentPojo() {
 	}
 
-	public PaymentPojo(int id, String cardType, String cardNumber, String expDate, int cvv, int userId) {
+	public PaymentPojo(int id, String cardType, String cardNumber, Date expDate, int cvv, int userId) {
 		super();
 		this.id = id;
 		this.cardType = cardType;
@@ -46,11 +48,11 @@ public class PaymentPojo {
 		this.cardNumber = cardNumber;
 	}
 
-	public String getExpDate() {
+	public Date getExpDate() {
 		return expDate;
 	}
 
-	public void setExpDate(String expDate) {
+	public void setExpDate(Date expDate) {
 		this.expDate = expDate;
 	}
 

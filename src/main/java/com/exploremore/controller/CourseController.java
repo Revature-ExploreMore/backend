@@ -1,5 +1,4 @@
 package com.exploremore.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import com.exploremore.service.CourseService;
 
 @CrossOrigin // to enable cors
 @RestController
-@RequestMapping("api")
+@RequestMapping("course")
 public class CourseController {
 	//1. addCourse Fozeya-Nikka Alviar
 	//2. getACourse Logan
@@ -46,11 +45,8 @@ public class CourseController {
 			return courseService.getACourseByCategory(name);
 	}
 
-	//gets all courses
-	// http://localhost:7474/api/courses
-	@GetMapping("courses")
-	public List<CoursePojo> getAllCourses() {
+	@GetMapping("getall")
+	public List<CoursePojo> getAllCourses(){
 		return courseService.getAllCourses();
 	}
-
 }
