@@ -26,7 +26,7 @@ public class CourseServiceImpl implements CourseService {
 		for (CourseEntity fetchedEntity : allCoursesEntity) {
 			CategoryPojo category = new CategoryPojo();
 //			category.setId(fetchedEntity.getCategoryId().getId());							**these 2 lines are causing errors
-//			category.setCategoryName(fetchedEntity.getCategoryId().getCategoryName());		   please fix before merging
+//			category.setCategoryName(fetchedEtity.getCategoryId().getCategoryName());		   please fix before merging
 			CoursePojo currCourse = new CoursePojo(fetchedEntity.getId(), fetchedEntity.getName(),
 					fetchedEntity.getDescription(), fetchedEntity.getPrice(), 
 					fetchedEntity.getImageUrl());
@@ -76,6 +76,24 @@ public class CourseServiceImpl implements CourseService {
 			allCoursesPojo.add(returnCoursePojo);
 		}
 		return allCoursesPojo;
+	}
+
+	@Override
+	public CoursePojo addCourse(CoursePojo coursePojo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CoursePojo getACourseById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CoursePojo getACourseByCategory(String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
