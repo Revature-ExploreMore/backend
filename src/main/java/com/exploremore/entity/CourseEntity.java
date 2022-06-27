@@ -1,13 +1,19 @@
 package com.exploremore.entity;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "course")
@@ -30,7 +36,7 @@ public class CourseEntity {
 	@Column(name="image_url")
 	private String imageUrl;
 	
-	@Column(name = "category_id")
+	@Column(name="category_id")
 	private int categoryId;
 
 	public CourseEntity() {
@@ -96,8 +102,9 @@ public class CourseEntity {
 
 	@Override
 	public String toString() {
-		return "CoursePojo [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
+		return "CourseEntity [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
 				+ ", imageUrl=" + imageUrl + ", categoryId=" + categoryId + "]";
 	}
 
+	
 }
