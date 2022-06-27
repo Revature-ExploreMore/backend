@@ -20,17 +20,15 @@ import com.exploremore.pojo.CoursePojo;
 public class CartServiceImpl implements CartService{
 	
 	@Autowired
-	CartDao cartDao;
-	
-	@Autowired
 	CartCourseDao cartCourseDao;
 	
+	@Autowired
+	CartDao cartDao;
 
 	@Override
 	public List<CartCoursePojo> getCartCourses(int cart_id) {
 		
 		List<CartCourseEntity> allCartCourseEntity = cartCourseDao.findByCartId(cart_id);
-
 		List<CartCoursePojo> allCartCoursePojo = new ArrayList<CartCoursePojo>();
 		
 		for(CartCourseEntity fetchedCartCourseEntity : allCartCourseEntity) {

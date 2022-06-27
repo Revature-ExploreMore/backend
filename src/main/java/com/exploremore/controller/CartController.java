@@ -16,7 +16,7 @@ import com.exploremore.service.CartService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("cart")
+@RequestMapping("api")
 public class CartController {
 	
 	@Autowired
