@@ -54,8 +54,28 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public List<CoursePojo> getAllByCategory(String categoryName) {
-		// TODO Auto-generated method stub
-		return null;
+//		List<CourseEntity> allCoursesEntity = courseDao.findByCategoryId_CategoryName(categoryName);
+//		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
+//		for(CourseEntity fetchedCoursesEntity: allCoursesEntity) {
+//			CoursePojo returnCoursePojo = new CoursePojo();
+//			
+//			
+//			
+//			returnCoursePojo.setId(fetchedCoursesEntity.getId());
+//			returnCoursePojo.setName(fetchedCoursesEntity.getName());
+//			returnCoursePojo.setDescription(fetchedCoursesEntity.getDescription());
+//			returnCoursePojo.setPrice(fetchedCoursesEntity.getPrice());
+//			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());
+//			
+//			CategoryPojo catPojo = new CategoryPojo();
+////			catPojo.setId(fetchedCoursesEntity.getCategoryId().getId());						** these two lines are causing error
+////			catPojo.setCategoryName(fetchedCoursesEntity.getCategoryId().getCategoryName());		please fix before merging
+//			
+//			returnCoursePojo.setCategoryId(catPojo);
+//		
+//			allCoursesPojo.add(returnCoursePojo);
+//		}
+//		return allCoursesPojo;
 	}
 
 	@Override
@@ -75,28 +95,6 @@ public class CourseServiceImpl implements CourseService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-//	@Override
-//	public List<CoursePojo> getAllByCategory(String categoryName) {
-//		List<CourseEntity> allCoursesEntity = courseDao.findByCategoryId_CategoryName(categoryName);
-//		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
-//		for(CourseEntity fetchedCoursesEntity: allCoursesEntity) {
-//			CoursePojo returnCoursePojo = new CoursePojo();
-//			returnCoursePojo.setId(fetchedCoursesEntity.getId());
-//			returnCoursePojo.setName(fetchedCoursesEntity.getName());
-//			returnCoursePojo.setDescription(fetchedCoursesEntity.getDescription());
-//			returnCoursePojo.setPrice(fetchedCoursesEntity.getPrice());
-//			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());
-//			
-//			CategoryPojo catPojo = new CategoryPojo();
-////			catPojo.setId(fetchedCoursesEntity.getCategoryId().getId());						** these two lines are causing error
-////			catPojo.setCategoryName(fetchedCoursesEntity.getCategoryId().getCategoryName());		please fix before merging
-//			
-//			returnCoursePojo.setCategoryId(catPojo);
-//		
-//			allCoursesPojo.add(returnCoursePojo);
-//		}
-//		return allCoursesPojo;
-//	}
 
 
 

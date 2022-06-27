@@ -15,7 +15,7 @@ import com.exploremore.service.CourseService;
 
 @CrossOrigin // to enable cors
 @RestController
-@RequestMapping("course")
+@RequestMapping("api")
 public class CourseController {
 	//1. addCourse Fozeya-Nikka Alviar
 	//2. getACourse Logan
@@ -45,7 +45,7 @@ public class CourseController {
 			return courseService.getACourseByCategory(name);
 	}
 
-	@GetMapping("getall")
+	@GetMapping("getAll")
 	public List<CoursePojo> getAllCourses(){
 		return courseService.getAllCourses();
 	}
