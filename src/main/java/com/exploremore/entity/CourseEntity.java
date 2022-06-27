@@ -140,14 +140,6 @@ public class CourseEntity {
 		this.imageUrl = imageUrl;
 	}
 
-	public CategoryEntity getCategory() {
-		return category;
-	}
-
-	public void setCategory(CategoryEntity categoryId) {
-		this.category = categoryId;
-	}
-
 	@Override
 	public String toString() {
 		return "CourseEntity [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
