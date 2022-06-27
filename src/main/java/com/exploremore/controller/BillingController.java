@@ -12,7 +12,7 @@ import com.exploremore.service.BillingService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("api")
+@RequestMapping("billing")
 public class BillingController {
 	
 	@Autowired
