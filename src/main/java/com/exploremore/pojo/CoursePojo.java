@@ -7,13 +7,13 @@ public class CoursePojo {
 	private int id;
 	private String name;
 	private String description;
-	private BigDecimal price;
+	private double price;
 	private String imageUrl;
 	private CategoryPojo categoryId;
 
 	public CoursePojo() {
 	}
-	public CoursePojo(int id, String name, String description, BigDecimal price, String imageUrl) {
+	public CoursePojo(int id, String name, String description, double price, String imageUrl) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -47,14 +47,12 @@ public class CoursePojo {
 		this.description = description;
 	}
 
-	public BigDecimal getPrice() {
+	public double getPrice() {
 		return price;
 	}
-
-	public void setPrice(BigDecimal price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
-
 	public String getImageUrl() {
 		return imageUrl;
 	}
