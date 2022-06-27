@@ -31,7 +31,7 @@ public class CourseEntity {
 	private String description;
 
 	@Column(name = "price")
-	private BigDecimal price;
+	private double price;
 	
 	@Column(name="image_url")
 	private String imageUrl;
@@ -42,7 +42,7 @@ public class CourseEntity {
 	public CourseEntity() {
 	}
 
-	public CourseEntity(int id, String name, String description, BigDecimal price, String imageUrl, int categoryId) {
+	public CourseEntity(int id, String name, String description, double price, String imageUrl, int categoryId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -76,11 +76,11 @@ public class CourseEntity {
 		this.description = description;
 	}
 
-	public BigDecimal getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
