@@ -1,6 +1,12 @@
 package com.exploremore.service;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+public class OrderServiceImpl implements OrderService {
+=======
+=======
 
+>>>>>>> a6250c0c8632db463f6abbdf2b15456161e8ed5f
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +56,10 @@ public class OrderServiceImpl implements OrderService {
 		}
 		return searchOrderPojo;
 	}
+<<<<<<< HEAD
+>>>>>>> Akshay
+=======
 
+>>>>>>> a6250c0c8632db463f6abbdf2b15456161e8ed5f
 
 }
