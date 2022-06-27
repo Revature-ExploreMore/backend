@@ -1,5 +1,7 @@
 package com.exploremore.entity;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +25,7 @@ public class PaymentEntity {
 	private String cardNumber;
 
 	@Column(name = "exp_date")
-	private String expDate;
+	private Date expDate;
 
 	@Column(name = "cvv")
 	private int cvv;
@@ -34,7 +36,7 @@ public class PaymentEntity {
 	public PaymentEntity() {
 	}
 
-	public PaymentEntity(int id, String cardType, String cardNumber, String expDate, int cvv, int userId) {
+	public PaymentEntity(int id, String cardType, String cardNumber, Date expDate, int cvv, int userId) {
 		super();
 		this.id = id;
 		this.cardType = cardType;
@@ -68,11 +70,11 @@ public class PaymentEntity {
 		this.cardNumber = cardNumber;
 	}
 
-	public String getExpDate() {
+	public Date getExpDate() {
 		return expDate;
 	}
 
-	public void setExpDate(String expDate) {
+	public void setExpDate(Date expDate) {
 		this.expDate = expDate;
 	}
 

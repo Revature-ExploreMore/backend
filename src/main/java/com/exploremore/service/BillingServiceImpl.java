@@ -1,5 +1,27 @@
 package com.exploremore.service;
 
-public class BillingServiceImpl implements BillingService{
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.exploremore.dao.BillingDao;
+import com.exploremore.entity.BillingEntity;
+import com.exploremore.pojo.BillingPojo;
+
+@Service
+public class BillingServiceImpl implements BillingService{
+	
+	@Autowired
+	BillingDao billingDao;
+
+	@Override
+	public BillingPojo addBillingAddress(BillingPojo billingPojo) {
+		BillingEntity billingEntity = new BillingEntity();
+		BeanUtils.copyProperties(billingPojo, billingEntity);
+		
+		BillingEntity returnedBillingEntity = billingDao.saveAndFlush(billingEntity);
+		billingPojo.setId(returnedBillingEntity.getId());
+		return billingPojo;
+	}
+	
 }
