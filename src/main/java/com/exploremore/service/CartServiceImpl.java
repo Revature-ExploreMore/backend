@@ -22,7 +22,7 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public List<CartCoursePojo> getCartCourses(int cart_id) {
 		
-		List<CartCourseEntity> allCartCourseEntity = cartDao.findByCartId(cart_id);
+		List<CartCourseEntity> allCartCourseEntity = cartDao.findById(cart_id);
 		List<CartCoursePojo> allCartCoursePojo = new ArrayList<CartCoursePojo>();
 		
 		for(CartCourseEntity fetchedCartCourseEntity : allCartCourseEntity) {

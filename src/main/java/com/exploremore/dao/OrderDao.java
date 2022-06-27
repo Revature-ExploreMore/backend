@@ -4,11 +4,13 @@ package com.exploremore.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.exploremore.entity.OrderEntity;
+import org.springframework.stereotype.Repository;
 
+import com.exploremore.entity.OrderEntity;
+@Repository
 public interface OrderDao extends JpaRepository<OrderEntity, Integer>{
 
-	List<OrderEntity> findByOrderId(int id);
+	List<OrderEntity> findById(int id);
 
 
 }
