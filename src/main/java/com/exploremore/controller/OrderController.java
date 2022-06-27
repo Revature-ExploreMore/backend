@@ -17,7 +17,7 @@ import com.exploremore.entity.OrderEntity;
 import com.exploremore.pojo.OrderPojo;
 import com.exploremore.service.OrderService;
 
-@CrossOrigin
+@CrossOrigin(origins="*") // to enable cors
 @RestController
 @RequestMapping("order")
 public class OrderController {

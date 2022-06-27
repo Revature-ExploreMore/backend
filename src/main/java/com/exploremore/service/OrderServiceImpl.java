@@ -3,10 +3,12 @@ package com.exploremore.service;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.exploremore.dao.OrderDao;
 import com.exploremore.entity.OrderEntity;
 import com.exploremore.pojo.OrderPojo;
-
+@Service
 public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
@@ -32,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<OrderPojo> viewOrderById(int id) {
-		List<OrderEntity> searchOrderEntity = orderDao.findByOrderId(id);
+		List<OrderEntity> searchOrderEntity = orderDao.findById(id);
 		List<OrderPojo> searchOrderPojo = new ArrayList<OrderPojo>();
 		
 		if(searchOrderEntity.isEmpty()) {

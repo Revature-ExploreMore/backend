@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,6 @@ public class CourseController {
 		return courseService.addCourse(coursePojo);
 		
 	}
-	
 	//get a course by id
 	@GetMapping("courses/{id}")
 	public CoursePojo getACourseById(@PathVariable("course_id") int id) {
@@ -50,3 +50,4 @@ public class CourseController {
 		return courseService.getAllCourses();
 	}
 }
+
