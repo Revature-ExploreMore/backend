@@ -4,17 +4,19 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.exploremore.pojo.CartCoursePojo;
+import com.exploremore.pojo.CartPojo;
 import com.exploremore.service.CartService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("cart")
+@RequestMapping("api")
 public class CartController {
 	
 	@Autowired
@@ -31,4 +33,13 @@ public class CartController {
 		//}                                                             //  of the necessary global exception
 	}
 	
+	@GetMapping("cart/{uid}")
+	public CartPojo getCartByUser(@PathVariable("uid") int id) {
+		return cartService.getCart(id);
+	}
+	
+	@DeleteMapping("cartcourse/{ccid}")
+	public boolean deleteCartCourse(@PathVariable("ccid") int cart_course_id) {
+		return cartService.deleteCartCourse(cart_course_id);
+	}
 }

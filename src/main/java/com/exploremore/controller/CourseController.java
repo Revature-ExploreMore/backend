@@ -12,14 +12,14 @@ import com.exploremore.pojo.CoursePojo;
 import com.exploremore.service.CourseService;
 
 
-@CrossOrigin(origins="*") // to enable cors
+@CrossOrigin // to enable cors
 @RestController
-@RequestMapping("course")
+@RequestMapping("api")
 public class CourseController {
 	@Autowired
 	CourseService courseService;
 	
-	@GetMapping("getall")
+	@GetMapping("course/getall")
 	public List<CoursePojo> getAllCourses(){
 		return courseService.getAllCourses();
 	}
