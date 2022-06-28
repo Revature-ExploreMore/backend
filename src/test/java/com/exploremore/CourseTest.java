@@ -36,7 +36,7 @@ public class CourseTest {
 	
 	@DisplayName("JUnit get all Courses")
 	@Test
-	public void testGetAllCourses() {
+	public void testGetAllCourses() throws GlobalException{
 		List<CourseEntity> allCourseEntity = new ArrayList<CourseEntity>();
 		CategoryEntity catEntity = new CategoryEntity(1, "math");
 		allCourseEntity.add(new CourseEntity(1, "math 101", "learn math!", 10, "", catEntity));
@@ -48,7 +48,7 @@ public class CourseTest {
 	
 	@DisplayName("JUnit get course by id")
 	@Test
-	public void testGetCourseById() {
+	public void testGetCourseById() throws GlobalException {
 		CategoryEntity catEntity = new CategoryEntity(1, "math");
 		dummyCourse = Optional.of(new CourseEntity(1, "math 101", "learn math!", 10, "", catEntity));
 		when(courseDao.findById(1)).thenReturn(dummyCourse);

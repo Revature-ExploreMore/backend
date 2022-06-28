@@ -31,20 +31,20 @@ public class CourseController {
 	
 	// add a Course
 	@PutMapping("courses")
-	public CoursePojo addCourse(CoursePojo coursePojo) {
+	public CoursePojo addCourse(CoursePojo coursePojo) throws GlobalException{
 		return courseService.addCourse(coursePojo);
 		
 	}
 	
 
 	@GetMapping("getAll")
-	public List<CoursePojo> getAllCourses(){
+	public List<CoursePojo> getAllCourses() throws GlobalException{
 		return courseService.getAllCourses();
 	}
 
 
 	@GetMapping("getById/{id}")
-	public CoursePojo getById(@PathVariable("id")int id){
+	public CoursePojo getById(@PathVariable("id")int id) throws GlobalException{
 		return courseService.getCourseById(id);
 	}
 	

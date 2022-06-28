@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.exploremore.dao.CourseDao;
 import com.exploremore.entity.CourseEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CategoryPojo;
 import com.exploremore.pojo.CoursePojo;
 
@@ -20,7 +21,7 @@ public class CourseServiceImpl implements CourseService {
 
 	// gets all courses
 	@Override
-	public List<CoursePojo> getAllCourses() {
+	public List<CoursePojo> getAllCourses() throws GlobalException{
 		List<CourseEntity> allCoursesEntity = courseDao.findAll();
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for (CourseEntity fetchedEntity : allCoursesEntity) {
@@ -36,7 +37,7 @@ public class CourseServiceImpl implements CourseService {
 	
 
 	@Override
-	public CoursePojo getCourseById(int id) {
+	public CoursePojo getCourseById(int id) throws GlobalException{
 		Optional<CourseEntity> courseEntityOpt = courseDao.findById(id);
 		CoursePojo coursePojo = null;
 		if(courseEntityOpt.isPresent()) {
@@ -54,7 +55,7 @@ public class CourseServiceImpl implements CourseService {
 	
 
 	@Override
-	public List<CoursePojo> getAllByCategory(String categoryName) {
+	public List<CoursePojo> getAllByCategory(String categoryName) throws GlobalException{
 		List<CourseEntity> allCoursesEntity = courseDao.findByCategoryId_CategoryName(categoryName);
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for(CourseEntity fetchedCoursesEntity: allCoursesEntity) {
@@ -77,7 +78,7 @@ public class CourseServiceImpl implements CourseService {
 	
 
 	@Override
-	public CoursePojo addCourse(CoursePojo coursePojo) {
+	public CoursePojo addCourse(CoursePojo coursePojo) throws GlobalException{
 		// TODO Auto-generated method stub
 		return null;
 	}
