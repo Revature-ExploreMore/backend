@@ -11,7 +11,7 @@ import com.exploremore.service.UserService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("api")
+@RequestMapping("user")
 public class UserController {
 	
 	@Autowired 
