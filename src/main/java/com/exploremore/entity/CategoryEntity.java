@@ -1,5 +1,7 @@
 package com.exploremore.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +23,8 @@ public class CategoryEntity {
 	private int id;
 	@Column(name = "category_name")
 	private String categoryName;
-
+	@OneToMany(mappedBy="category")
+	private Set<CourseEntity> courses;
 
 	public CategoryEntity() {
 	}
