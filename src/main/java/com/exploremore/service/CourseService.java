@@ -10,7 +10,7 @@ public interface CourseService {
 	List<CoursePojo> getAllCourses() throws GlobalException;
 		
 	
-	CoursePojo getCourseById(int id) throws GlobalException;
+	CoursePojo getCourseById(int id);
 	
 	List<CoursePojo> getAllByCategory(String categoryName) throws GlobalException;
 	
