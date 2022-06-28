@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.exploremore.dao.PaymentDao;import com.exploremore.entity.PaymentEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.PaymentPojo;
 
 @Service
@@ -16,7 +17,7 @@ public class PaymentServiceImpl implements PaymentService{
 	PaymentDao paymentDao;
 
 	@Override
-	public PaymentPojo addPaymentInfo(PaymentPojo paymentPojo) {
+	public PaymentPojo addPaymentInfo(PaymentPojo paymentPojo) throws GlobalException{
 		PaymentEntity paymentEntity = new PaymentEntity();
 		
 		BeanUtils.copyProperties(paymentPojo, paymentEntity);
@@ -27,7 +28,7 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 
 	@Override
-	public PaymentPojo getPaymentInfo(int userId) {
+	public PaymentPojo getPaymentInfo(int userId) throws GlobalException{
 		Optional<PaymentEntity> paymentEntity = paymentDao.findByUserId(userId);
 		PaymentPojo paymentPojo = null;
 		

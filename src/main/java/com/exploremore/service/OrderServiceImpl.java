@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.exploremore.dao.OrderDao;
 import com.exploremore.entity.OrderEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.OrderPojo;
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -22,7 +23,7 @@ public class OrderServiceImpl implements OrderService {
 	
 
 	@Override
-	public OrderPojo addOrder(OrderPojo orderPojo) {
+	public OrderPojo addOrder(OrderPojo orderPojo) throws GlobalException{
 		OrderEntity orderEntity = new OrderEntity();
 		BeanUtils.copyProperties(orderPojo, orderEntity);
 		OrderEntity returnedOrderEntity = orderDao.saveAndFlush(orderEntity);

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.exploremore.entity.OrderEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.OrderPojo;
 import com.exploremore.service.OrderService;
 
@@ -28,7 +29,7 @@ public class OrderController {
 
 
 	@PostMapping("orders")
-	public OrderPojo addOrder(@RequestBody OrderPojo orderPojo) { 
+	public OrderPojo addOrder(@RequestBody OrderPojo orderPojo) throws GlobalException{ 
 		return orderService.addOrder(orderPojo);
 	}
 	
