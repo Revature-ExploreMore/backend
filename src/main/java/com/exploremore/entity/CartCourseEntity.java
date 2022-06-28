@@ -22,8 +22,8 @@ public class CartCourseEntity {
 	@JoinColumn(name = "course_id", nullable=false)
 	private CourseEntity course;
 
-	@ManyToOne()
-	@JoinColumn(name="id", nullable=false,insertable=false, updatable=false)
+	@ManyToOne
+	@JoinColumn(name="cart_id", nullable=false,insertable=false, updatable=false)
 	private CartEntity cart;
 
 	public CartCourseEntity() {
