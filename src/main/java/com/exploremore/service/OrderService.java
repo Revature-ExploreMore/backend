@@ -7,7 +7,8 @@ import com.exploremore.pojo.OrderPojo;
 
 public interface OrderService {
 	
-	List<OrderPojo> viewAllOrders();
-	List<OrderPojo> viewOrderById (int id);
+//	List<OrderPojo> viewAllOrders();
+//	List<OrderPojo> viewOrderById (int id);
+	OrderPojo addOrder(OrderPojo orderPojo);
 
 }
