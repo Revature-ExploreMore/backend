@@ -20,11 +20,11 @@ import com.exploremore.pojo.CoursePojo;
 public class CartServiceImpl implements CartService{
 	
 	@Autowired
-	CartCourseDao cartCourseDao;
+	CartDao cartDao;
 	
 	@Autowired
-	CartDao cartDao;
-
+	CartCourseDao cartCourseDao;
+	
 
 	@Override
 	public List<CartCoursePojo> getCartCourses(int cart_id) {
