@@ -99,7 +99,7 @@ public class CourseServiceImpl implements CourseService {
 	
 
 	@Override
-	public CoursePojo addCourse(CoursePojo coursePojo) {
+	public CoursePojo addCourse(CoursePojo coursePojo) throws GlobalException{
 		// TODO Auto-generated method stub
 		return null;
 	}
