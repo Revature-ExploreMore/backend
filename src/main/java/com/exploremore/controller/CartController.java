@@ -23,9 +23,9 @@ public class CartController {
 	CartService cartService;
 	
 	@GetMapping("cartCourse/{cid}")
-	public List<CartCoursePojo> getCartCoursesByCart(@PathVariable("cid") int id) {
+	public List<CartCoursePojo> getCartCoursesByCart(@PathVariable("cid") int cart_id) {
 		//try {
-			return cartService.getCartCourses(id);
+			return cartService.getCartCourses(cart_id);
 		//} catch (GlobalException e) {
 			// TODO Auto-generated catch block						** please do not merge when errors are present
 			//e.printStackTrace();										//recommend to use built-in exception until 
@@ -34,8 +34,8 @@ public class CartController {
 	}
 	
 	@GetMapping("cart/{uid}")
-	public CartPojo getCartByUser(@PathVariable("uid") int id) {
-		return cartService.getCart(id);
+	public CartPojo getCartByUser(@PathVariable("uid") int user_id) {
+		return cartService.getCart(user_id);
 	}
 	
 	@DeleteMapping("cartCourse/{ccid}")
