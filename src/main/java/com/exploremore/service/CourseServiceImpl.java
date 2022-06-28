@@ -1,13 +1,13 @@
 package com.exploremore.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.exploremore.dao.CourseDao;
 import com.exploremore.entity.CourseEntity;
 import com.exploremore.exceptions.GlobalException;
@@ -83,7 +83,23 @@ public class CourseServiceImpl implements CourseService {
 		return null;
 	}
 
+	@Override
+	public boolean deleteCourse(int id) throws GlobalException {
+		courseDao.deleteById(id);
+		return true;
+	}
 
+	@Override
+	public CoursePojo updateCourse(CoursePojo coursePojo) throws GlobalException {
+		// copy the pojo into an entity object
+		CourseEntity courseEntity = new CourseEntity();
+		BeanUtils.copyProperties(coursePojo, courseEntity);
+		
+		//  now pass the courseEntity object to spring data jpa to be updated into the table
+		CourseEntity returnedCourseEntity = courseDao.save(courseEntity);
+				
+		return coursePojo;
+	}
 }
 
 
