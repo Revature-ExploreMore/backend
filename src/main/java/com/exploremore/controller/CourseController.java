@@ -8,14 +8,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CoursePojo;
 import com.exploremore.service.CourseService;
 
 @CrossOrigin // to enable cors
 @RestController
-@RequestMapping("course")
+@RequestMapping("api")
 public class CourseController {
 	//1. addCourse Fozeya-Nikka Alviar
 	//2. getACourse Logan
@@ -45,9 +47,20 @@ public class CourseController {
 			return courseService.getACourseByCategory(name);
 	}
 
-	@GetMapping("getall")
+	@GetMapping("getAll")
 	public List<CoursePojo> getAllCourses(){
 		return courseService.getAllCourses();
+	}
+
+uncomment if method is needed
+@GetMapping("getById/{id}")
+public CoursePojo getById(@PathVariable("id")int id){
+  return courseService.getCourseById(id);
+}
+	//does not return anything
+	@GetMapping("getByCategory/{category}")
+	public List<CoursePojo> getCourseByCategory(@PathVariable("category") String categoryName) throws GlobalException{
+		return courseService.getAllByCategory(categoryName);
 	}
 }
 
