@@ -103,13 +103,7 @@ public class CourseEntity {
 		this.imageUrl = imageUrl;
 	}
 
-	public CategoryEntity getCategoryId() {
-		return categoryId;
-	}
 
-	public void setCategoryId(CategoryEntity categoryId) {
-		this.categoryId = categoryId;
-	}
 
 	@Override
 	public String toString() {
