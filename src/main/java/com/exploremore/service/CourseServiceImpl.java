@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.exploremore.dao.CourseDao;
 import com.exploremore.entity.CourseEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CategoryPojo;
 import com.exploremore.pojo.CoursePojo;
 
