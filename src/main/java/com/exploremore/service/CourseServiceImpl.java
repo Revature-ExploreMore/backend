@@ -73,27 +73,26 @@ public class CourseServiceImpl implements CourseService {
 		}
 		return coursePojo;
 	}
+	
 
 	@Override
 	public List<CoursePojo> getAllByCategory(String categoryName) {
 		List<CourseEntity> allCoursesEntity = courseDao.findByCategoryId_CategoryName(categoryName);
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for(CourseEntity fetchedCoursesEntity: allCoursesEntity) {
-			CoursePojo returnCoursePojo = new CoursePojo();
 			
+			CoursePojo returnCoursePojo = new CoursePojo();	
 			returnCoursePojo.setId(fetchedCoursesEntity.getId());
 			returnCoursePojo.setName(fetchedCoursesEntity.getName());
 			returnCoursePojo.setDescription(fetchedCoursesEntity.getDescription());
 			returnCoursePojo.setPrice(fetchedCoursesEntity.getPrice());
-			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());
-			
-			CategoryPojo catPojo = new CategoryPojo();
-			catPojo.setId(fetchedCoursesEntity.getCategoryId().getId());						
-			catPojo.setCategoryName(fetchedCoursesEntity.getCategoryId().getCategoryName());		
-			
-			returnCoursePojo.setCategoryId(catPojo);
-		
+			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());		
 			allCoursesPojo.add(returnCoursePojo);
+			
+			CategoryPojo category = new CategoryPojo();	   
+			BeanUtils.copyProperties(fetchedCoursesEntity.getCategory(), category);
+			returnCoursePojo.setCategory(category);
+			
 		}
 		return allCoursesPojo;
 	}

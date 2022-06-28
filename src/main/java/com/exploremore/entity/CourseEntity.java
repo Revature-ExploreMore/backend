@@ -86,7 +86,7 @@ public class CourseEntity {
 		this.description = description;
 		this.price = price;
 		this.imageUrl = imageUrl;
-		this.categoryId = categoryId;
+		this.category = categoryId;
 		this.cartCourses = cartCourses;
 	}
 	
