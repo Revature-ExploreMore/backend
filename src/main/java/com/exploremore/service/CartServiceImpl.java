@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.exploremore.dao.CartCourseDao;
 import com.exploremore.dao.CartDao;
 import com.exploremore.entity.CartCourseEntity;
 import com.exploremore.entity.CartEntity;
@@ -21,11 +22,14 @@ public class CartServiceImpl implements CartService{
 	@Autowired
 	CartDao cartDao;
 	
+	@Autowired
+	CartCourseDao cartCourseDao;
+	
 
 	@Override
 	public List<CartCoursePojo> getCartCourses(int cart_id) {
 		
-		List<CartCourseEntity> allCartCourseEntity = cartDao.findByCartId(cart_id);
+		List<CartCourseEntity> allCartCourseEntity = cartCourseDao.findByCartId(cart_id);
 
 		List<CartCoursePojo> allCartCoursePojo = new ArrayList<CartCoursePojo>();
 		

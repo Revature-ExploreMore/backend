@@ -22,7 +22,7 @@ public class CartController {
 	@Autowired
 	CartService cartService;
 	
-	@GetMapping("cartcourse/{cid}")
+	@GetMapping("cartCourse/{cid}")
 	public List<CartCoursePojo> getCartCoursesByCart(@PathVariable("cid") int id) {
 		//try {
 			return cartService.getCartCourses(id);
@@ -38,7 +38,7 @@ public class CartController {
 		return cartService.getCart(id);
 	}
 	
-	@DeleteMapping("cartcourse/{ccid}")
+	@DeleteMapping("cartCourse/{ccid}")
 	public boolean deleteCartCourse(@PathVariable("ccid") int cart_course_id) {
 		return cartService.deleteCartCourse(cart_course_id);
 	}
