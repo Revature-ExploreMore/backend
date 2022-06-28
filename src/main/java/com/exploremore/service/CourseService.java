@@ -14,10 +14,13 @@ public interface CourseService {
 	
 	List<CoursePojo> getAllByCategory(String categoryName) throws GlobalException;
 
-
 	CoursePojo addCourse(CoursePojo coursePojo);
 
 	CoursePojo getCourseById(int id);
 
- 	
+	boolean deleteCourse(int id) throws GlobalException;
+	
+	CoursePojo updateCourse(CoursePojo coursePojo) throws GlobalException;
+
+
 }
