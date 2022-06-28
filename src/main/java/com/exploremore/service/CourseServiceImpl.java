@@ -25,8 +25,8 @@ public class CourseServiceImpl implements CourseService {
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for (CourseEntity fetchedEntity : allCoursesEntity) {
 			CategoryPojo category = new CategoryPojo();
-//			category.setId(fetchedEntity.getCategoryId().getId());							**these 2 lines are causing errors
-//			category.setCategoryName(fetchedEntity.getCategoryId().getCategoryName());		   please fix before merging
+			category.setId(fetchedEntity.getCategoryId().getId());							
+			category.setCategoryName(fetchedEntity.getCategoryId().getCategoryName());		   
 			CoursePojo currCourse = new CoursePojo(fetchedEntity.getId(), fetchedEntity.getName(),
 					fetchedEntity.getDescription(), fetchedEntity.getPrice(), 
 					fetchedEntity.getImageUrl());
@@ -48,6 +48,11 @@ public class CourseServiceImpl implements CourseService {
 			CourseEntity fetchedCourseEntity = courseEntityOpt.get();
 			coursePojo = new CoursePojo();
 			BeanUtils.copyProperties(fetchedCourseEntity, coursePojo);
+			CategoryPojo catPojo = new CategoryPojo();
+			catPojo.setId(fetchedCourseEntity.getCategoryId().getId());						
+			catPojo.setCategoryName(fetchedCourseEntity.getCategoryId().getCategoryName());	
+			coursePojo.setCategoryId(catPojo);
+			
 		}
 		return coursePojo;
 	}
@@ -59,8 +64,6 @@ public class CourseServiceImpl implements CourseService {
 		for(CourseEntity fetchedCoursesEntity: allCoursesEntity) {
 			CoursePojo returnCoursePojo = new CoursePojo();
 			
-			
-			
 			returnCoursePojo.setId(fetchedCoursesEntity.getId());
 			returnCoursePojo.setName(fetchedCoursesEntity.getName());
 			returnCoursePojo.setDescription(fetchedCoursesEntity.getDescription());
@@ -68,8 +71,8 @@ public class CourseServiceImpl implements CourseService {
 			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());
 			
 			CategoryPojo catPojo = new CategoryPojo();
-//			catPojo.setId(fetchedCoursesEntity.getCategoryId().getId());						** these two lines are causing error
-//			catPojo.setCategoryName(fetchedCoursesEntity.getCategoryId().getCategoryName());		please fix before merging
+			catPojo.setId(fetchedCoursesEntity.getCategoryId().getId());						
+			catPojo.setCategoryName(fetchedCoursesEntity.getCategoryId().getCategoryName());		
 			
 			returnCoursePojo.setCategoryId(catPojo);
 		
@@ -77,6 +80,7 @@ public class CourseServiceImpl implements CourseService {
 		}
 		return allCoursesPojo;
 	}
+	
 
 	@Override
 	public CoursePojo addCourse(CoursePojo coursePojo) {

@@ -47,12 +47,13 @@ public class CourseController {
 		return courseService.getAllCourses();
 	}
 
-//uncomment if method is needed
-@GetMapping("getById/{id}")
-public CoursePojo getById(@PathVariable("id")int id){
-  return courseService.getCourseById(id);
-}
-	//does not return anything
+
+	@GetMapping("getById/{id}")
+	public CoursePojo getById(@PathVariable("id")int id){
+		return courseService.getCourseById(id);
+	}
+	
+	
 	@GetMapping("getByCategory/{category}")
 	public List<CoursePojo> getCourseByCategory(@PathVariable("category") String categoryName) throws GlobalException{
 		return courseService.getAllByCategory(categoryName);
