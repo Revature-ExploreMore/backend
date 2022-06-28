@@ -17,14 +17,7 @@ public interface CourseService {
 
 	CoursePojo addCourse(CoursePojo coursePojo);
 
-	List<CoursePojo> getAllCourses();
-
-	CoursePojo getACourseById(int id);
-
-	CoursePojo getACourseByCategory(String name);
-
 	CoursePojo getCourseById(int id);
 
-	List<CoursePojo> getAllByCategory(String categoryName);
  	
 }

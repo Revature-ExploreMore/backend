@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -54,7 +56,7 @@ public class CourseEntity {
 		this.categoryId = categoryId;
 	}
 
-	public CourseEntity(int id, String name, String description, BigDecimal price, String imageUrl, int categoryId,
+	public CourseEntity(int id, String name, String description, double price, String imageUrl, CategoryEntity categoryId,
 			Set<CartCourseEntity> cartCourses) {
 		super();
 		this.id = id;
