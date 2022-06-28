@@ -27,10 +27,13 @@ public class CourseServiceImpl implements CourseService {
 			CategoryPojo category = new CategoryPojo();
 //			category.setId(fetchedEntity.getCategoryId().getId());							**these 2 lines are causing errors
 //			category.setCategoryName(fetchedEtity.getCategoryId().getCategoryName());		   please fix before merging
-			CoursePojo currCourse = new CoursePojo(fetchedEntity.getId(), fetchedEntity.getName(),
-					fetchedEntity.getDescription(), fetchedEntity.getPrice(), 
-					fetchedEntity.getImageUrl());
-			currCourse.setCategoryId(category);
+			BeanUtils.copyProperties(fetchedEntity.getCategory(), category);
+//			CoursePojo currCourse = new CoursePojo(fetchedEntity.getId(), fetchedEntity.getName(),
+//					fetchedEntity.getDescription(), fetchedEntity.getPrice(), 
+//					fetchedEntity.getImageUrl());
+			CoursePojo currCourse = new CoursePojo();
+			BeanUtils.copyProperties(fetchedEntity, currCourse);
+			currCourse.setCategory(category);
 			allCoursesPojo.add(currCourse);
 		}
 		return allCoursesPojo;
@@ -76,6 +79,7 @@ public class CourseServiceImpl implements CourseService {
 //			allCoursesPojo.add(returnCoursePojo);
 //		}
 //		return allCoursesPojo;
+		return null;
 	}
 
 	@Override
