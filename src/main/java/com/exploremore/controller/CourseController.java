@@ -37,14 +37,14 @@ public class CourseController {
 
 //adds course
 	@PostMapping("courses")
-	public CoursePojo addCourse(CoursePojo coursePojo) {
+	public CoursePojo addCourse(CoursePojo coursePojo) throws GlobalException {
 		return courseService.addCourse(coursePojo);
 	}
 	
 
 	//get a course by id
 	@GetMapping("courses/{id}")
-	public CoursePojo getACourseById(@PathVariable("course_id") int id) {
+	public CoursePojo getACourseById(@PathVariable("course_id") int id) throws GlobalException {
 		return courseService.getCourseById(id);
 	}
 	
