@@ -59,7 +59,7 @@ public class CartServiceImpl implements CartService{
 
 	@Override
 	public boolean deleteCartCourse(int cart_course_id) {
-		cartDao.deleteById(cart_course_id);
+		cartCourseDao.deleteById(cart_course_id);
 		return true;
 	};
 }
