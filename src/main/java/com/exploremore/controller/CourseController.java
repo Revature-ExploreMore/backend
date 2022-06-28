@@ -19,7 +19,7 @@ import com.exploremore.service.CourseService;
 
 @CrossOrigin // to enable cors
 @RestController
-@RequestMapping("api")
+@RequestMapping("course")
 public class CourseController {
 	//1. addCourse Fozeya-Nikka Alviar
 	//2. getACourse Logan

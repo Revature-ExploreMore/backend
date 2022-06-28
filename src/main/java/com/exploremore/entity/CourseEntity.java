@@ -78,7 +78,7 @@ public class CourseEntity {
 		this.cartCourses = cartCourses;
 	}
 
-	public CourseEntity(int id, String name, String description, BigDecimal price, String imageUrl, int categoryId,
+	public CourseEntity(int id, String name, String description, double price, String imageUrl, CategoryEntity categoryId,
 			Set<CartCourseEntity> cartCourses) {
 		super();
 		this.id = id;
