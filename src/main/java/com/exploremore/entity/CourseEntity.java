@@ -38,7 +38,8 @@ public class CourseEntity {
 
 	@ManyToOne
 	@JoinColumn(name="category_id")
-	private CategoryEntity category;
+	private CategoryEntity categoryId;
+	
 	@OneToMany(mappedBy="course")
 	private Set<CartCourseEntity> cartCourses;
 
@@ -138,6 +139,15 @@ public class CourseEntity {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+	
+
+	public CategoryEntity getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(CategoryEntity categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	@Override
