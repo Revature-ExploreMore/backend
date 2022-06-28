@@ -32,6 +32,7 @@ public class OrderController {
 		return orderService.addOrder(orderPojo);
 	}
 	
+
 //	@GetMapping("orders/{oID}")
 //	public List<OrderPojo> viewOrderById(@PathVariable("oID") int orderId) { 
 //		return orderService.viewOrderById(orderId);
@@ -65,4 +66,18 @@ public class OrderController {
 //	public void deleteOrder(@PathVariable("oID") int orderId) {
 //		return orderService.deleteOrder(orderId);
 //	}
+
+
+
+//	
+//@PutMapping("orders/{oID}")
+//public OrderPojo updateOrder(@RequestBody OrderPojo orderPojo) { 
+//return orderService.updateOrder(orderPojo);
+//}
+//	
+//@DeleteMapping("orders/{oID}") 
+//public void deleteOrder(@PathVariable("oID") int orderId) {
+//return orderService.deleteOrder(orderId);
+//}
+
 }
