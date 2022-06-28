@@ -30,12 +30,12 @@ public class OrderController {
 //		return orderService.addOrder(orderId);
 //	}
 	
-	@GetMapping("orders/{oID}")
+	@GetMapping("{oID}")
 	public List<OrderPojo> viewOrderById(@PathVariable("oID") int orderId) { 
 		return orderService.viewOrderById(orderId);
 	}
 
-	@GetMapping("orders")
+	@GetMapping("allOrders")
 	public List<OrderPojo> viewAllOrders() {
 		List<OrderPojo> allOrders = orderService.viewAllOrders();
 		return allOrders;
