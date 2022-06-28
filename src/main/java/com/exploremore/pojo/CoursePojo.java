@@ -9,7 +9,7 @@ public class CoursePojo {
 	private String description;
 	private double price;
 	private String imageUrl;
-	private CategoryPojo categoryId;
+	private CategoryPojo category;
 
 	public CoursePojo() {
 	}
@@ -61,18 +61,18 @@ public class CoursePojo {
 		this.imageUrl = imageUrl;
 	}
 
-	public CategoryPojo getCategoryId() {
-		return categoryId;
+	public CategoryPojo getCategory() {
+		return category;
 	}
 
-	public void setCategoryId(CategoryPojo categoryId) {
-		this.categoryId = categoryId;
+	public void setCategory(CategoryPojo category) {
+		this.category = category;
 	}
 
 	@Override
 	public String toString() {
 		return "CoursePojo [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", imageUrl=" + imageUrl + ", categoryId=" + categoryId + "]";
+				+ ", imageUrl=" + imageUrl + ", categoryId=" + category + "]";
 	}
 
 }

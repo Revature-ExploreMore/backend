@@ -24,21 +24,16 @@ public class CourseServiceImpl implements CourseService {
 		List<CourseEntity> allCoursesEntity = courseDao.findAll();
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for (CourseEntity fetchedEntity : allCoursesEntity) {
-			CategoryPojo category = new CategoryPojo();
-			category.setId(fetchedEntity.getCategoryId().getId());							
-			category.setCategoryName(fetchedEntity.getCategoryId().getCategoryName());		   
-			CoursePojo currCourse = new CoursePojo(fetchedEntity.getId(), fetchedEntity.getName(),
-					fetchedEntity.getDescription(), fetchedEntity.getPrice(), 
-					fetchedEntity.getImageUrl());
-			currCourse.setCategoryId(category);
+			CategoryPojo category = new CategoryPojo();	   
+			BeanUtils.copyProperties(fetchedEntity.getCategory(), category);
+			CoursePojo currCourse = new CoursePojo();
+			BeanUtils.copyProperties(fetchedEntity, currCourse);
+			currCourse.setCategory(category);
 			allCoursesPojo.add(currCourse);
 		}
 		return allCoursesPojo;
 	}
-
-	public CourseServiceImpl() {
-		
-	}
+	
 
 	@Override
 	public CoursePojo getCourseById(int id) {
@@ -48,35 +43,34 @@ public class CourseServiceImpl implements CourseService {
 			CourseEntity fetchedCourseEntity = courseEntityOpt.get();
 			coursePojo = new CoursePojo();
 			BeanUtils.copyProperties(fetchedCourseEntity, coursePojo);
-			CategoryPojo catPojo = new CategoryPojo();
-			catPojo.setId(fetchedCourseEntity.getCategoryId().getId());						
-			catPojo.setCategoryName(fetchedCourseEntity.getCategoryId().getCategoryName());	
-			coursePojo.setCategoryId(catPojo);
+			
+			CategoryPojo category = new CategoryPojo();
+			BeanUtils.copyProperties(fetchedCourseEntity.getCategory(), category);
+			coursePojo.setCategory(category);
 			
 		}
 		return coursePojo;
 	}
+	
 
 	@Override
 	public List<CoursePojo> getAllByCategory(String categoryName) {
 		List<CourseEntity> allCoursesEntity = courseDao.findByCategoryId_CategoryName(categoryName);
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for(CourseEntity fetchedCoursesEntity: allCoursesEntity) {
-			CoursePojo returnCoursePojo = new CoursePojo();
 			
+			CoursePojo returnCoursePojo = new CoursePojo();	
 			returnCoursePojo.setId(fetchedCoursesEntity.getId());
 			returnCoursePojo.setName(fetchedCoursesEntity.getName());
 			returnCoursePojo.setDescription(fetchedCoursesEntity.getDescription());
 			returnCoursePojo.setPrice(fetchedCoursesEntity.getPrice());
-			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());
-			
-			CategoryPojo catPojo = new CategoryPojo();
-			catPojo.setId(fetchedCoursesEntity.getCategoryId().getId());						
-			catPojo.setCategoryName(fetchedCoursesEntity.getCategoryId().getCategoryName());		
-			
-			returnCoursePojo.setCategoryId(catPojo);
-		
+			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());		
 			allCoursesPojo.add(returnCoursePojo);
+			
+			CategoryPojo category = new CategoryPojo();	   
+			BeanUtils.copyProperties(fetchedCoursesEntity.getCategory(), category);
+			returnCoursePojo.setCategory(category);
+			
 		}
 		return allCoursesPojo;
 	}

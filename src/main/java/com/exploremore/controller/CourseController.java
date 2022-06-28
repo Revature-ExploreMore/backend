@@ -35,12 +35,7 @@ public class CourseController {
 		return courseService.addCourse(coursePojo);
 		
 	}
-	//get a course by id
-	@GetMapping("courses/{id}")
-	public CoursePojo getACourseById(@PathVariable("course_id") int id) {
-		return courseService.getCourseById(id);
-	}
-//	
+	
 
 	@GetMapping("getAll")
 	public List<CoursePojo> getAllCourses(){

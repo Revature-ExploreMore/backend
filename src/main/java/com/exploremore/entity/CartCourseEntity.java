@@ -23,7 +23,7 @@ public class CartCourseEntity {
 	private CourseEntity course;
 
 	@ManyToOne()
-	@JoinColumn(name="id", nullable=false,insertable=false, updatable=false)
+	@JoinColumn(name="cart_id", nullable=false,insertable=false, updatable=false)
 	private CartEntity cart;
 
 	public CartCourseEntity() {
