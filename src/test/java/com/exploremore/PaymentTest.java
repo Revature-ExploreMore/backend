@@ -16,6 +16,7 @@ import java.util.Optional;
 
 import com.exploremore.dao.PaymentDao;
 import com.exploremore.entity.PaymentEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.PaymentPojo;
 import com.exploremore.service.PaymentServiceImpl;
 
@@ -47,7 +48,7 @@ public class PaymentTest{
 	
 	@DisplayName("JUnit test for save addPayment method")
     @Test
-    public void testAddPayment(){
+    public void testAddPayment() throws GlobalException{
        when(paymentDao.saveAndFlush(any(PaymentEntity.class))).thenReturn(dummyPaymentEntity);
 		
 
@@ -59,7 +60,7 @@ public class PaymentTest{
 	
 	@DisplayName("JUnit test for save GetPayment method")
 	@Test
-	public void testGetPayment() {
+	public void testGetPayment() throws GlobalException {
 		when(paymentDao.findByUserId(3)).thenReturn(Optional.of(dummyPaymentEntity));
     	PaymentPojo actualPaymentPojo = paymentService.getPaymentInfo(3);
     	assertEquals(expectedPaymentPojo.getId(), actualPaymentPojo.getId());

@@ -14,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.exploremore.dao.BillingDao;
 import com.exploremore.entity.BillingEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.BillingPojo;
 import com.exploremore.service.BillingServiceImpl;
 
@@ -39,7 +40,7 @@ public class BillingTest {
 	
 	@DisplayName("JUnit test for save addBilling method")
     @Test
-    public void testAddBilling(){
+    public void testAddBilling() throws GlobalException{
        when(billingDao.saveAndFlush(any(BillingEntity.class))).thenReturn(dummyBillingEntity);
 		
 

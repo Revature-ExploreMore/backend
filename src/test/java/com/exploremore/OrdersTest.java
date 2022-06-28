@@ -17,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.exploremore.dao.OrderDao;
 import com.exploremore.entity.OrderEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.OrderPojo;
 import com.exploremore.service.OrderServiceImpl;
 
@@ -44,7 +45,7 @@ public class OrdersTest {
 	
 	@DisplayName("JUnit test for save addOrder method")
     @Test
-    public void testAddOrder(){
+    public void testAddOrder() throws GlobalException{
        when(orderDao.saveAndFlush(any(OrderEntity.class))).thenReturn(dummyOrderEntity);
 		
 
