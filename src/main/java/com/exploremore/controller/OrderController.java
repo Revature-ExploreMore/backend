@@ -18,13 +18,14 @@ import com.exploremore.entity.OrderEntity;
 import com.exploremore.pojo.OrderPojo;
 import com.exploremore.service.OrderService;
 
-@CrossOrigin
+@CrossOrigin(origins="*") // to enable cors
 @RestController
 @RequestMapping("order")
 public class OrderController {
 
 	@Autowired
 	OrderService orderService;
+
 
 	@PostMapping("orders")
 	public OrderPojo addOrder(@RequestBody OrderPojo orderPojo) { 
@@ -41,6 +42,19 @@ public class OrderController {
 //		List<OrderPojo> allOrders = orderService.viewAllOrders();
 //		return allOrders;
 //	}
+
+	
+	@GetMapping("orders/{oID}")
+	public List<OrderPojo> viewOrderById(@PathVariable("oID") int orderId) { 
+		return orderService.viewOrderById(orderId);
+	}
+
+	@GetMapping("orders")
+	public List<OrderPojo> viewAllOrders() {
+		List<OrderPojo> allOrders = orderService.viewAllOrders();
+		return allOrders;
+	}
+
 	
 //	@PutMapping("orders/{oID}")
 //	public OrderPojo updateOrder(@RequestBody OrderPojo orderPojo) { 

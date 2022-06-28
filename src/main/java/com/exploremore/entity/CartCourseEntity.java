@@ -19,11 +19,11 @@ public class CartCourseEntity {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name = "course_id")
+	@JoinColumn(name = "course_id", nullable=false)
 	private CourseEntity course;
 
-	@ManyToOne
-	@JoinColumn(name="cart_id", nullable=false)
+	@ManyToOne()
+	@JoinColumn(name="id", nullable=false,insertable=false, updatable=false)
 	private CartEntity cart;
 
 	public CartCourseEntity() {

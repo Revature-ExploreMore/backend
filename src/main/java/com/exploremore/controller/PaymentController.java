@@ -14,7 +14,7 @@ import com.exploremore.service.PaymentService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("api")
+@RequestMapping("payment")
 public class PaymentController {
 	
 	@Autowired
