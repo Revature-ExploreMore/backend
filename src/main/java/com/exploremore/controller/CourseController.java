@@ -35,17 +35,10 @@ public class CourseController {
 	
 
 
-//adds course
+	//adds course
 	@PostMapping("courses")
 	public CoursePojo addCourse(CoursePojo coursePojo) throws GlobalException {
 		return courseService.addCourse(coursePojo);
-	}
-	
-
-	//get a course by id
-	@GetMapping("courses/{id}")
-	public CoursePojo getACourseById(@PathVariable("course_id") int id) throws GlobalException {
-		return courseService.getCourseById(id);
 	}
 	
 	//get all Courses
@@ -55,13 +48,13 @@ public class CourseController {
 	}
 
 
-	//uncomment if method is needed
+	//gets a course by id
 	@GetMapping("getById/{id}")
 	public CoursePojo getById(@PathVariable("id")int id) throws GlobalException{
 		return courseService.getCourseById(id);
 	}
-	//does not return anything
-
+	
+	// gets all courses by category
 	@GetMapping("getByCategory/{category}")
 	public List<CoursePojo> getCourseByCategory(@PathVariable("category") String categoryName) throws GlobalException{
 		return courseService.getAllByCategory(categoryName);
