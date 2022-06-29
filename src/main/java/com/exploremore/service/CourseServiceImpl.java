@@ -43,11 +43,9 @@ public class CourseServiceImpl implements CourseService {
 			CourseEntity fetchedCourseEntity = courseEntityOpt.get();
 			coursePojo = new CoursePojo();
 			BeanUtils.copyProperties(fetchedCourseEntity, coursePojo);
-
 			CategoryPojo category = new CategoryPojo();
 			BeanUtils.copyProperties(fetchedCourseEntity.getCategory(), category);
 			coursePojo.setCategory(category);
-
 		}
 		return coursePojo;
 	}

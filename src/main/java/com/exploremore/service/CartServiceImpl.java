@@ -14,6 +14,7 @@ import com.exploremore.entity.CartEntity;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
+import com.exploremore.pojo.CategoryPojo;
 import com.exploremore.pojo.CoursePojo;
 
 
@@ -37,12 +38,19 @@ public class CartServiceImpl implements CartService{
 		for(CartCourseEntity fetchedCartCourseEntity : allCartCourseEntity) {
 			CartCoursePojo returnedCartCoursePojo = new CartCoursePojo();
 			BeanUtils.copyProperties(fetchedCartCourseEntity, returnedCartCoursePojo);
-			CartPojo fetchedCartPojo = new CartPojo();
-			BeanUtils.copyProperties(fetchedCartCourseEntity.getCart(), fetchedCartPojo);
+			
+			//CartPojo fetchedCartPojo = new CartPojo();
+			//BeanUtils.copyProperties(fetchedCartCourseEntity.getCart(), fetchedCartPojo);
+			
 			CoursePojo fetchedCoursePojo = new CoursePojo();
 			BeanUtils.copyProperties(fetchedCartCourseEntity.getCourse(), fetchedCoursePojo);
-			returnedCartCoursePojo.setCart(fetchedCartPojo);
+			
+			CategoryPojo fetchedCategoryPojo = new CategoryPojo();
+			BeanUtils.copyProperties(fetchedCartCourseEntity.getCourse().getCategory(), fetchedCategoryPojo);
+			
+			//returnedCartCoursePojo.setCart(fetchedCartPojo);
 			returnedCartCoursePojo.setCourse(fetchedCoursePojo);
+			returnedCartCoursePojo.getCourse().setCategoryId(fetchedCategoryPojo);
 			allCartCoursePojo.add(returnedCartCoursePojo);
 		}
 		return allCartCoursePojo;

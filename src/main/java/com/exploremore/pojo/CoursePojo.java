@@ -1,7 +1,5 @@
 package com.exploremore.pojo;
 
-import java.math.BigDecimal;
-
 public class CoursePojo {
 
 	private int id;
@@ -66,13 +64,14 @@ public class CoursePojo {
 	}
 
 	public void setCategory(CategoryPojo category) {
+
 		this.category = category;
 	}
 
 	@Override
 	public String toString() {
 		return "CoursePojo [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", imageUrl=" + imageUrl + ", categoryId=" + category + "]";
+				+ ", imageUrl=" + imageUrl + ", category=" + category + "]";
 	}
 
 }
