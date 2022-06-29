@@ -47,10 +47,10 @@ public class CourseController {
 		return courseService.getCourseById(id);
 	}
 
-	@GetMapping("getById/{id}")
-	public CoursePojo getById(@PathVariable("id")int id) throws GlobalException{
-		return courseService.getCourseById(id);
-	}
+//	@GetMapping("getById/{id}")
+//	public CoursePojo getById(@PathVariable("id")int id) throws GlobalException{
+//		return courseService.getCourseById(id);
+//	}
 	
 	@GetMapping("getByCategory/{category}")
 	public List<CoursePojo> getCourseByCategory(@PathVariable("category") String categoryName) throws GlobalException{
