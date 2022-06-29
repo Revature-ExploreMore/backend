@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
 import com.exploremore.service.CartService;
@@ -42,10 +41,5 @@ public class CartController {
 	@DeleteMapping("cartCourse/{ccid}")
 	public boolean deleteCartCourse(@PathVariable("ccid") int cart_course_id) {
 		return cartService.deleteCartCourse(cart_course_id);
-	}
-	
-	@DeleteMapping("/{cid}")
-	public boolean emptyCart(@PathVariable("cid") int cartId) throws GlobalException{
-		return cartService.emptyCart(cartId);
 	}
 }

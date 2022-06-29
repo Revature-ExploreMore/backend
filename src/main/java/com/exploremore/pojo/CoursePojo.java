@@ -63,8 +63,7 @@ public class CoursePojo {
 		return category;
 	}
 
-	public void setCategory(CategoryPojo category) {
-
+	public void setCategoryId(CategoryPojo category) {
 		this.category = category;
 	}
 
