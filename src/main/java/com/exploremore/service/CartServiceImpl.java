@@ -46,9 +46,9 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public CartPojo getCart(int user_id) {
 		
-		CartEntity currentCartEntity = cartDao.findByUserId(user_id);
+//		CartEntity currentCartEntity = cartDao.findByUserId(user_id);
 		CartPojo currentCartPojo = new CartPojo();
-		BeanUtils.copyProperties(currentCartEntity, currentCartPojo);
+//		BeanUtils.copyProperties(currentCartEntity, currentCartPojo); //ERROR
 		
 		return currentCartPojo;
 	}
@@ -57,7 +57,11 @@ public class CartServiceImpl implements CartService{
 	public boolean deleteCartCourse(int cart_course_id) {
 		cartDao.deleteById(cart_course_id);
 		return true;
+	}
+
+	@Override
+	public boolean emptyCart(int cartId) {
+		cartDao.deleteById(cartId);
+		return true;
 	};
 }
-
-

@@ -42,4 +42,9 @@ public class CartController {
 	public boolean deleteCartCourse(@PathVariable("ccid") int cart_course_id) {
 		return cartService.deleteCartCourse(cart_course_id);
 	}
+	
+	@DeleteMapping("/{cid}")
+	public boolean emptyCart(@PathVariable("cid") int cartId) {
+		return cartService.emptyCart(cartId);
+	}
 }

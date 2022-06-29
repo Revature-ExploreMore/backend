@@ -134,6 +134,12 @@ public class CourseServiceImpl implements CourseService {
 				
 		return coursePojo;
 	}
+
+	@Override
+	public boolean deleteCourse(int id) throws GlobalException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 
 
