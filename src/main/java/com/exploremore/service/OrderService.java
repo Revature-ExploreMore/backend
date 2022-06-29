@@ -2,6 +2,7 @@ package com.exploremore.service;
 
 import java.util.List;
 
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.OrderPojo;
 
 public interface OrderService {
@@ -9,5 +10,7 @@ public interface OrderService {
 	List<OrderPojo> viewOrderById(int orderId);
 
 	List<OrderPojo> viewAllOrders();
+	
+	OrderPojo addOrder(OrderPojo orderPojo) throws GlobalException;
 
 }
