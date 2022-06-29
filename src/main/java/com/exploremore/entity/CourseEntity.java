@@ -78,28 +78,6 @@ public class CourseEntity {
 		this.cartCourses = cartCourses;
 	}
 
-	public CourseEntity(int id, String name, String description, double price, String imageUrl, CategoryEntity categoryId,
-			Set<CartCourseEntity> cartCourses) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.imageUrl = imageUrl;
-		this.category = categoryId;
-		this.cartCourses = cartCourses;
-	}
-	
-	
-
-	public Set<CartCourseEntity> getCartCourses() {
-		return cartCourses;
-	}
-
-	public void setCartCourses(Set<CartCourseEntity> cartCourses) {
-		this.cartCourses = cartCourses;
-	}
-
 	public int getId() {
 		return id;
 	}

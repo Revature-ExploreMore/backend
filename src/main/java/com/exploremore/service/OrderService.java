@@ -10,5 +10,7 @@ public interface OrderService {
 	List<OrderPojo> viewOrderById(int orderId);
 
 	List<OrderPojo> viewAllOrders();
+	
+	OrderPojo addOrder(OrderPojo orderPojo) throws GlobalException;
 
 }

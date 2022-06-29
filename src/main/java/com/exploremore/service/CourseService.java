@@ -19,5 +19,6 @@ public interface CourseService {
 	boolean deleteCourse(int id) throws GlobalException;
 	
 	CoursePojo updateCourse(CoursePojo coursePojo) throws GlobalException;
-	
+
+
 }
