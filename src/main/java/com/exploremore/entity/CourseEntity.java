@@ -1,13 +1,15 @@
 package com.exploremore.entity;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -33,26 +35,29 @@ public class CourseEntity {
 	@Column(name="image_url")
 	private String imageUrl;
 	
-	@Column(name="category_id")
-	private int categoryId;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="category_id")
+	private CategoryEntity category;
 	
 	@OneToMany(mappedBy="course")
 	private Set<CartCourseEntity> cartCourses;
 
+
 	public CourseEntity() {
 	}
 
-	public CourseEntity(int id, String name, String description, double price, String imageUrl, int categoryId) {
+	public CourseEntity(int id, String name, String description, double price, String imageUrl, CategoryEntity category) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.imageUrl = imageUrl;
-		this.categoryId = categoryId;
+		this.category = category;
 	}
 
-	public CourseEntity(int id, String name, String description, BigDecimal price, String imageUrl, int categoryId,
+	public CourseEntity(int id, String name, String description, double price, String imageUrl, CategoryEntity category,
 			Set<CartCourseEntity> cartCourses) {
 		super();
 		this.id = id;
@@ -60,9 +65,10 @@ public class CourseEntity {
 		this.description = description;
 		this.price = price;
 		this.imageUrl = imageUrl;
-		this.categoryId = categoryId;
+		this.category = category;
 		this.cartCourses = cartCourses;
 	}
+	
 	
 	
 
@@ -115,21 +121,26 @@ public class CourseEntity {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	public int getCategoryId() {
 		return categoryId;
+=======
+	public CategoryEntity getCategory() {
+		return category;
+>>>>>>> a6b301419690fee8c44ae4f33415ff6955a75838
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
 	}
 >>>>>>> development
 
 	@Override
 	public String toString() {
 		return "CourseEntity [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", imageUrl=" + imageUrl + ", categoryId=" + categoryId + ", cartCourses=" + cartCourses + "]";
+				+ ", imageUrl=" + imageUrl + ", category=" + category + ", cartCourses=" + cartCourses + "]";
 	}
 
 	

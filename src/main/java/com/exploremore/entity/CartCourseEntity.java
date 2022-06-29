@@ -2,6 +2,7 @@ package com.exploremore.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,12 +19,12 @@ public class CartCourseEntity {
 	@Column(name = "id")
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "course_id", nullable=false)
 	private CourseEntity course;
 
-	@ManyToOne()
-	@JoinColumn(name="id", nullable=false,insertable=false, updatable=false)
+	@ManyToOne
+	@JoinColumn(name="cart_id", nullable=false,insertable=false, updatable=false)
 	private CartEntity cart;
 
 	public CartCourseEntity() {
@@ -36,6 +37,8 @@ public class CartCourseEntity {
 		this.cart = cart;
 	}
 
+	
+	
 	public int getId() {
 		return id;
 	}

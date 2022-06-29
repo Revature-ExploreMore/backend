@@ -8,14 +8,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CoursePojo;
 import com.exploremore.service.CourseService;
 
 @CrossOrigin // to enable cors
 @RestController
-@RequestMapping("api")
+@RequestMapping("course")
 public class CourseController {
 	//1. addCourse Fozeya-Nikka Alviar
 	//2. getACourse Logan
@@ -36,18 +38,25 @@ public class CourseController {
 	//get a course by id
 	@GetMapping("courses/{id}")
 	public CoursePojo getACourseById(@PathVariable("course_id") int id) {
-		return courseService.getACourseById(id);
+		return courseService.getCourseById(id);
 	}
-	
-	//get a course by category
-	@GetMapping("courses/{name}")
-	public CoursePojo getACourseByCategory(@PathVariable("course_name")String name) {
-			return courseService.getACourseByCategory(name);
-	}
+//	
 
 	@GetMapping("getAll")
 	public List<CoursePojo> getAllCourses(){
 		return courseService.getAllCourses();
+	}
+
+
+	@GetMapping("getById/{id}")
+	public CoursePojo getById(@PathVariable("id")int id){
+		return courseService.getCourseById(id);
+	}
+	
+	
+	@GetMapping("getByCategory/{category}")
+	public List<CoursePojo> getCourseByCategory(@PathVariable("category") String categoryName) throws GlobalException{
+		return courseService.getAllByCategory(categoryName);
 	}
 }
 
