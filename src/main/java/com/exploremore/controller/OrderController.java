@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.exploremore.entity.OrderEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.OrderPojo;
 import com.exploremore.service.OrderService;
 
@@ -24,11 +25,11 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
-
-//	@GetMapping("orders/{oID}")
-//	public OrderPojo addOrder(@PathVariable("oID") int orderId) { 
-//		return orderService.addOrder(orderId);
-//	}
+	
+	@GetMapping("addorder")
+	public OrderPojo addOrder(@RequestBody OrderPojo orderPojo)  throws GlobalException{ 
+		return orderService.addOrder(orderPojo);
+	}
 	
 	@GetMapping("{oID}")
 	public List<OrderPojo> viewOrderById(@PathVariable("oID") int orderId) { 
@@ -40,15 +41,6 @@ public class OrderController {
 		List<OrderPojo> allOrders = orderService.viewAllOrders();
 		return allOrders;
 	}
-	
-//	@PutMapping("orders/{oID}")
-//	public OrderPojo updateOrder(@RequestBody OrderPojo orderPojo) { 
-//		return orderService.updateOrder(orderPojo);
-//	}
-	
-	// @DeleteMapping("orders/{oID}") 
-	// public void deleteOrder(@PathVariable("oID") int orderId) {
-	// 	return orderService.deleteOrder(orderId);
-	// }
+
 
 }
