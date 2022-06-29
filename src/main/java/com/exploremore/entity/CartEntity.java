@@ -57,6 +57,18 @@ public class CartEntity {
 		this.orderId = orderId;
 		this.cartCourses = cartCourses;
 	}
+	
+	public CartEntity(int id, LocalDateTime createdAt, LocalDateTime modifiedAt, boolean isRemoved, BigDecimal cartTotal,
+			int userId, int orderId) {
+		super();
+		this.id = id;
+		this.createdAt = createdAt;
+		this.modifiedAt = modifiedAt;
+		this.isRemoved = isRemoved;
+		this.cartTotal = cartTotal;
+		this.userId = userId;
+		this.orderId = orderId;
+	}
 
 	public int getId() {
 		return id;

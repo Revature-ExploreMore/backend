@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.PaymentPojo;
 import com.exploremore.service.PaymentService;
 
@@ -21,14 +22,14 @@ public class PaymentController {
 	PaymentService paymentService;
 	
 	@PostMapping("payment")
-	public PaymentPojo addPaymentInfo(@RequestBody PaymentPojo paymentPojo) {
+	public PaymentPojo addPaymentInfo(@RequestBody PaymentPojo paymentPojo) throws GlobalException{
 		
 		return paymentService.addPaymentInfo(paymentPojo);
 		
 	}
 	
 	@GetMapping("payment/{uid}")
-	public PaymentPojo getPaymentInfo(@PathVariable("uid") int userId) {
+	public PaymentPojo getPaymentInfo(@PathVariable("uid") int userId) throws GlobalException{
 		return paymentService.getPaymentInfo(userId);
 	}
 }
