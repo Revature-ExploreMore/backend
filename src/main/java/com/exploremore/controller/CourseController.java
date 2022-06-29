@@ -41,12 +41,6 @@ public class CourseController {
 		return courseService.getAllCourses();
 	}
 
-	//gets a course by id
-	@GetMapping("getById/{id}")
-	public CoursePojo getById(@PathVariable("id")int id) throws GlobalException{
-		return courseService.getCourseById(id);
-	}
-
 	@GetMapping("getById/{id}")
 	public CoursePojo getById(@PathVariable("id")int id) throws GlobalException{
 		return courseService.getCourseById(id);
