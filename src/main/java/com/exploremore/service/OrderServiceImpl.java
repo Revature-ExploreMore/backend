@@ -3,13 +3,11 @@ package com.exploremore.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.exploremore.dao.OrderDao;
 import com.exploremore.entity.OrderEntity;
-import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.OrderPojo;
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -51,15 +49,6 @@ public class OrderServiceImpl implements OrderService {
 			}
 		}
 		return searchOrderPojo;
-	}
-
-	@Override
-	public OrderPojo addOrder(OrderPojo orderPojo) throws GlobalException {
-		OrderEntity orderEntity = new OrderEntity();
-		BeanUtils.copyProperties(orderPojo, orderEntity);
-		OrderEntity returnedOrderEntity = orderDao.saveAndFlush(orderEntity);
-		orderPojo.setId(returnedOrderEntity.getId());
-		return orderPojo;
 	}
 
 }
