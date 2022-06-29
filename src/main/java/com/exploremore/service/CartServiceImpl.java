@@ -62,6 +62,14 @@ public class CartServiceImpl implements CartService{
 		cartCourseDao.deleteById(cart_course_id);
 		return true;
 	};
+	
+	@Override
+    public int addCourseToCart(CartCoursePojo cartCourse) {
+        System.out.println(cartCourse);
+        CoursePojo coursePojo = cartCourse.getCourse();
+        CartPojo cartPojo = cartCourse.getCart();
+        
+        return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());}
 }
 
 
