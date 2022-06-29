@@ -27,7 +27,7 @@ public class CategoryTest {
 	@InjectMocks
 	CategoryServiceImpl categoryServiceImpl;
 	
-	private CategoryPojo testCategory;
+//	private CategoryPojo testCategory;
 	
 	@DisplayName("JUnit get all categories")
 	@Test
