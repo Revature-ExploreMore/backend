@@ -112,16 +112,10 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public CoursePojo addCourse(CoursePojo coursePojo) {
-		CourseEntity courseEntity = new CourseEntity();
-		BeanUtils.copyProperties(coursePojo, courseEntity);
-		
-		CourseEntity returnedEntity = courseDao.saveAndFlush(courseEntity);
-		coursePojo.setId(returnedEntity.getId());
-		
-		return coursePojo;
+	public boolean deleteCourse(int id) throws GlobalException {
+		courseDao.deleteById(id);
+		return true;
 	}
-
 
 	@Override
 	public CoursePojo updateCourse(CoursePojo coursePojo) throws GlobalException {
@@ -134,19 +128,4 @@ public class CourseServiceImpl implements CourseService {
 				
 		return coursePojo;
 	}
-
-	@Override
-	public boolean deleteCourse(int id) throws GlobalException {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }
-
-
-
-
-
-
-
-
-
