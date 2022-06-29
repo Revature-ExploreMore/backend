@@ -34,7 +34,6 @@ public class CourseServiceImpl implements CourseService {
 		}
 		return allCoursesPojo;
 	}
-	
 
 	@Override
 	public CoursePojo getCourseById(int id) throws GlobalException{
@@ -53,7 +52,6 @@ public class CourseServiceImpl implements CourseService {
 		return coursePojo;
 	}
 	
-
 	@Override
 	public List<CoursePojo> getAllByCategory(String categoryName) throws GlobalException{
 		List<CourseEntity> allCoursesEntity = courseDao.findByCategoryId_CategoryName(categoryName);
