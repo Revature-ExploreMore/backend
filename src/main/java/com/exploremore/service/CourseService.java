@@ -7,16 +7,18 @@ import com.exploremore.pojo.CoursePojo;
 
 public interface CourseService {
 	//gets all courses
-		List<CoursePojo> getAllCourses();
+	List<CoursePojo> getAllCourses() throws GlobalException;
 		
 	
-	CoursePojo getCourseById(int id);
+	CoursePojo getCourseById(int id) throws GlobalException;
 	
 	List<CoursePojo> getAllByCategory(String categoryName) throws GlobalException;
+	
+	CoursePojo addCourse(CoursePojo coursePojo) throws GlobalException;
+
+	boolean deleteCourse(int id) throws GlobalException;
+	
+	CoursePojo updateCourse(CoursePojo coursePojo) throws GlobalException;
 
 
-	CoursePojo addCourse(CoursePojo coursePojo);
-
-
- 	
 }

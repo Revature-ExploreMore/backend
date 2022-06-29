@@ -1,15 +1,16 @@
 package com.exploremore.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.exploremore.dao.CourseDao;
 import com.exploremore.entity.CourseEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CategoryPojo;
 import com.exploremore.pojo.CoursePojo;
 
@@ -20,82 +21,92 @@ public class CourseServiceImpl implements CourseService {
 
 	// gets all courses
 	@Override
-	public List<CoursePojo> getAllCourses() {
+	public List<CoursePojo> getAllCourses() throws GlobalException{
 		List<CourseEntity> allCoursesEntity = courseDao.findAll();
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for (CourseEntity fetchedEntity : allCoursesEntity) {
-			CategoryPojo category = new CategoryPojo();
-			category.setId(fetchedEntity.getCategory().getId());							
-			category.setCategoryName(fetchedEntity.getCategory().getCategoryName());		   
-			CoursePojo currCourse = new CoursePojo(fetchedEntity.getId(), fetchedEntity.getName(),
-					fetchedEntity.getDescription(), fetchedEntity.getPrice(), 
-					fetchedEntity.getImageUrl());
-			currCourse.setCategoryId(category);
+			CategoryPojo category = new CategoryPojo();	   
+			BeanUtils.copyProperties(fetchedEntity.getCategory(), category);
+			CoursePojo currCourse = new CoursePojo();
+			BeanUtils.copyProperties(fetchedEntity, currCourse);
+			currCourse.setCategory(category);
 			allCoursesPojo.add(currCourse);
 		}
 		return allCoursesPojo;
 	}
 
-	public CourseServiceImpl() {
-		
-	}
-
 	@Override
-	public CoursePojo getCourseById(int id) {
+	public CoursePojo getCourseById(int id) throws GlobalException{
 		Optional<CourseEntity> courseEntityOpt = courseDao.findById(id);
 		CoursePojo coursePojo = null;
 		if(courseEntityOpt.isPresent()) {
 			CourseEntity fetchedCourseEntity = courseEntityOpt.get();
 			coursePojo = new CoursePojo();
 			BeanUtils.copyProperties(fetchedCourseEntity, coursePojo);
-			CategoryPojo catPojo = new CategoryPojo();
-			catPojo.setId(fetchedCourseEntity.getCategory().getId());						
-			catPojo.setCategoryName(fetchedCourseEntity.getCategory().getCategoryName());	
-			coursePojo.setCategoryId(catPojo);
-			
+			CategoryPojo category = new CategoryPojo();
+			BeanUtils.copyProperties(fetchedCourseEntity.getCategory(), category);
+			coursePojo.setCategory(category);
 		}
 		return coursePojo;
 	}
 
 	@Override
-	public List<CoursePojo> getAllByCategory(String categoryName) {
+	public List<CoursePojo> getAllByCategory(String categoryName) throws GlobalException{
 		List<CourseEntity> allCoursesEntity = courseDao.findByCategoryId_CategoryName(categoryName);
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for(CourseEntity fetchedCoursesEntity: allCoursesEntity) {
-			CoursePojo returnCoursePojo = new CoursePojo();
-			
+
+			CoursePojo returnCoursePojo = new CoursePojo();	
 			returnCoursePojo.setId(fetchedCoursesEntity.getId());
 			returnCoursePojo.setName(fetchedCoursesEntity.getName());
 			returnCoursePojo.setDescription(fetchedCoursesEntity.getDescription());
 			returnCoursePojo.setPrice(fetchedCoursesEntity.getPrice());
-			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());
-			
-			CategoryPojo catPojo = new CategoryPojo();
-			catPojo.setId(fetchedCoursesEntity.getCategory().getId());						
-			catPojo.setCategoryName(fetchedCoursesEntity.getCategory().getCategoryName());		
-			
-			returnCoursePojo.setCategoryId(catPojo);
-		
+			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());		
 			allCoursesPojo.add(returnCoursePojo);
+
+			CategoryPojo category = new CategoryPojo();	   
+			BeanUtils.copyProperties(fetchedCoursesEntity.getCategory(), category);
+			returnCoursePojo.setCategory(category);
+
 		}
 		return allCoursesPojo;
 	}
-	
 
+
+	// admin ------PAUSED FOR NOW! WILL CONTINUE ON THURSDAY
 	@Override
 	public CoursePojo addCourse(CoursePojo coursePojo) {
-		// TODO Auto-generated method stub
-		return null;
+		CourseEntity courseEntity = new CourseEntity();
+		BeanUtils.copyProperties(coursePojo, courseEntity);
+
+		CategoryPojo returningCategoryPojo = new CategoryPojo();
+		//			BeanUtils.copyProperties(courseEntity.getCategory(), returningCategoryPojo);
+		BeanUtils.copyProperties(returningCategoryPojo, courseEntity.getCategory());
+
+		CourseEntity returnedEntity = courseDao.saveAndFlush(courseEntity);
+
+		coursePojo.setId(returnedEntity.getId());
+		coursePojo.setCategory(returningCategoryPojo);
+		//			coursePojo.setCategoryId(returningCategoryPojo);
+
+		return coursePojo;
 	}
 
+	@Override
+	public boolean deleteCourse(int id) throws GlobalException {
+		courseDao.deleteById(id);
+		return true;
+	}
 
+	@Override
+	public CoursePojo updateCourse(CoursePojo coursePojo) throws GlobalException {
+		// copy the pojo into an entity object
+		CourseEntity courseEntity = new CourseEntity();
+		BeanUtils.copyProperties(coursePojo, courseEntity);
+
+		//  now pass the courseEntity object to spring data jpa to be updated into the table
+		CourseEntity returnedCourseEntity = courseDao.save(courseEntity);
+
+		return coursePojo;
+	}
 }
-
-
-
-
-
-
-
-
-
