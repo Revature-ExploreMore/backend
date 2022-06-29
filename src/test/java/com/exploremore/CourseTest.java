@@ -1,28 +1,22 @@
 package com.exploremore;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.exploremore.dao.CourseDao;
-import com.exploremore.dao.UserDao;
 import com.exploremore.entity.CategoryEntity;
 import com.exploremore.entity.CourseEntity;
-import com.exploremore.entity.UserEntity;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CoursePojo;
-import com.exploremore.pojo.UserPojo;
 import com.exploremore.service.CourseServiceImpl;
-import com.exploremore.service.UserServiceImpl;
 @ExtendWith(MockitoExtension.class)
 public class CourseTest {
 	@Mock
@@ -31,7 +25,6 @@ public class CourseTest {
 	@InjectMocks
 	CourseServiceImpl courseServiceImpl;
 	
-	private CoursePojo expectedCourse;
 	private Optional<CourseEntity> dummyCourse;
 	
 	@DisplayName("JUnit get all Courses")
