@@ -38,8 +38,8 @@ public class CartServiceImpl implements CartService{
 			CartCoursePojo returnedCartCoursePojo = new CartCoursePojo();
 			BeanUtils.copyProperties(fetchedCartCourseEntity, returnedCartCoursePojo);
 			
-			//CartPojo fetchedCartPojo = new CartPojo();
-			//BeanUtils.copyProperties(fetchedCartCourseEntity.getCart(), fetchedCartPojo);
+			CartPojo fetchedCartPojo = new CartPojo();
+			BeanUtils.copyProperties(fetchedCartCourseEntity.getCart(), fetchedCartPojo);
 			
 			CoursePojo fetchedCoursePojo = new CoursePojo();
 			BeanUtils.copyProperties(fetchedCartCourseEntity.getCourse(), fetchedCoursePojo);
@@ -47,7 +47,7 @@ public class CartServiceImpl implements CartService{
 			CategoryPojo fetchedCategoryPojo = new CategoryPojo();
 			BeanUtils.copyProperties(fetchedCartCourseEntity.getCourse().getCategory(), fetchedCategoryPojo);
 			
-			//returnedCartCoursePojo.setCart(fetchedCartPojo);
+			returnedCartCoursePojo.setCart(fetchedCartPojo);
 			returnedCartCoursePojo.setCourse(fetchedCoursePojo);
 			returnedCartCoursePojo.getCourse().setCategoryId(fetchedCategoryPojo);
 			allCartCoursePojo.add(returnedCartCoursePojo);
