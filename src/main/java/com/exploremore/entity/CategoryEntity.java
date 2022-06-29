@@ -22,7 +22,7 @@ public class CategoryEntity {
 	
 	@Column(name = "category_name")
 	private String categoryName;
-
+	
 	@OneToMany(mappedBy="category")
 	private Set<CourseEntity> courses;
 
