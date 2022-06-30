@@ -10,9 +10,11 @@ public interface CartService {
 	
 	List<CartCoursePojo> getCartCourses(int cart_id);
 	
-	CartPojo getCart(int user_id);
+	CartPojo getCart(int user_id) throws GlobalException;
 	
 	boolean deleteCartCourse(int cart_course_id);
+	
+	CartPojo addNewCartToUser(int user_id);
 	
 	int addCourseToCart(CartCoursePojo cartCourse);
 	
