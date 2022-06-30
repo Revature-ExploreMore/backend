@@ -7,11 +7,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
+import com.exploremore.pojo.CoursePojo;
+import com.exploremore.pojo.UserPojo;
 import com.exploremore.service.CartService;
 
 @CrossOrigin
@@ -41,5 +45,16 @@ public class CartController {
 	@DeleteMapping("cartCourse/{ccid}")
 	public boolean deleteCartCourse(@PathVariable("ccid") int cart_course_id) {
 		return cartService.deleteCartCourse(cart_course_id);
+	}
+	
+	@PostMapping("cart")
+	public CartPojo addCartToUser(@RequestBody UserPojo user) {
+		return cartService.addNewCartToUser(user.getId());
+	}
+	
+	@PostMapping("cartCourse")
+	public int addCourseToCart(@RequestBody CartCoursePojo cartCourse) {
+		System.out.println("hello");
+		return cartService.addCourseToCart(cartCourse);
 	}
 }
