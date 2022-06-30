@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.exploremore.exceptions.GlobalException;
@@ -26,14 +25,6 @@ public class CourseController {
 	CourseService courseService;
 	// create the rest methods for the rest endpoints
 	
-	//adds course
-	@PostMapping("courses")
-	public CoursePojo addCourse(CoursePojo coursePojo) throws GlobalException {
-		return courseService.addCourse(coursePojo);
-		
-	}
-
-
 	@GetMapping("getAll")
 	public List<CoursePojo> getAllCourses() throws GlobalException{
 		return courseService.getAllCourses();
@@ -50,12 +41,6 @@ public class CourseController {
 		return courseService.getAllByCategory(categoryName);
 	}
 
-	// modify existing course
-	@PutMapping("modifyCourse")
-	public CoursePojo modifyCourse(@RequestBody CoursePojo coursePojo) throws GlobalException {
-		return courseService.modifyCourse(coursePojo);
-	}
-	
 	@PostMapping("addNewCourse")
 	public CoursePojo addNewCourse(@RequestBody CoursePojo coursePojo) throws GlobalException {
 		return courseService.addNewCourse(coursePojo);
