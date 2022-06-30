@@ -50,7 +50,6 @@ public class CourseTest {
 		categoryPojo = new CategoryPojo(1, "math");
 		coursePojo = new CoursePojo(1, "math 101", "learn math", 35, "", categoryPojo);
 		cartCoursePojo = new CartCoursePojo(1,coursePojo,cartPojo);		
-
 	}
 	
 	@DisplayName("JUnit get all Courses")
@@ -73,7 +72,6 @@ public class CourseTest {
 		when(courseDao.findById(1)).thenReturn(dummyCourse);
 		CoursePojo requestedCourse = courseServiceImpl.getCourseById(1);
 		assertEquals(requestedCourse.getName(), "math 101");
-		
 	}
 	
 	@DisplayName("JUnit get all courses by category") //test passes
@@ -98,7 +96,7 @@ public class CourseTest {
 	}
 	
 	//JUnit Testing for Update Course
-	@DisplayName("JUnit test for updateCourse method") //test passed
+	@DisplayName("JUnit test for updateCourse method") 
 	@Test
 	public void testUpdateCourse() throws GlobalException {
 		when(courseDao.save(any(CourseEntity.class))).thenReturn(dummyCourseEntity);
@@ -109,7 +107,15 @@ public class CourseTest {
 		assertEquals(coursePojo.getName(),actualCoursePojo.getName());
 		assertEquals(coursePojo.getDescription(),actualCoursePojo.getDescription());
 		assertEquals(coursePojo.getImageUrl(),actualCoursePojo.getImageUrl());
-	
 	}
-				
+	
+	@DisplayName("JUnit test for addNewCourse method") 
+	@Test
+	public void testAddNewCourse() throws GlobalException {
+		when(courseDao.saveAndFlush(any(CourseEntity.class))).thenReturn(dummyCourseEntity);
+		CategoryPojo sendCategoryPojo =new CategoryPojo(1,"math");
+		CoursePojo sendCoursePojo = new CoursePojo(1, "math 101", "learn math", 35, "",sendCategoryPojo);
+		CoursePojo actualCoursePojo = courseServiceImpl.addNewCourse(sendCoursePojo);
+		assertEquals(sendCoursePojo, actualCoursePojo);
+	}			
 }

@@ -31,32 +31,31 @@ public class CourseServiceImpl implements CourseService {
 		for (CourseEntity fetchedEntity : allCoursesEntity) {
 
 			CategoryPojo category = new CategoryPojo();
-			category.setId(fetchedEntity.getCategory().getId());							
-			category.setCategoryName(fetchedEntity.getCategory().getCategoryName());		   
+			category.setId(fetchedEntity.getCategory().getId());
+			category.setCategoryName(fetchedEntity.getCategory().getCategoryName());
 			CoursePojo currCourse = new CoursePojo(fetchedEntity.getId(), fetchedEntity.getName(),
-					fetchedEntity.getDescription(), fetchedEntity.getPrice(), 
-					fetchedEntity.getImageUrl());
+					fetchedEntity.getDescription(), fetchedEntity.getPrice(), fetchedEntity.getImageUrl());
 			currCourse.setCategoryId(category);
 			allCoursesPojo.add(currCourse);
 		}
 		return allCoursesPojo;
 	}
+	
 	public CourseServiceImpl() {
-		
 	}
+
 	@Override
 	public CoursePojo getCourseById(int id) throws GlobalException{
 		Optional<CourseEntity> courseEntityOpt = courseDao.findById(id);
 		CoursePojo coursePojo = null;
-		if(courseEntityOpt.isPresent()) {
+		if (courseEntityOpt.isPresent()) {
 			CourseEntity fetchedCourseEntity = courseEntityOpt.get();
 			coursePojo = new CoursePojo();
 			BeanUtils.copyProperties(fetchedCourseEntity, coursePojo);
 			CategoryPojo catPojo = new CategoryPojo();
-			catPojo.setId(fetchedCourseEntity.getCategory().getId());						
-			catPojo.setCategoryName(fetchedCourseEntity.getCategory().getCategoryName());	
+			catPojo.setId(fetchedCourseEntity.getCategory().getId());
+			catPojo.setCategoryName(fetchedCourseEntity.getCategory().getCategoryName());
 			coursePojo.setCategoryId(catPojo);
-			
 		}
 		return coursePojo;
 	}
@@ -65,26 +64,21 @@ public class CourseServiceImpl implements CourseService {
 	public List<CoursePojo> getAllByCategory(String categoryName) throws GlobalException{
 		List<CourseEntity> allCoursesEntity = courseDao.findByCategoryId_CategoryName(categoryName);
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
-		for(CourseEntity fetchedCoursesEntity: allCoursesEntity) {
+		for (CourseEntity fetchedCoursesEntity : allCoursesEntity) {
 			CoursePojo returnCoursePojo = new CoursePojo();
-			
 			returnCoursePojo.setId(fetchedCoursesEntity.getId());
 			returnCoursePojo.setName(fetchedCoursesEntity.getName());
 			returnCoursePojo.setDescription(fetchedCoursesEntity.getDescription());
 			returnCoursePojo.setPrice(fetchedCoursesEntity.getPrice());
 			returnCoursePojo.setImageUrl(fetchedCoursesEntity.getImageUrl());
-			
 			CategoryPojo catPojo = new CategoryPojo();
-			catPojo.setId(fetchedCoursesEntity.getCategory().getId());						
-			catPojo.setCategoryName(fetchedCoursesEntity.getCategory().getCategoryName());		
-			
+			catPojo.setId(fetchedCoursesEntity.getCategory().getId());
+			catPojo.setCategoryName(fetchedCoursesEntity.getCategory().getCategoryName());
 			returnCoursePojo.setCategoryId(catPojo);
-		
 			allCoursesPojo.add(returnCoursePojo);
 		}
 		return allCoursesPojo;
 	}
-	
 
 	@Override
 	public CoursePojo addNewCourse(CoursePojo coursePojo) throws GlobalException{
@@ -101,25 +95,13 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public CoursePojo updateCourse(CoursePojo coursePojo) throws GlobalException {
-		// copy the pojo into an entity object
 		CourseEntity courseEntity = new CourseEntity();
+		CategoryEntity categoryEntity = new CategoryEntity();
+		categoryEntity.setId(coursePojo.getCategory().getId());
+		categoryEntity.setCategoryName(coursePojo.getCategory().getCategoryName());
+		courseEntity.setCategory(categoryEntity);
 		BeanUtils.copyProperties(coursePojo, courseEntity);
-
-		//  now pass the courseEntity object to spring data jpa to be updated into the table
-		CourseEntity returnedCourseEntity = courseDao.save(courseEntity);
-
+		courseDao.save(courseEntity);
 		return coursePojo;
 	}
-
-
-
 }
-
-
-
-
-
-
-
-
-
