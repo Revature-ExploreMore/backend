@@ -13,8 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "cart")
+@SQLDelete(sql = "UPDATE cart SET is_removed=true WHERE id=?")
+@Where(clause = "is_removed=false")
 public class CartEntity {
 
 	@Id
@@ -47,7 +52,7 @@ public class CartEntity {
 	}
 
 	public CartEntity(int id, LocalDateTime createdAt, LocalDateTime modifiedAt, boolean isRemoved, BigDecimal cartTotal,
-			int userId, int orderId, Set<CartCourseEntity> cartCourses) {
+			int userId) {
 		super();
 		this.id = id;
 		this.createdAt = createdAt;
@@ -55,10 +60,7 @@ public class CartEntity {
 		this.isRemoved = isRemoved;
 		this.cartTotal = cartTotal;
 		this.userId = userId;
-		this.orderId = orderId;
-		this.cartCourses = cartCourses;
 	}
-	
 	public CartEntity(int id, LocalDateTime createdAt, LocalDateTime modifiedAt, boolean isRemoved, BigDecimal cartTotal,
 			int userId, int orderId) {
 		super();
