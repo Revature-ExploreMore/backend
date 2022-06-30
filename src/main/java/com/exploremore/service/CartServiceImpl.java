@@ -93,13 +93,9 @@ public class CartServiceImpl implements CartService{
         CoursePojo coursePojo = cartCourse.getCourse();
         CartPojo cartPojo = cartCourse.getCart();
         
-        return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());}
+        return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());
+    }
 
-	@Override
-	public boolean emptyCart(int cartId) throws GlobalException {
-		cartDao.deleteById(cartId);
-		return true;
-   }
 	public CartPojo addNewCartToUser(int user_id) {
 		CartEntity cart = new CartEntity(0, LocalDateTime.now(), LocalDateTime.now(), false, 
 				BigDecimal.valueOf(0), user_id, 1);
@@ -108,6 +104,12 @@ public class CartServiceImpl implements CartService{
 		BeanUtils.copyProperties(cart, cartPojo);
 		return cartPojo;
 	}
+	
+	@Override
+	public boolean emptyCart(int cartId) throws GlobalException {
+		cartCourseDao.deleteByCartId(cartId);
+		return true;
+   }
 }
 
 
