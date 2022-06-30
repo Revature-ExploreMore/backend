@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.exploremore.dao.CourseDao;
+import com.exploremore.entity.CategoryEntity;
 import com.exploremore.entity.CourseEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CategoryPojo;
 import com.exploremore.pojo.CoursePojo;
 
@@ -83,12 +85,29 @@ public class CourseServiceImpl implements CourseService {
 	
 
 	@Override
-	public CoursePojo addCourse(CoursePojo coursePojo) {
-		// TODO Auto-generated method stub
-		return null;
+	public CoursePojo addNewCourse(CoursePojo coursePojo) {
+		CourseEntity courseEntity = new CourseEntity();
+		CategoryEntity categoryEntity = new CategoryEntity();
+		categoryEntity.setId(coursePojo.getCategory().getId());
+		categoryEntity.setCategoryName(coursePojo.getCategory().getCategoryName());
+		courseEntity.setCategory(categoryEntity);
+		BeanUtils.copyProperties(coursePojo, courseEntity);
+		CourseEntity newCourseEntity = courseDao.saveAndFlush(courseEntity);
+		coursePojo.setId(newCourseEntity.getId());
+		return coursePojo;
 	}
 
-
+	@Override
+	public CoursePojo modifyCourse(CoursePojo coursePojo) throws GlobalException{
+		CourseEntity courseEntity = new CourseEntity();
+		CategoryEntity categoryEntity = new CategoryEntity();
+		categoryEntity.setId(coursePojo.getCategory().getId());
+		categoryEntity.setCategoryName(coursePojo.getCategory().getCategoryName());
+		courseEntity.setCategory(categoryEntity);
+		BeanUtils.copyProperties(coursePojo, courseEntity);
+		courseDao.save(courseEntity);
+		return coursePojo;
+	}
 }
 
 
