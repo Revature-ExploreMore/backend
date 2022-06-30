@@ -102,6 +102,12 @@ public class CartServiceImpl implements CartService{
 		BeanUtils.copyProperties(cart, cartPojo);
 		return cartPojo;
 	}
+	
+	@Override
+	public boolean emptyCart(int cartId) throws GlobalException {
+		cartCourseDao.deleteByCartId(cartId);
+		return true;
+   }
 }
 
 
