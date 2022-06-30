@@ -120,22 +120,18 @@ public class CourseEntity {
 		this.imageUrl = imageUrl;
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	public int getCategoryId() {
-		return categoryId;
-=======
+
+
 	public CategoryEntity getCategory() {
 		return category;
->>>>>>> a6b301419690fee8c44ae4f33415ff6955a75838
+
 	}
 
 	public void setCategory(CategoryEntity category) {
 		this.category = category;
 	}
->>>>>>> development
+
 
 	@Override
 	public String toString() {

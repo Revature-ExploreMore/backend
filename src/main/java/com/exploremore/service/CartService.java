@@ -1,16 +1,4 @@
-<<<<<<< HEAD
-//package com.exploremore.service;
-//
-//import java.util.List;
-//
-//import com.exploremore.pojo.CartCoursePojo;
-//
-//public interface CartService {
-//	
-//	List<CartCoursePojo> getCartCourses(int user_id);
-//
-//}
-=======
+
 package com.exploremore.service;
 
 import java.util.List;
@@ -27,4 +15,3 @@ public interface CartService {
 	boolean deleteCartCourse(int cart_course_id);
 
 }
->>>>>>> development
