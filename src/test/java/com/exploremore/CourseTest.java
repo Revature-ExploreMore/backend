@@ -1,7 +1,6 @@
 package com.exploremore;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,10 +20,8 @@ import com.exploremore.pojo.CartPojo;
 import com.exploremore.pojo.CategoryPojo;
 import com.exploremore.pojo.CoursePojo;
 import com.exploremore.service.CourseServiceImpl;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 @ExtendWith(MockitoExtension.class)
 public class CourseTest {
 	@Mock
@@ -33,7 +30,6 @@ public class CourseTest {
 	@InjectMocks
 	CourseServiceImpl courseServiceImpl;
 	
-	private CoursePojo expectedCourse;
 	private Optional<CourseEntity> dummyCourse;
 	private CategoryEntity  categoryEntity;
 	private CourseEntity dummyCourseEntity;
@@ -55,26 +51,28 @@ public class CourseTest {
 
 	}
 	
-//	@DisplayName("JUnit get all Courses")
-//	@Test
-//	public void testGetAllCourses() {
-//		List<CourseEntity> allCourseEntity = new ArrayList<CourseEntity>();
-//		allCourseEntity.add(new CourseEntity(1, "math 101", "learn math!", 10, "", 1));
-//		allCourseEntity.add(new CourseEntity(2, "math 102", "learn harder math!", 15, "", 1));
-//		when(courseDao.findAll()).thenReturn(allCourseEntity);
-//		List<CoursePojo> returnedCourses = courseServiceImpl.getAllCourses();
-//		assertEquals(2, returnedCourses.size());
-//	}
+	@DisplayName("JUnit get all Courses")
+	@Test
+	public void testGetAllCourses() throws GlobalException{
+		List<CourseEntity> allCourseEntity = new ArrayList<CourseEntity>();
+		CategoryEntity catEntity = new CategoryEntity(1, "math");
+		allCourseEntity.add(new CourseEntity(1, "math 101", "learn math!", 10, "", catEntity));
+		allCourseEntity.add(new CourseEntity(2, "math 102", "learn harder math!", 15, "", catEntity));
+		when(courseDao.findAll()).thenReturn(allCourseEntity);
+		List<CoursePojo> returnedCourses = courseServiceImpl.getAllCourses();
+		assertEquals(2, returnedCourses.size());
+	}
 	
-//	@DisplayName("JUnit get course by id")
-//	@Test
-//	public void testGetCourseById() {
-//		dummyCourse = Optional.of(new CourseEntity(1, "math 101", "learn math!", 10, "", 1));
-//		when(courseDao.findById(1)).thenReturn(dummyCourse);
-//		CoursePojo requestedCourse = courseServiceImpl.getCourseById(1);
-//		assertEquals(requestedCourse.getName(), "math 101");
-//		
-//	}
+	@DisplayName("JUnit get course by id")
+	@Test
+	public void testGetCourseById() throws GlobalException {
+		CategoryEntity catEntity = new CategoryEntity(1, "math");
+		dummyCourse = Optional.of(new CourseEntity(1, "math 101", "learn math!", 10, "", catEntity));
+		when(courseDao.findById(1)).thenReturn(dummyCourse);
+		CoursePojo requestedCourse = courseServiceImpl.getCourseById(1);
+		assertEquals(requestedCourse.getName(), "math 101");
+		
+	}
 	
 	@DisplayName("JUnit get all courses by category") //test passes
 	@Test
