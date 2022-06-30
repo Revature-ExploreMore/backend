@@ -42,6 +42,9 @@ public class CourseEntity {
 	
 	@OneToMany(mappedBy="course")
 	private Set<CartCourseEntity> cartCourses;
+	
+	@OneToMany(mappedBy="course")
+	private Set<OrderCourseEntity> orderCourses;
 
 
 	public CourseEntity() {
