@@ -16,6 +16,8 @@ import com.exploremore.dao.CartCourseDao;
 import com.exploremore.dao.CartDao;
 import com.exploremore.entity.CartCourseEntity;
 import com.exploremore.entity.CartEntity;
+import com.exploremore.entity.CategoryEntity;
+import com.exploremore.entity.CourseEntity;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
