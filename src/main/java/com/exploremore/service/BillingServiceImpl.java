@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.exploremore.dao.BillingDao;
 import com.exploremore.entity.BillingEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.BillingPojo;
 
 @Service
@@ -15,7 +16,7 @@ public class BillingServiceImpl implements BillingService{
 	BillingDao billingDao;
 
 	@Override
-	public BillingPojo addBillingAddress(BillingPojo billingPojo) {
+	public BillingPojo addBillingAddress(BillingPojo billingPojo) throws GlobalException{
 		BillingEntity billingEntity = new BillingEntity();
 		BeanUtils.copyProperties(billingPojo, billingEntity);
 		
