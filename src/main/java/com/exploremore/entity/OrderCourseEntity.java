@@ -2,9 +2,12 @@ package com.exploremore.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,20 +19,23 @@ public class OrderCourseEntity {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "order_id")
-	private int orderId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "order_id")
+	private OrderEntity order;
 
-	@Column(name = "course_id")
-	private int courseId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "course_id")
+	private CourseEntity course;
 
 	public OrderCourseEntity() {
 	}
 
-	public OrderCourseEntity(int id, int orderId, int courseId) {
+	public OrderCourseEntity(int id, OrderEntity order, CourseEntity course) {
 		super();
 		this.id = id;
-		this.orderId = orderId;
-		this.courseId = courseId;
+		this.order = order;
+		this.course = course;
 	}
 
 	public int getId() {
@@ -40,25 +46,25 @@ public class OrderCourseEntity {
 		this.id = id;
 	}
 
-	public int getOrderId() {
-		return orderId;
+	public OrderEntity getOrder() {
+		return order;
 	}
 
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
+	public void setOrder(OrderEntity order) {
+		this.order = order;
 	}
 
-	public int getCourseId() {
-		return courseId;
+	public CourseEntity getCourse() {
+		return course;
 	}
 
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
+	public void setCourse(CourseEntity course) {
+		this.course = course;
 	}
 
-	@Override
-	public String toString() {
-		return "OrderCoursePojo [id=" + id + ", orderId=" + orderId + ", courseId=" + courseId + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "OrderCoursePojo [id=" + id + ", order=" + order + ", course=" + course + "]";
+//	}
 
 }

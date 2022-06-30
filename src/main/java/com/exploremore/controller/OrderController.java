@@ -3,11 +3,9 @@ package com.exploremore.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +13,8 @@ import com.exploremore.entity.OrderEntity;
 import com.exploremore.exceptions.EmptyOrderList;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.exceptions.OrderNotFoundException;
+import com.exploremore.exceptions.GlobalException;
+import com.exploremore.pojo.OrderCoursePojo;
 import com.exploremore.pojo.OrderPojo;
 import com.exploremore.service.OrderService;
 
@@ -41,6 +41,11 @@ public class OrderController {
 	public List<OrderPojo> viewAllOrders() throws GlobalException, EmptyOrderList {
 		List<OrderPojo> allOrders = orderService.viewAllOrders();
 		return allOrders;
+	}
+	
+	@GetMapping("orderCourse/{id}")
+	public List<OrderCoursePojo> getCoursesOrdersByUserId(@PathVariable("id") int userId) {
+		return orderService.getUserOrders(userId);
 	}
 
 

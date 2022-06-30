@@ -2,6 +2,7 @@ package com.exploremore.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "cart")
@@ -46,7 +50,7 @@ public class CartEntity {
 	}
 
 	public CartEntity(int id, LocalDateTime createdAt, LocalDateTime modifiedAt, boolean isRemoved, BigDecimal cartTotal,
-			int userId, int orderId, Set<CartCourseEntity> cartCourses) {
+			int userId) {
 		super();
 		this.id = id;
 		this.createdAt = createdAt;
@@ -54,10 +58,7 @@ public class CartEntity {
 		this.isRemoved = isRemoved;
 		this.cartTotal = cartTotal;
 		this.userId = userId;
-		this.orderId = orderId;
-		this.cartCourses = cartCourses;
 	}
-	
 	public CartEntity(int id, LocalDateTime createdAt, LocalDateTime modifiedAt, boolean isRemoved, BigDecimal cartTotal,
 			int userId, int orderId) {
 		super();
@@ -141,6 +142,26 @@ public class CartEntity {
 				+ ", cartCourses=" + cartCourses + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(cartCourses, cartTotal, createdAt, id, isRemoved, modifiedAt, orderId, userId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CartEntity other = (CartEntity) obj;
+		return Objects.equals(cartCourses, other.cartCourses) && Objects.equals(cartTotal, other.cartTotal)
+				&& Objects.equals(createdAt, other.createdAt) && id == other.id && isRemoved == other.isRemoved
+				&& Objects.equals(modifiedAt, other.modifiedAt) && orderId == other.orderId && userId == other.userId;
+	}
+
+	
 	
 
 }
