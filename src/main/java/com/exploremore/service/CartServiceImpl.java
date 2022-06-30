@@ -94,6 +94,10 @@ public class CartServiceImpl implements CartService{
         return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());}
 
 	@Override
+	public boolean emptyCart(int cartId) throws GlobalException {
+		cartDao.deleteById(cartId);
+		return true;
+   }
 	public CartPojo addNewCartToUser(int user_id) {
 		CartEntity cart = new CartEntity(0, LocalDateTime.now(), LocalDateTime.now(), false, 
 				BigDecimal.valueOf(0), user_id, 1);

@@ -13,8 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "cart")
+@SQLDelete(sql = "UPDATE cart SET is_removed=true WHERE id=?")
+@Where(clause = "is_removed=false")
 public class CartEntity {
 
 	@Id

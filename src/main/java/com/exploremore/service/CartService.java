@@ -17,5 +17,7 @@ public interface CartService {
 	CartPojo addNewCartToUser(int user_id);
 	
 	int addCourseToCart(CartCoursePojo cartCourse);
+	
+	boolean emptyCart(int cartId) throws GlobalException;
 
 }
