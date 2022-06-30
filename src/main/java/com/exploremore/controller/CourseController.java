@@ -29,8 +29,8 @@ public class CourseController {
 	CourseService courseService;
 	// create the rest methods for the rest endpoints
 	
-	// add a Course
-	@PutMapping("courses")
+	//adds course
+	@PostMapping("courses")
 	public CoursePojo addCourse(CoursePojo coursePojo) throws GlobalException {
 		return courseService.addCourse(coursePojo);
 		
@@ -41,7 +41,6 @@ public class CourseController {
 		return courseService.getAllCourses();
 	}
 
-	//gets a course by id
 	@GetMapping("getById/{id}")
 	public CoursePojo getById(@PathVariable("id")int id) throws GlobalException{
 		return courseService.getCourseById(id);
