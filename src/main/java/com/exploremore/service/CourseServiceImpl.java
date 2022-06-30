@@ -18,7 +18,11 @@ import com.exploremore.pojo.CoursePojo;
 public class CourseServiceImpl implements CourseService {
 	@Autowired
 	CourseDao courseDao;
-
+	@Override
+	public boolean deleteCourse(int id) throws GlobalException {
+		courseDao.deleteById(id);
+		return true;
+	}
 	// gets all courses
 	@Override
 	public List<CoursePojo> getAllCourses() throws GlobalException{
@@ -96,8 +100,14 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public CoursePojo updateCourse(CoursePojo coursePojo) throws GlobalException {
-		// TODO Auto-generated method stub
-		return null;
+		// copy the pojo into an entity object
+		CourseEntity courseEntity = new CourseEntity();
+		BeanUtils.copyProperties(coursePojo, courseEntity);
+
+		//  now pass the courseEntity object to spring data jpa to be updated into the table
+		CourseEntity returnedCourseEntity = courseDao.save(courseEntity);
+
+		return coursePojo;
 	}
 
 
