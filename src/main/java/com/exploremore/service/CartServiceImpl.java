@@ -11,6 +11,7 @@ import com.exploremore.dao.CartCourseDao;
 import com.exploremore.dao.CartDao;
 import com.exploremore.entity.CartCourseEntity;
 import com.exploremore.entity.CartEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
 import com.exploremore.pojo.CategoryPojo;
@@ -78,6 +79,12 @@ public class CartServiceImpl implements CartService{
         CartPojo cartPojo = cartCourse.getCart();
         
         return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());}
+
+	@Override
+	public boolean emptyCart(int cartId) throws GlobalException {
+		cartDao.deleteById(cartId);
+		return true;
+	}
 }
 
 
