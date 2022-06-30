@@ -15,7 +15,7 @@ import java.util.Optional;
 import com.exploremore.dao.CourseDao;
 import com.exploremore.entity.CategoryEntity;
 import com.exploremore.entity.CourseEntity;
-import com.exploremore.exceptions.CourseNotFoundException;
+
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
