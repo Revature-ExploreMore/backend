@@ -1,5 +1,7 @@
 package com.exploremore.service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,6 +80,16 @@ public class CartServiceImpl implements CartService{
         CartPojo cartPojo = cartCourse.getCart();
         
         return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());}
+
+	@Override
+	public CartPojo addNewCartToUser(int user_id) {
+		CartEntity cart = new CartEntity(0, LocalDateTime.now(), LocalDateTime.now(), false, 
+				BigDecimal.valueOf(0), user_id, 1);
+		cart = cartDao.save(cart);
+		CartPojo cartPojo = new CartPojo();
+		BeanUtils.copyProperties(cart, cartPojo);
+		return cartPojo;
+	}
 }
 
 

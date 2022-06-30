@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
+import com.exploremore.pojo.UserPojo;
 import com.exploremore.service.CartService;
 
 @CrossOrigin
@@ -43,6 +44,11 @@ public class CartController {
 	@DeleteMapping("cartCourse/{ccid}")
 	public boolean deleteCartCourse(@PathVariable("ccid") int cart_course_id) {
 		return cartService.deleteCartCourse(cart_course_id);
+	}
+	
+	@PostMapping("cart")
+	public CartPojo addCartToUser(@RequestBody UserPojo user) {
+		return cartService.addNewCartToUser(user.getId());
 	}
 	
 	@PostMapping("cartCourse")
