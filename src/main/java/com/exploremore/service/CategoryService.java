@@ -9,5 +9,5 @@ public interface CategoryService {
 
 	List<CategoryPojo> getAllCategories() throws GlobalException;
 	
-//	CategoryPojo addNewCategory(CategoryPojo categoryPojo) throws GlobalException;
+	CategoryPojo addNewCategory(CategoryPojo categoryPojo) throws GlobalException;
 }

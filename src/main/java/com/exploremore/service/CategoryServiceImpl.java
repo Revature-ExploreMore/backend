@@ -30,13 +30,13 @@ public class CategoryServiceImpl implements CategoryService{
 		return allCategoriesPojo;
 	}
 
-//	@Override
-//	public CategoryPojo addNewCategory(CategoryPojo categoryPojo) throws GlobalException {
-//		CategoryEntity categoryEntity = new CategoryEntity();
-//		BeanUtils.copyProperties(categoryPojo, categoryEntity);
-//		CategoryEntity returnedCategoryEntity = categoryDao.saveAndFlush(categoryEntity);
-//		categoryPojo.setId(returnedCategoryEntity.getId());
-//		return categoryPojo;
-//	}
+	@Override
+	public CategoryPojo addNewCategory(CategoryPojo categoryPojo) throws GlobalException {
+		CategoryEntity categoryEntity = new CategoryEntity();
+		BeanUtils.copyProperties(categoryPojo, categoryEntity);
+		CategoryEntity returnedCategoryEntity = categoryDao.saveAndFlush(categoryEntity);
+		categoryPojo.setId(returnedCategoryEntity.getId());
+		return categoryPojo;
+	}
 }
 
