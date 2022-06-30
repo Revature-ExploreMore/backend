@@ -31,28 +31,21 @@ public class CourseController {
 	
 	// add a Course
 	@PutMapping("courses")
-	public CoursePojo addCourse(CoursePojo coursePojo) {
+	public CoursePojo addCourse(CoursePojo coursePojo) throws GlobalException {
 		return courseService.addCourse(coursePojo);
 		
 	}
-	//get a course by id
-	@GetMapping("courses/{id}")
-	public CoursePojo getACourseById(@PathVariable("course_id") int id) {
-		return courseService.getCourseById(id);
-	}
-//	
 
 	@GetMapping("getAll")
 	public List<CoursePojo> getAllCourses(){
 		return courseService.getAllCourses();
 	}
 
-
+	//gets a course by id
 	@GetMapping("getById/{id}")
-	public CoursePojo getById(@PathVariable("id")int id){
+	public CoursePojo getById(@PathVariable("id")int id) throws GlobalException{
 		return courseService.getCourseById(id);
 	}
-	
 	
 	@GetMapping("getByCategory/{category}")
 	public List<CoursePojo> getCourseByCategory(@PathVariable("category") String categoryName) throws GlobalException{

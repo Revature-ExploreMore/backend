@@ -13,5 +13,9 @@ public interface CartService {
 	CartPojo getCart(int user_id);
 	
 	boolean deleteCartCourse(int cart_course_id);
+	
+	CartPojo addNewCartToUser(int user_id);
+	
+	int addCourseToCart(CartCoursePojo cartCourse);
 
 }
