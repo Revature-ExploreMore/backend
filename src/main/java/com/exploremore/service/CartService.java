@@ -2,6 +2,7 @@ package com.exploremore.service;
 
 import java.util.List;
 
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
 
@@ -9,7 +10,7 @@ public interface CartService {
 	
 	List<CartCoursePojo> getCartCourses(int cart_id);
 	
-	CartPojo getCart(int user_id);
+	CartPojo getCart(int user_id) throws GlobalException;
 	
 	boolean deleteCartCourse(int cart_course_id);
 	
