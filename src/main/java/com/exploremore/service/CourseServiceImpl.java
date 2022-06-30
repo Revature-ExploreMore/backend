@@ -3,7 +3,6 @@ package com.exploremore.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,11 +36,9 @@ public class CourseServiceImpl implements CourseService {
 		}
 		return allCoursesPojo;
 	}
-
 	public CourseServiceImpl() {
 		
 	}
-
 	@Override
 	public CoursePojo getCourseById(int id) {
 		Optional<CourseEntity> courseEntityOpt = courseDao.findById(id);
@@ -97,17 +94,32 @@ public class CourseServiceImpl implements CourseService {
 		return coursePojo;
 	}
 
+
+
+
 	@Override
-	public CoursePojo modifyCourse(CoursePojo coursePojo) throws GlobalException{
+	public CoursePojo updateCourse(CoursePojo coursePojo) throws GlobalException {
+		// copy the pojo into an entity object
 		CourseEntity courseEntity = new CourseEntity();
 		CategoryEntity categoryEntity = new CategoryEntity();
+		
+		System.out.println("Category details from Category pojo in service layer is :" +coursePojo.getCategory());
+		//System.out.println("Category Name from Category pojo is :" +coursePojo.getCategory().getCategoryName());
+		
 		categoryEntity.setId(coursePojo.getCategory().getId());
 		categoryEntity.setCategoryName(coursePojo.getCategory().getCategoryName());
+	
 		courseEntity.setCategory(categoryEntity);
+		
 		BeanUtils.copyProperties(coursePojo, courseEntity);
+		
+		//  now pass the courseEntity object to spring data jpa to be updated into the table
 		courseDao.save(courseEntity);
-		return coursePojo;
+				
+		return coursePojo;	
+		
 	}
+
 }
 
 

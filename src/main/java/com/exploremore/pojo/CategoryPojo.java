@@ -15,6 +15,10 @@ public class CategoryPojo {
 		this.categoryName = categoryName;
 	}
 
+	public CategoryPojo(int id) {
+		this.id = id;	
+	}
+	
 	public int getId() {
 		return id;
 	}

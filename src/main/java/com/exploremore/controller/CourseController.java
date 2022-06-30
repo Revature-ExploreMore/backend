@@ -24,6 +24,15 @@ public class CourseController {
 
 	@Autowired
 	CourseService courseService;
+	// create the rest methods for the rest endpoints
+	
+	//adds course
+	@PostMapping("courses")
+	public CoursePojo addCourse(CoursePojo coursePojo) throws GlobalException {
+		return courseService.addCourse(coursePojo);
+		
+	}
+
 
 	@GetMapping("getAll")
 	public List<CoursePojo> getAllCourses() throws GlobalException{
