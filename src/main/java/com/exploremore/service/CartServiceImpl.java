@@ -17,6 +17,7 @@ import com.exploremore.entity.CategoryEntity;
 import com.exploremore.entity.CourseEntity;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
+import com.exploremore.pojo.CategoryPojo;
 import com.exploremore.pojo.CoursePojo;
 
 
@@ -40,12 +41,19 @@ public class CartServiceImpl implements CartService{
 		for(CartCourseEntity fetchedCartCourseEntity : allCartCourseEntity) {
 			CartCoursePojo returnedCartCoursePojo = new CartCoursePojo();
 			BeanUtils.copyProperties(fetchedCartCourseEntity, returnedCartCoursePojo);
-			CartPojo fetchedCartPojo = new CartPojo();
-			BeanUtils.copyProperties(fetchedCartCourseEntity.getCart(), fetchedCartPojo);
+			
+			//CartPojo fetchedCartPojo = new CartPojo();
+			//BeanUtils.copyProperties(fetchedCartCourseEntity.getCart(), fetchedCartPojo);
+			
 			CoursePojo fetchedCoursePojo = new CoursePojo();
 			BeanUtils.copyProperties(fetchedCartCourseEntity.getCourse(), fetchedCoursePojo);
-			returnedCartCoursePojo.setCart(fetchedCartPojo);
+			
+			CategoryPojo fetchedCategoryPojo = new CategoryPojo();
+			BeanUtils.copyProperties(fetchedCartCourseEntity.getCourse().getCategory(), fetchedCategoryPojo);
+			
+			//returnedCartCoursePojo.setCart(fetchedCartPojo);
 			returnedCartCoursePojo.setCourse(fetchedCoursePojo);
+			returnedCartCoursePojo.getCourse().setCategoryId(fetchedCategoryPojo);
 			allCartCoursePojo.add(returnedCartCoursePojo);
 		}
 		return allCartCoursePojo;
@@ -68,46 +76,21 @@ public class CartServiceImpl implements CartService{
 	};
 	
 	@Override
+    public int addCourseToCart(CartCoursePojo cartCourse) {
+        System.out.println(cartCourse);
+        CoursePojo coursePojo = cartCourse.getCourse();
+        CartPojo cartPojo = cartCourse.getCart();
+        
+        return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());}
+
+	@Override
 	public CartPojo addNewCartToUser(int user_id) {
 		CartEntity cart = new CartEntity(0, LocalDateTime.now(), LocalDateTime.now(), false, 
-				BigDecimal.valueOf(0), user_id);
-		cart.setOrderId(1);
+				BigDecimal.valueOf(0), user_id, 1);
 		cart = cartDao.save(cart);
 		CartPojo cartPojo = new CartPojo();
 		BeanUtils.copyProperties(cart, cartPojo);
 		return cartPojo;
-	}
-
-	@Override
-	public int addCourseToCart(CartCoursePojo cartCourse) {
-		System.out.println(cartCourse);
-		CoursePojo coursePojo = cartCourse.getCourse();
-		CartPojo cartPojo = cartCourse.getCart();
-		
-		return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());
-		
-//		CategoryEntity catEntity = new CategoryEntity();
-//		BeanUtils.copyProperties(coursePojo.getCategory(), catEntity);
-//		CourseEntity courseEntity = new CourseEntity(
-//				coursePojo.getId(), coursePojo.getName(), coursePojo.getDescription(),
-//				coursePojo.getPrice(), coursePojo.getImageUrl(), catEntity);
-//		
-////		BeanUtils.copyProperties(cartCourse.getCourse(), courseEntity);
-//		System.out.println("courEntity " + courseEntity);
-//		CartEntity cartEntity = new CartEntity(
-//				cartPojo.getId(), cartPojo.getCreatedAt(), cartPojo.getModifiedAt(),
-//				cartPojo.isRemoved(), cartPojo.getCartTotal(), cartPojo.getUserId(), cartPojo.getOrderId());
-////		BeanUtils.copyProperties(cartCourse.getCart(), cartEntity);
-//		
-//		System.out.println("cartEntity " + cartEntity);
-//		CartCourseEntity cartCourseEntity = new CartCourseEntity();
-//		cartCourseEntity.setCourse(courseEntity);
-//		cartCourseEntity.setCart(cartEntity);
-//		System.out.println("cartCourseEntity " + cartCourseEntity);
-//		cartCourseEntity = cartCourseDao.save(cartCourseEntity);
-//		CartCoursePojo cartCoursePojo = new CartCoursePojo();
-//		BeanUtils.copyProperties(cartCourseEnt, cartCoursePojo);
-//		return cartCoursePojo;
 	}
 }
 

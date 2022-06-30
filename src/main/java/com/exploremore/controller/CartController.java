@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
-import com.exploremore.pojo.CoursePojo;
+
 import com.exploremore.pojo.UserPojo;
 import com.exploremore.service.CartService;
 
@@ -53,8 +53,8 @@ public class CartController {
 	}
 	
 	@PostMapping("cartCourse")
-	public int addCourseToCart(@RequestBody CartCoursePojo cartCourse) {
-		System.out.println("hello");
-		return cartService.addCourseToCart(cartCourse);
-	}
+    public int addCourseToCart(@RequestBody CartCoursePojo cartCourse) {
+        System.out.println("hello");
+        return cartService.addCourseToCart(cartCourse);
+    }
 }

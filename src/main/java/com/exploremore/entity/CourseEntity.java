@@ -1,10 +1,10 @@
 package com.exploremore.entity;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,9 +35,11 @@ public class CourseEntity {
 	@Column(name="image_url")
 	private String imageUrl;
 	
-	@ManyToOne
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="category_id")
 	private CategoryEntity category;
+	
 	@OneToMany(mappedBy="course")
 	private Set<CartCourseEntity> cartCourses;
 
@@ -46,28 +48,28 @@ public class CourseEntity {
 	}
 
 
-	public CourseEntity(int id, String name, String description, double price, String imageUrl, CategoryEntity categoryId) {
+	public CourseEntity(int id, String name, String description, double price, String imageUrl, CategoryEntity category) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.imageUrl = imageUrl;
-		this.category = categoryId;
+		this.category = category;
 	}
 
-//	public CourseEntity(int id, String name, String description, double price, String imageUrl, CategoryEntity categoryId,
-//			Set<CartCourseEntity> cartCourses) {
-//		super();
-//		this.id = id;
-//		this.name = name;
-//		this.description = description;
-//		this.price = price;
-//		this.imageUrl = imageUrl;
-//
-//		this.category = categoryId;
-//		this.cartCourses = cartCourses;
-//	}
+	public CourseEntity(int id, String name, String description, double price, String imageUrl, CategoryEntity category,
+			Set<CartCourseEntity> cartCourses) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.imageUrl = imageUrl;
+		this.category = category;
+		this.cartCourses = cartCourses;
+	}
+	
 	
 	
 
@@ -123,14 +125,14 @@ public class CourseEntity {
 		return category;
 	}
 
-	public void setCategory(CategoryEntity categoryId) {
-		this.category = categoryId;
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
 	}
 
 	@Override
 	public String toString() {
 		return "CourseEntity [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", imageUrl=" + imageUrl + ", categoryId=" + category + ", cartCourses=" + cartCourses + "]";
+				+ ", imageUrl=" + imageUrl + ", category=" + category + ", cartCourses=" + cartCourses + "]";
 	}
 
 	
