@@ -29,6 +29,7 @@ public class CourseServiceImpl implements CourseService {
 		List<CourseEntity> allCoursesEntity = courseDao.findAll();
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for (CourseEntity fetchedEntity : allCoursesEntity) {
+
 			CategoryPojo category = new CategoryPojo();
 			category.setId(fetchedEntity.getCategory().getId());							
 			category.setCategoryName(fetchedEntity.getCategory().getCategoryName());		   
