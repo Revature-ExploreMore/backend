@@ -2,12 +2,17 @@ package com.exploremore.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,18 +30,22 @@ public class OrderEntity {
 	@Column(name="order_total")
 	private BigDecimal orderTotal;
 	
-	@Column(name = "user_id")
-	private int userId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private UserEntity user;
+	
+	@OneToMany(mappedBy = "order")
+	Set<OrderCourseEntity> orderCourses;
 
 	public OrderEntity() {
 	}
 
-	public OrderEntity(int id, LocalDateTime orderTimestamp, BigDecimal orderTotal, int userId) {
+	public OrderEntity(int id, LocalDateTime orderTimestamp, BigDecimal orderTotal, UserEntity user) {
 		super();
 		this.id = id;
 		this.orderTimestamp = orderTimestamp;
 		this.orderTotal = orderTotal;
-		this.userId = userId;
+		this.user = user;
 	}
 
 	public int getId() {
@@ -63,18 +72,18 @@ public class OrderEntity {
 		this.orderTotal = orderTotal;
 	}
 
-	public int getUserId() {
-		return userId;
+	public UserEntity getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(UserEntity user) {
+		this.user = user;
 	}
 
 	@Override
 	public String toString() {
 		return "OrderPojo [id=" + id + ", orderTimestamp=" + orderTimestamp + ", orderTotal=" + orderTotal + ", userId="
-				+ userId + "]";
+				+ user + "]";
 	}
 
 }

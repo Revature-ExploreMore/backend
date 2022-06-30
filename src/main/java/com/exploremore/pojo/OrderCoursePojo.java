@@ -3,17 +3,17 @@ package com.exploremore.pojo;
 public class OrderCoursePojo {
 
 	private int id;
-	private int orderId;
-	private int courseId;
+	private OrderPojo order;
+	private CoursePojo course;
 
 	public OrderCoursePojo() {
 	}
 
-	public OrderCoursePojo(int id, int orderId, int courseId) {
+	public OrderCoursePojo(int id, OrderPojo order, CoursePojo course) {
 		super();
 		this.id = id;
-		this.orderId = orderId;
-		this.courseId = courseId;
+		this.order = order;
+		this.course = course;
 	}
 
 	public int getId() {
@@ -24,25 +24,25 @@ public class OrderCoursePojo {
 		this.id = id;
 	}
 
-	public int getOrderId() {
-		return orderId;
+	public OrderPojo getOrder() {
+		return order;
 	}
 
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
+	public void setOrder(OrderPojo order) {
+		this.order = order;
 	}
 
-	public int getCourseId() {
-		return courseId;
+	public CoursePojo getCourse() {
+		return course;
 	}
 
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
+	public void setCourse(CoursePojo course) {
+		this.course = course;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderCoursePojo [id=" + id + ", orderId=" + orderId + ", courseId=" + courseId + "]";
+		return "OrderCoursePojo [id=" + id + ", order=" + order + ", course=" + course + "]";
 	}
 
 }

@@ -18,10 +18,9 @@ public interface CartCourseDao extends JpaRepository<CartCourseEntity, Integer> 
 	
 	@Query(value = "INSERT INTO cart_course_details (course_id, cart_id) VALUES (?1, ?2) returning id;", nativeQuery = true)
     int saveByCourseIdAndCartId(int course_id, int cart_id);
-	
+    
 	@Modifying
 	@Transactional
 	@Query(value = "DELETE FROM cart_course_details WHERE (cart_id) = (?);", nativeQuery = true)
     void deleteByCartId(int cart_id);
-
 }
