@@ -97,4 +97,15 @@ public class CartTest {
         assertNotNull(actualCartCoursePojo);
         assertEquals(2, actualCartCoursePojo.size());
     }
+    
+//    @DisplayName("JUnit test for add new cart to user method")
+//    @Test
+//    public void testAddBook() throws ApplicationException{
+//       when(bookDao.saveAndFlush(dummyBookEntity)).thenReturn(dummyBookEntity);
+//
+//       BookPojo sendBookPojo = new BookPojo(1, "Flying Dragons", "Comedy", "Geronimo Stilton", 20, "");
+//       BookPojo actualBookPojo = bookService.addBook(sendBookPojo);
+//
+//       assertEquals(1, actualBookPojo.getId());
+//    }
 }
