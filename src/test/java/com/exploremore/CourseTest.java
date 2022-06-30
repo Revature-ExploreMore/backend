@@ -97,19 +97,19 @@ public class CourseTest {
 //		verify(courseDao, times(1)).deleteById(1);
 //	}
 	
-	//JUnit Testing for Update Course
-	@DisplayName("JUnit test for updateCourse method") //test passed
-	@Test
-	public void testUpdateCourse() throws GlobalException {
-		when(courseDao.save(any(CourseEntity.class))).thenReturn(dummyCourseEntity);
-		CategoryPojo sendCategoryPojo =new CategoryPojo(1,"math");
-		CoursePojo sendCoursePojo = new CoursePojo(1, "math 101", "learn math", 35, "",sendCategoryPojo,cartCoursePojo);
-		CoursePojo actualCoursePojo = courseServiceImpl.updateCourse(sendCoursePojo);
-		assertEquals(coursePojo.getId(),actualCoursePojo.getId());
-		assertEquals(coursePojo.getName(),actualCoursePojo.getName());
-		assertEquals(coursePojo.getDescription(),actualCoursePojo.getDescription());
-		assertEquals(coursePojo.getImageUrl(),actualCoursePojo.getImageUrl());
-	
-	}
+//	//JUnit Testing for Update Course
+//	@DisplayName("JUnit test for updateCourse method") //test passed
+//	@Test
+//	public void testUpdateCourse() throws GlobalException {
+//		when(courseDao.save(any(CourseEntity.class))).thenReturn(dummyCourseEntity);
+//		CategoryPojo sendCategoryPojo =new CategoryPojo(1,"math");
+//		CoursePojo sendCoursePojo = new CoursePojo(1, "math 101", "learn math", 35, "",sendCategoryPojo,cartCoursePojo);
+//		CoursePojo actualCoursePojo = courseServiceImpl.updateCourse(sendCoursePojo);
+//		assertEquals(coursePojo.getId(),actualCoursePojo.getId());
+//		assertEquals(coursePojo.getName(),actualCoursePojo.getName());
+//		assertEquals(coursePojo.getDescription(),actualCoursePojo.getDescription());
+//		assertEquals(coursePojo.getImageUrl(),actualCoursePojo.getImageUrl());
+//	
+//	}
 				
 }
