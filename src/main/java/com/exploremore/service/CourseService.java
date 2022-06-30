@@ -18,5 +18,8 @@ public interface CourseService {
 	CoursePojo addCourse(CoursePojo coursePojo);
 
 
+	CoursePojo updateCourse(CoursePojo coursePojo) throws GlobalException;
+
+
  	
 }
