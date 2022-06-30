@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,7 @@ import com.exploremore.entity.CartCourseEntity;
 import com.exploremore.entity.CartEntity;
 import com.exploremore.entity.CategoryEntity;
 import com.exploremore.entity.CourseEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
 import com.exploremore.pojo.CategoryPojo;
@@ -23,6 +27,8 @@ import com.exploremore.pojo.CoursePojo;
 
 @Service
 public class CartServiceImpl implements CartService{
+	
+	final static Logger LOG = LoggerFactory.getLogger(CartServiceImpl.class);
 	
 	@Autowired
 	CartDao cartDao;
@@ -42,8 +48,8 @@ public class CartServiceImpl implements CartService{
 			CartCoursePojo returnedCartCoursePojo = new CartCoursePojo();
 			BeanUtils.copyProperties(fetchedCartCourseEntity, returnedCartCoursePojo);
 			
-			//CartPojo fetchedCartPojo = new CartPojo();
-			//BeanUtils.copyProperties(fetchedCartCourseEntity.getCart(), fetchedCartPojo);
+			CartPojo fetchedCartPojo = new CartPojo();
+			BeanUtils.copyProperties(fetchedCartCourseEntity.getCart(), fetchedCartPojo);
 			
 			CoursePojo fetchedCoursePojo = new CoursePojo();
 			BeanUtils.copyProperties(fetchedCartCourseEntity.getCourse(), fetchedCoursePojo);
@@ -51,7 +57,7 @@ public class CartServiceImpl implements CartService{
 			CategoryPojo fetchedCategoryPojo = new CategoryPojo();
 			BeanUtils.copyProperties(fetchedCartCourseEntity.getCourse().getCategory(), fetchedCategoryPojo);
 			
-			//returnedCartCoursePojo.setCart(fetchedCartPojo);
+			returnedCartCoursePojo.setCart(fetchedCartPojo);
 			returnedCartCoursePojo.setCourse(fetchedCoursePojo);
 			returnedCartCoursePojo.getCourse().setCategoryId(fetchedCategoryPojo);
 			allCartCoursePojo.add(returnedCartCoursePojo);
@@ -60,12 +66,18 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public CartPojo getCart(int user_id) {
+	public CartPojo getCart(int user_id) throws GlobalException {
 		
-		CartEntity currentCartEntity = cartDao.findByUserId(user_id);
-		CartPojo currentCartPojo = new CartPojo();
-		BeanUtils.copyProperties(currentCartEntity, currentCartPojo);
+		Optional<CartEntity> cartEntityOpt = cartDao.findByUserId(user_id);
+		CartPojo currentCartPojo = null;
+		if(cartEntityOpt.isPresent()) {
 		
+			CartEntity currentCartEntity = cartEntityOpt.get();
+			currentCartPojo = new CartPojo();	
+			BeanUtils.copyProperties(currentCartEntity, currentCartPojo);
+		}else {
+			throw new GlobalException("Cart not found for this user");
+		}
 		return currentCartPojo;
 	}
 
@@ -84,6 +96,10 @@ public class CartServiceImpl implements CartService{
         return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());}
 
 	@Override
+	public boolean emptyCart(int cartId) throws GlobalException {
+		cartDao.deleteById(cartId);
+		return true;
+   }
 	public CartPojo addNewCartToUser(int user_id) {
 		CartEntity cart = new CartEntity(0, LocalDateTime.now(), LocalDateTime.now(), false, 
 				BigDecimal.valueOf(0), user_id, 1);

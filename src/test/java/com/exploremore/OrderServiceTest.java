@@ -21,18 +21,18 @@ import com.exploremore.service.OrderServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class OrderServiceTest {
-	
-	@Mock
-	OrderDao orderDao;
-	
-	@InjectMocks
-	OrderServiceImpl orderService;
-	
-	private OrderPojo expectedOrderPojo;
-	private OrderEntity dummyOrderEntity;
-	@Test
-	void contextLoads() {
-	}
+
+//	
+//	@Mock
+//	OrderDao orderDao;
+//	
+//	@InjectMocks
+//	OrderServiceImpl orderService;
+//	
+//	private OrderPojo expectedOrderPojo;
+//	private OrderEntity dummyOrderEntity;
+//	
+
 //    @DisplayName("JUnit test for view all orders method")
 //    @Test
 //    public void testViewAllOrders() {

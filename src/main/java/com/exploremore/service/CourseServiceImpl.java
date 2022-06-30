@@ -3,13 +3,14 @@ package com.exploremore.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.exploremore.dao.CourseDao;
+import com.exploremore.entity.CategoryEntity;
 import com.exploremore.entity.CourseEntity;
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CategoryPojo;
 import com.exploremore.pojo.CoursePojo;
 
@@ -17,10 +18,14 @@ import com.exploremore.pojo.CoursePojo;
 public class CourseServiceImpl implements CourseService {
 	@Autowired
 	CourseDao courseDao;
-
+	@Override
+	public boolean deleteCourse(int id) throws GlobalException {
+		courseDao.deleteById(id);
+		return true;
+	}
 	// gets all courses
 	@Override
-	public List<CoursePojo> getAllCourses() {
+	public List<CoursePojo> getAllCourses() throws GlobalException{
 		List<CourseEntity> allCoursesEntity = courseDao.findAll();
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for (CourseEntity fetchedEntity : allCoursesEntity) {
@@ -36,13 +41,11 @@ public class CourseServiceImpl implements CourseService {
 		}
 		return allCoursesPojo;
 	}
-
 	public CourseServiceImpl() {
 		
 	}
-
 	@Override
-	public CoursePojo getCourseById(int id) {
+	public CoursePojo getCourseById(int id) throws GlobalException{
 		Optional<CourseEntity> courseEntityOpt = courseDao.findById(id);
 		CoursePojo coursePojo = null;
 		if(courseEntityOpt.isPresent()) {
@@ -59,7 +62,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public List<CoursePojo> getAllByCategory(String categoryName) {
+	public List<CoursePojo> getAllByCategory(String categoryName) throws GlobalException{
 		List<CourseEntity> allCoursesEntity = courseDao.findByCategoryId_CategoryName(categoryName);
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for(CourseEntity fetchedCoursesEntity: allCoursesEntity) {
@@ -84,10 +87,30 @@ public class CourseServiceImpl implements CourseService {
 	
 
 	@Override
-	public CoursePojo addCourse(CoursePojo coursePojo) {
-		// TODO Auto-generated method stub
-		return null;
+	public CoursePojo addNewCourse(CoursePojo coursePojo) throws GlobalException{
+		CourseEntity courseEntity = new CourseEntity();
+		CategoryEntity categoryEntity = new CategoryEntity();
+		categoryEntity.setId(coursePojo.getCategory().getId());
+		categoryEntity.setCategoryName(coursePojo.getCategory().getCategoryName());
+		courseEntity.setCategory(categoryEntity);
+		BeanUtils.copyProperties(coursePojo, courseEntity);
+		CourseEntity newCourseEntity = courseDao.saveAndFlush(courseEntity);
+		coursePojo.setId(newCourseEntity.getId());
+		return coursePojo;
 	}
+
+	@Override
+	public CoursePojo updateCourse(CoursePojo coursePojo) throws GlobalException {
+		// copy the pojo into an entity object
+		CourseEntity courseEntity = new CourseEntity();
+		BeanUtils.copyProperties(coursePojo, courseEntity);
+
+		//  now pass the courseEntity object to spring data jpa to be updated into the table
+		CourseEntity returnedCourseEntity = courseDao.save(courseEntity);
+
+		return coursePojo;
+	}
+
 
 
 }
