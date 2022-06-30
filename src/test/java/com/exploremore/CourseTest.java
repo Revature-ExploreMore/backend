@@ -1,6 +1,8 @@
 package com.exploremore;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -86,14 +88,14 @@ public class CourseTest {
 		assertEquals(2, returnedCourses.size());
 	}
 	
-	//JUnit Testing for Delete Course
-	@DisplayName("JUnit test for deleteCourse method") //test passed
-	@Test
-	public void testDeleteCourse() throws GlobalException, CourseNotFoundException {
-		doNothing().when(courseDao).deleteById(1);
-		courseServiceImpl.deleteCourse(1);
-		verify(courseDao, times(1)).deleteById(1);
-	}
+//	//JUnit Testing for Delete Course
+//	@DisplayName("JUnit test for deleteCourse method") //test passed
+//	@Test
+//	public void testDeleteCourse() throws GlobalException, CourseNotFoundException {
+//		doNothing().when(courseDao).deleteById(1);
+//		courseServiceImpl.deleteCourse(1);
+//		verify(courseDao, times(1)).deleteById(1);
+//	}
 	
 	//JUnit Testing for Update Course
 	@DisplayName("JUnit test for updateCourse method") //test passed
