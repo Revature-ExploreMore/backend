@@ -21,7 +21,7 @@ public class CourseServiceImpl implements CourseService {
 
 	// gets all courses
 	@Override
-	public List<CoursePojo> getAllCourses() {
+	public List<CoursePojo> getAllCourses() throws GlobalException{
 		List<CourseEntity> allCoursesEntity = courseDao.findAll();
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for (CourseEntity fetchedEntity : allCoursesEntity) {
@@ -40,7 +40,7 @@ public class CourseServiceImpl implements CourseService {
 		
 	}
 	@Override
-	public CoursePojo getCourseById(int id) {
+	public CoursePojo getCourseById(int id) throws GlobalException{
 		Optional<CourseEntity> courseEntityOpt = courseDao.findById(id);
 		CoursePojo coursePojo = null;
 		if(courseEntityOpt.isPresent()) {
@@ -57,7 +57,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public List<CoursePojo> getAllByCategory(String categoryName) {
+	public List<CoursePojo> getAllByCategory(String categoryName) throws GlobalException{
 		List<CourseEntity> allCoursesEntity = courseDao.findByCategoryId_CategoryName(categoryName);
 		List<CoursePojo> allCoursesPojo = new ArrayList<CoursePojo>();
 		for(CourseEntity fetchedCoursesEntity: allCoursesEntity) {
@@ -82,7 +82,7 @@ public class CourseServiceImpl implements CourseService {
 	
 
 	@Override
-	public CoursePojo addNewCourse(CoursePojo coursePojo) {
+	public CoursePojo addNewCourse(CoursePojo coursePojo) throws GlobalException{
 		CourseEntity courseEntity = new CourseEntity();
 		CategoryEntity categoryEntity = new CategoryEntity();
 		categoryEntity.setId(coursePojo.getCategory().getId());
