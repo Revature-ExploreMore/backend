@@ -43,7 +43,17 @@ public class UserServiceImpl implements UserService{
 					validLoginPojo = loginUserPojo;
 				}
 		}
+		
 		return validLoginPojo;
 	}
 
+	@Override
+	public UserPojo updateUser(UserPojo userPojo) {
+		UserEntity userEntity = new UserEntity();
+		BeanUtils.copyProperties(userPojo, userEntity);
+		UserEntity returnedUserEntity = userDao.save(userEntity);
+		BeanUtils.copyProperties(returnedUserEntity, userPojo);
+
+		return userPojo;
+	}
 }
