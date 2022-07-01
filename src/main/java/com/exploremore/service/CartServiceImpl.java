@@ -16,6 +16,7 @@ import com.exploremore.dao.CartCourseDao;
 import com.exploremore.dao.CartDao;
 import com.exploremore.entity.CartCourseEntity;
 import com.exploremore.entity.CartEntity;
+import com.exploremore.exceptions.EmptyCartList;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
@@ -36,12 +37,15 @@ public class CartServiceImpl implements CartService{
 	
 
 	@Override
-	public List<CartCoursePojo> getCartCourses(int cart_id) {
+	public List<CartCoursePojo> getCartCourses(int cart_id) throws EmptyCartList, GlobalException{
 		
 		List<CartCourseEntity> allCartCourseEntity = cartCourseDao.findByCartId(cart_id);
 
 		List<CartCoursePojo> allCartCoursePojo = new ArrayList<CartCoursePojo>();
 		
+		if (allCartCourseEntity.isEmpty()) {
+			throw new EmptyCartList();
+		} else {
 		for(CartCourseEntity fetchedCartCourseEntity : allCartCourseEntity) {
 			CartCoursePojo returnedCartCoursePojo = new CartCoursePojo();
 			BeanUtils.copyProperties(fetchedCartCourseEntity, returnedCartCoursePojo);
@@ -59,6 +63,7 @@ public class CartServiceImpl implements CartService{
 			returnedCartCoursePojo.setCourse(fetchedCoursePojo);
 			returnedCartCoursePojo.getCourse().setCategoryId(fetchedCategoryPojo);
 			allCartCoursePojo.add(returnedCartCoursePojo);
+		}
 		}
 		return allCartCoursePojo;
 	}
