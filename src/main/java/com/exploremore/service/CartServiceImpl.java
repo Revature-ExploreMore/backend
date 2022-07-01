@@ -13,12 +13,11 @@ import com.exploremore.dao.CartCourseDao;
 import com.exploremore.dao.CartDao;
 import com.exploremore.entity.CartCourseEntity;
 import com.exploremore.entity.CartEntity;
-import com.exploremore.entity.CategoryEntity;
-import com.exploremore.entity.CourseEntity;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
 import com.exploremore.pojo.CategoryPojo;
 import com.exploremore.pojo.CoursePojo;
+import com.exploremore.pojo.UserPojo;
 
 
 @Service
@@ -84,9 +83,9 @@ public class CartServiceImpl implements CartService{
         return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());}
 
 	@Override
-	public CartPojo addNewCartToUser(int user_id) {
+	public CartPojo addNewCartToUser(UserPojo user) {
 		CartEntity cart = new CartEntity(0, LocalDateTime.now(), LocalDateTime.now(), false, 
-				BigDecimal.valueOf(0), user_id, 1);
+				BigDecimal.valueOf(0), user.getId(), 1);
 		cart = cartDao.save(cart);
 		CartPojo cartPojo = new CartPojo();
 		BeanUtils.copyProperties(cart, cartPojo);

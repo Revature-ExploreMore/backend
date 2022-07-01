@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
+import com.exploremore.pojo.UserPojo;
 
 public interface CartService {
 	
@@ -13,7 +14,7 @@ public interface CartService {
 	
 	boolean deleteCartCourse(int cart_course_id);
 	
-	CartPojo addNewCartToUser(int user_id);
+	CartPojo addNewCartToUser(UserPojo user);
 	
 	int addCourseToCart(CartCoursePojo cartCourse);
 
