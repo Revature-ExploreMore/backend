@@ -66,9 +66,10 @@ public class OrderServiceImpl implements OrderService {
 			throw new EmptyOrderList();
 		} else {
 			for (OrderEntity fetchedOrderEntity : allOrderEntity) {
+				UserPojo user = new UserPojo();
+				BeanUtils.copyProperties(fetchedOrderEntity.getUser(), user);
 				OrderPojo returnedOrderPojo = new OrderPojo(fetchedOrderEntity.getId(),
-						fetchedOrderEntity.getOrderTimestamp(), fetchedOrderEntity.getOrderTotal(),
-						fetchedOrderEntity.getUserId());
+						fetchedOrderEntity.getOrderTimestamp(), fetchedOrderEntity.getOrderTotal(),user);
 
 				allOrderPojo.add(returnedOrderPojo);
 			}
@@ -85,9 +86,11 @@ public class OrderServiceImpl implements OrderService {
 			throw new OrderNotFoundException(id);
 		} else {
 			for (OrderEntity fetchedOrderEntity : searchOrderEntity) {
+				UserPojo user = new UserPojo();
+				BeanUtils.copyProperties(fetchedOrderEntity.getUser(), user);
 				OrderPojo returnOrderPojo = new OrderPojo(fetchedOrderEntity.getId(),
 						fetchedOrderEntity.getOrderTimestamp(), fetchedOrderEntity.getOrderTotal(),
-						fetchedOrderEntity.getUserId());
+						user);
 
 				searchOrderPojo.add(returnOrderPojo);
 			}
