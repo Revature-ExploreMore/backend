@@ -50,7 +50,7 @@ public class CartController {
 	
 	@PostMapping("cart")
 	public CartPojo addCartToUser(@RequestBody UserPojo user) {
-		return cartService.addNewCartToUser(user.getId());
+		return cartService.addNewCartToUser(user);
 	}
 	
 	@PostMapping("cartCourse")
