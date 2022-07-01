@@ -59,7 +59,7 @@ public class CartController {
         return cartService.addCourseToCart(cartCourse);
     }
 	
-	@DeleteMapping("/emptyCart/{cid}")
+	@DeleteMapping("{cid}")
 	public boolean emptyCart(@PathVariable("cid") int cartId) throws GlobalException{
 		return cartService.emptyCart(cartId);
 	}
