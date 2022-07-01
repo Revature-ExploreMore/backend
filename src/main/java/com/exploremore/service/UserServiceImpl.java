@@ -51,7 +51,6 @@ public class UserServiceImpl implements UserService{
 	public UserPojo updateUser(UserPojo userPojo) {
 		UserEntity userEntity = new UserEntity();
 		BeanUtils.copyProperties(userPojo, userEntity);
-
 		UserEntity returnedUserEntity = userDao.save(userEntity);
 		BeanUtils.copyProperties(returnedUserEntity, userPojo);
 
