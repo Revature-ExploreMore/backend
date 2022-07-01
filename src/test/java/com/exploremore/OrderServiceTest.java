@@ -17,10 +17,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import com.exploremore.dao.OrderDao;
 import com.exploremore.entity.OrderEntity;
+import com.exploremore.entity.UserEntity;
 import com.exploremore.exceptions.EmptyOrderList;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.exceptions.OrderNotFoundException;
 import com.exploremore.pojo.OrderPojo;
+import com.exploremore.pojo.UserPojo;
 import com.exploremore.service.OrderServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
@@ -36,13 +38,17 @@ public class OrderServiceTest {
 	private OrderPojo expectedOrderPojo;
 	private OrderEntity dummyOrderEntity;
 	private LocalDateTime orderTimestamp;
+	private UserPojo dummyUserPojo;
+	private UserEntity dummyUserEntity;
 	BigDecimal bd1 = new BigDecimal("30.00");
 
 
 	@BeforeEach
 	public void setup() {
-		expectedOrderPojo = new OrderPojo(1, orderTimestamp, bd1, 1);
-		dummyOrderEntity = new OrderEntity(1, orderTimestamp, bd1, 1);
+		dummyUserPojo = new UserPojo(1, "testName", "test@email.com", "111-111-1111", "testUsername", "testPassword", false, LocalDateTime.parse("2022-06-25T22:37:24.894"), 1);
+		dummyUserEntity = new UserEntity(1, "testName", "test@email.com", "111-111-1111", "testUsername", "testPassword", false, LocalDateTime.parse("2022-06-25T22:37:24.894"), 1);
+		expectedOrderPojo = new OrderPojo(1, orderTimestamp, bd1, dummyUserPojo);
+		dummyOrderEntity = new OrderEntity(1, orderTimestamp, bd1, dummyUserEntity);
 	}
 
 	@DisplayName("JUnit test for view all orders method")
