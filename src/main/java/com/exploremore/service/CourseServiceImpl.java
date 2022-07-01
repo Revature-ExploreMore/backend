@@ -18,6 +18,8 @@ import com.exploremore.pojo.CoursePojo;
 public class CourseServiceImpl implements CourseService {
 	@Autowired
 	CourseDao courseDao;
+	//delete course will not workwith current tables, need to have a differnt way of "deleting course"
+	//solution is to have a disabled column in courses so it can be filtered with avaliable courses
 	@Override
 	public boolean deleteCourse(int id) throws GlobalException {
 		courseDao.deleteById(id);

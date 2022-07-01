@@ -46,6 +46,7 @@ public class CourseController {
 	public CoursePojo addNewCourse(@RequestBody CoursePojo coursePojo) throws GlobalException {
 		return courseService.addNewCourse(coursePojo);
 	}
+	//delete course does not work, need to have it reworked and not actually "deleted"
 	@DeleteMapping("deleteCourse/{id}")
 	public boolean deleteCourse(@PathVariable("id") int id) throws GlobalException {
 		return courseService.deleteCourse(id);
