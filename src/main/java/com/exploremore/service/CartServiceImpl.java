@@ -91,7 +91,8 @@ public class CartServiceImpl implements CartService{
         CoursePojo coursePojo = cartCourse.getCourse();
         CartPojo cartPojo = cartCourse.getCart();
         
-        return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());}
+        return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());
+    }
 
 	@Override
 	public CartPojo addNewCartToUser(int user_id) {
