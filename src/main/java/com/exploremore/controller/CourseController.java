@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,5 +45,13 @@ public class CourseController {
 	@PostMapping("addNewCourse")
 	public CoursePojo addNewCourse(@RequestBody CoursePojo coursePojo) throws GlobalException {
 		return courseService.addNewCourse(coursePojo);
+	}
+	@DeleteMapping("deleteCourse/{id}")
+	public boolean deleteCourse(@PathVariable("id") int id) throws GlobalException {
+		return courseService.deleteCourse(id);
+	}
+	@PutMapping("updateCourse")
+	public CoursePojo updateCourse(@RequestBody CoursePojo coursePojo) throws GlobalException {
+		return courseService.updateCourse(coursePojo);
 	}
 }
