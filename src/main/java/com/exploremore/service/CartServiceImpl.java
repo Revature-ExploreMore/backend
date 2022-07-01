@@ -16,6 +16,7 @@ import com.exploremore.dao.CartCourseDao;
 import com.exploremore.dao.CartDao;
 import com.exploremore.entity.CartCourseEntity;
 import com.exploremore.entity.CartEntity;
+import com.exploremore.exceptions.EmptyCartException;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
@@ -37,11 +38,14 @@ public class CartServiceImpl implements CartService{
 	
 
 	@Override
-	public List<CartCoursePojo> getCartCourses(int cart_id) {
+	public List<CartCoursePojo> getCartCourses(int cart_id) throws GlobalException, EmptyCartException {
 		
 		List<CartCourseEntity> allCartCourseEntity = cartCourseDao.findByCartId(cart_id);
 
 		List<CartCoursePojo> allCartCoursePojo = new ArrayList<CartCoursePojo>();
+		
+		
+		
 		
 		for(CartCourseEntity fetchedCartCourseEntity : allCartCourseEntity) {
 			CartCoursePojo returnedCartCoursePojo = new CartCoursePojo();
@@ -60,7 +64,12 @@ public class CartServiceImpl implements CartService{
 			returnedCartCoursePojo.setCourse(fetchedCoursePojo);
 			returnedCartCoursePojo.getCourse().setCategoryId(fetchedCategoryPojo);
 			allCartCoursePojo.add(returnedCartCoursePojo);
+		
 		}
+		if(allCartCourseEntity.isEmpty()) {
+			throw new EmptyCartException();
+		}
+		
 		return allCartCoursePojo;
 	}
 
@@ -81,13 +90,13 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public boolean deleteCartCourse(int cart_course_id) {
+	public boolean deleteCartCourse(int cart_course_id) throws GlobalException {
 		cartCourseDao.deleteById(cart_course_id);
 		return true;
 	};
 	
 	@Override
-    public int addCourseToCart(CartCoursePojo cartCourse) {
+    public int addCourseToCart(CartCoursePojo cartCourse) throws GlobalException {
         System.out.println(cartCourse);
         CoursePojo coursePojo = cartCourse.getCourse();
         CartPojo cartPojo = cartCourse.getCart();
@@ -97,7 +106,7 @@ public class CartServiceImpl implements CartService{
 
 
 	@Override
-	public CartPojo addNewCartToUser(UserPojo user) {
+	public CartPojo addNewCartToUser(UserPojo user) throws GlobalException{
 		CartEntity cart = new CartEntity(0, LocalDateTime.now(), LocalDateTime.now(), false, 
 				BigDecimal.valueOf(0), user.getId(), 1);
 		cart = cartDao.save(cart);

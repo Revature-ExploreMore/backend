@@ -26,6 +26,7 @@ import com.exploremore.entity.CartCourseEntity;
 import com.exploremore.entity.CartEntity;
 import com.exploremore.entity.CategoryEntity;
 import com.exploremore.entity.CourseEntity;
+import com.exploremore.exceptions.EmptyCartException;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
@@ -88,7 +89,7 @@ public class CartTest {
 	
     @DisplayName("JUnit test for getCartCourses method")
     @Test
-    public void testGetCartCourses() throws GlobalException{
+    public void testGetCartCourses() throws GlobalException, EmptyCartException{
         CartCourseEntity dummyCartCourseEntity = new CartCourseEntity(0, dummyCourseEntity, dummyCartEntity);
     	when(cartCourseDaoMock.findByCartId(1)).thenReturn(List.of(dummyCartCourseEntity, dummyCartCourseEntity));
    
