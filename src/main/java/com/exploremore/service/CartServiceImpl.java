@@ -16,8 +16,6 @@ import com.exploremore.dao.CartCourseDao;
 import com.exploremore.dao.CartDao;
 import com.exploremore.entity.CartCourseEntity;
 import com.exploremore.entity.CartEntity;
-import com.exploremore.entity.CategoryEntity;
-import com.exploremore.entity.CourseEntity;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
@@ -94,14 +92,10 @@ public class CartServiceImpl implements CartService{
         CoursePojo coursePojo = cartCourse.getCourse();
         CartPojo cartPojo = cartCourse.getCart();
         
-        return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());}
+        return cartCourseDao.saveByCourseIdAndCartId(coursePojo.getId(), cartPojo.getId());
+    }
 
-	@Override
-	public boolean emptyCart(int cartId) throws GlobalException {
-		cartDao.deleteById(cartId);
-		return true;
-   }
-	
+
 	@Override
 	public CartPojo addNewCartToUser(UserPojo user) {
 		CartEntity cart = new CartEntity(0, LocalDateTime.now(), LocalDateTime.now(), false, 
@@ -111,6 +105,12 @@ public class CartServiceImpl implements CartService{
 		BeanUtils.copyProperties(cart, cartPojo);
 		return cartPojo;
 	}
+	
+	@Override
+	public boolean emptyCart(int cartId) throws GlobalException {
+		cartCourseDao.deleteByCartId(cartId);
+		return true;
+   }
 }
 
 
