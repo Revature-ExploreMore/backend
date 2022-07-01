@@ -52,16 +52,16 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderEntity> allOrderEntity = orderDao.findAll();
 		List<OrderPojo> allOrderPojo = new ArrayList<OrderPojo>();
 		
-		if(allOrderEntity.isEmpty()) {
-			//throw Exception
-		}
-		else {
-			for(OrderEntity fetchedOrderEntity : allOrderEntity) {
-				OrderPojo returnedOrderPojo = new OrderPojo(fetchedOrderEntity.getId(), fetchedOrderEntity.getOrderTimestamp(), fetchedOrderEntity.getOrderTotal(), fetchedOrderEntity.getUserId());
-				
-				allOrderPojo.add(returnedOrderPojo);
-			}
-		}
+//		if(allOrderEntity.isEmpty()) {
+//			//throw Exception
+//		}
+//		else {
+//			for(OrderEntity fetchedOrderEntity : allOrderEntity) {
+//				OrderPojo returnedOrderPojo = new OrderPojo(fetchedOrderEntity.getId(), fetchedOrderEntity.getOrderTimestamp(), fetchedOrderEntity.getOrderTotal(), fetchedOrderEntity.getUserId());
+//				
+//				allOrderPojo.add(returnedOrderPojo);
+//			}
+//		}
 		return allOrderPojo;
 	}
 
