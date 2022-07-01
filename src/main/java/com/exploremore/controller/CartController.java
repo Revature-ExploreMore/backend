@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
 
@@ -38,7 +39,7 @@ public class CartController {
 	}
 	
 	@GetMapping("cart/{uid}")
-	public CartPojo getCartByUser(@PathVariable("uid") int user_id) {
+	public CartPojo getCartByUser(@PathVariable("uid") int user_id) throws GlobalException{
 		return cartService.getCart(user_id);
 	}
 	
@@ -57,4 +58,9 @@ public class CartController {
         System.out.println("hello");
         return cartService.addCourseToCart(cartCourse);
     }
+	
+	@DeleteMapping("/{cid}")
+	public boolean emptyCart(@PathVariable("cid") int cartId) throws GlobalException{
+		return cartService.emptyCart(cartId);
+	}
 }

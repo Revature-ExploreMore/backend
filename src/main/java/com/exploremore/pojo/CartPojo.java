@@ -2,6 +2,7 @@ package com.exploremore.pojo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class CartPojo {
 
@@ -99,5 +100,26 @@ public class CartPojo {
 		return "CartPojo [id=" + id + ", createdAt=" + createdAt + ", modifiedAt=" + modifiedAt + ", isRemoved="
 				+ isRemoved + ", cartTotal=" + cartTotal + ", userId=" + userId + ", orderId=" + orderId + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cartTotal, createdAt, id, isRemoved, modifiedAt, orderId, userId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CartPojo other = (CartPojo) obj;
+		return Objects.equals(cartTotal, other.cartTotal) && Objects.equals(createdAt, other.createdAt)
+				&& id == other.id && isRemoved == other.isRemoved && Objects.equals(modifiedAt, other.modifiedAt)
+				&& orderId == other.orderId && userId == other.userId;
+	}
+	
+	
 
 }
