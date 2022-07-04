@@ -1,5 +1,6 @@
 package com.exploremore.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService{
 		UserPojo validLoginPojo = null;
 		
 		if(userEntityLogin.isEmpty()) {
-			System.out.println("need exception handling here");
+			System.out.println("exception here");
 		} else {
 			for(UserEntity fetchedUserEntity : userEntityLogin) {
 				UserPojo loginUserPojo = new UserPojo(fetchedUserEntity.getId(), fetchedUserEntity.getName(), 
@@ -59,5 +60,21 @@ public class UserServiceImpl implements UserService{
 		BeanUtils.copyProperties(returnedUserEntity, userPojo);
 
 		return userPojo;
+	}
+	
+	public static void main(String[] args) {
+		String pass1 = "pass";
+		String returned = "";
+		returned = PasswordHashing.doHashing(pass1);
+		System.out.println(returned);
+		
+		LocalDateTime time = LocalDateTime.now();
+		UserPojo userPojo1 = new UserPojo(100,"john", "john@test.com", "333-444-5555", "johnny", "johnboy12345678", false, time, 2);
+		System.out.println(userPojo1);
+		String pass2 = userPojo1.getPassword();
+		userPojo1.setPassword(PasswordHashing.doHashing(pass2));
+		System.out.println(userPojo1);
+		
+		// why is hashing working here, but not working for register function?
 	}
 }

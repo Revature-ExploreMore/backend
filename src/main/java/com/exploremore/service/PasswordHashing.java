@@ -8,7 +8,7 @@ public class PasswordHashing {
 	public static String doHashing (String password)  {
 		
 		try {
-			MessageDigest md = MessageDigest.getInstance("SHA");
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.update(password.getBytes());
 			byte[] result = md.digest();
 			StringBuilder sb = new StringBuilder();
@@ -20,5 +20,11 @@ public class PasswordHashing {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	
+	public static void main(String[] args) {
+		
+		String password = "hellothere";
+		System.out.println(doHashing(password));
 	}
 }
