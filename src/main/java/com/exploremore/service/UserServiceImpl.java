@@ -21,8 +21,6 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo register(UserPojo userPojo) {
-		String pass = userPojo.getPassword();
-		userPojo.setPassword(PasswordHashing.doHashing(pass));
 		UserEntity userEntity = new UserEntity();
 		BeanUtils.copyProperties(userPojo, userEntity);
 		UserEntity returnedUserEntity = userDao.saveAndFlush(userEntity);
@@ -32,8 +30,6 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo login(UserPojo userPojo) {
-		String pass = userPojo.getPassword();
-		userPojo.setPassword(PasswordHashing.doHashing(pass));
 		List<UserEntity> userEntityLogin = userDao.findByUsernameAndPassword(userPojo.getUsername(), userPojo.getPassword());
 		UserPojo validLoginPojo = null;
 		
@@ -61,20 +57,5 @@ public class UserServiceImpl implements UserService{
 
 		return userPojo;
 	}
-	
-	public static void main(String[] args) {
-		String pass1 = "pass";
-		String returned = "";
-		returned = PasswordHashing.doHashing(pass1);
-		System.out.println(returned);
-		
-		LocalDateTime time = LocalDateTime.now();
-		UserPojo userPojo1 = new UserPojo(100,"john", "john@test.com", "333-444-5555", "johnny", "johnboy12345678", false, time, 2);
-		System.out.println(userPojo1);
-		String pass2 = userPojo1.getPassword();
-		userPojo1.setPassword(PasswordHashing.doHashing(pass2));
-		System.out.println(userPojo1);
-		
-		// why is hashing working here, but not working for register function?
-	}
+
 }
