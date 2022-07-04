@@ -19,7 +19,7 @@ import com.exploremore.pojo.OrderCourseSet;
 import com.exploremore.pojo.OrderPojo;
 import com.exploremore.service.OrderService;
 
-@CrossOrigin(origins="*") // to enable cors
+@CrossOrigin(origins="*") 
 @RestController
 @RequestMapping("order")
 public class OrderController {
@@ -53,6 +53,7 @@ public class OrderController {
 	public List<OrderCoursePojo> getCoursesOrdersByUserId(@PathVariable("id") int userId) {
 		return orderService.getUserOrders(userId);
 	}
+
 
 
 }

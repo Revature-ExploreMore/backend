@@ -93,7 +93,7 @@ public class CartServiceImpl implements CartService{
 	public boolean deleteCartCourse(int cart_course_id) throws GlobalException {
 		cartCourseDao.deleteById(cart_course_id);
 		return true;
-	};
+	}
 	
 	@Override
     public int addCourseToCart(CartCoursePojo cartCourse) throws GlobalException {
