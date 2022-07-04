@@ -20,6 +20,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo register(UserPojo userPojo) {
+		String pass = userPojo.getPassword();
+		userPojo.setPassword(PasswordHashing.doHashing(pass));
 		UserEntity userEntity = new UserEntity();
 		BeanUtils.copyProperties(userPojo, userEntity);
 		UserEntity returnedUserEntity = userDao.saveAndFlush(userEntity);
