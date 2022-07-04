@@ -1,6 +1,7 @@
 package com.exploremore.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,12 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.exploremore.entity.OrderEntity;
+
 import com.exploremore.exceptions.EmptyOrderList;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.exceptions.OrderNotFoundException;
-import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.OrderCoursePojo;
+import com.exploremore.pojo.OrderCourseSet;
 import com.exploremore.pojo.OrderPojo;
 import com.exploremore.service.OrderService;
 
@@ -30,6 +31,11 @@ public class OrderController {
 	@PostMapping("addorders")
 	public OrderPojo addOrder(@RequestBody OrderPojo orderPojo) throws GlobalException{ 
 		return orderService.addOrder(orderPojo);
+	}
+	
+	@PostMapping("orders")
+	public Integer addCoursesToNewOrder(@RequestBody OrderCourseSet orderCourseSet) throws GlobalException {
+		return orderService.addCoursesToOrder(orderCourseSet);
 	}
 	
 	@GetMapping("{oID}")
