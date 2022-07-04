@@ -46,9 +46,6 @@ public class OrderController {
 	
 
 
-
-
-
 	@GetMapping("orderCourse/{id}")
 	public List<OrderCoursePojo> getCoursesOrdersByUserId(@PathVariable("id") int userId) {
 		return orderService.getUserOrders(userId);
