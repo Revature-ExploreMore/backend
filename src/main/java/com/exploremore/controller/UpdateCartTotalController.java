@@ -12,13 +12,13 @@ import com.exploremore.service.UpdateCartTotalService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("update/cart")
+@RequestMapping("cart/")
 public class UpdateCartTotalController {
 	
 	@Autowired
 	UpdateCartTotalService updateCartTotalService;
 
-	@PutMapping("books")
+	@PutMapping("update")
 	public CartPojo updateCartTotal(@RequestBody CartPojo cartPojo) {
 		return updateCartTotalService.updateCartTotal(cartPojo);
 	}

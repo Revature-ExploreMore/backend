@@ -1,7 +1,6 @@
 package com.exploremore.service;
 
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -21,6 +20,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo register(UserPojo userPojo) {
+		String pass = userPojo.getPassword();
+		userPojo.setPassword(PasswordHashing.doHashing(pass));
 		UserEntity userEntity = new UserEntity();
 		BeanUtils.copyProperties(userPojo, userEntity);
 		UserEntity returnedUserEntity = userDao.saveAndFlush(userEntity);
@@ -30,6 +31,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo login(UserPojo userPojo) {
+		String pass = userPojo.getPassword();
+		userPojo.setPassword(PasswordHashing.doHashing(pass));
 		List<UserEntity> userEntityLogin = userDao.findByUsernameAndPassword(userPojo.getUsername(), userPojo.getPassword());
 		UserPojo validLoginPojo = null;
 		
@@ -44,7 +47,17 @@ public class UserServiceImpl implements UserService{
 					validLoginPojo = loginUserPojo;
 				}
 		}
+		
 		return validLoginPojo;
 	}
 
+	@Override
+	public UserPojo updateUser(UserPojo userPojo) {
+		UserEntity userEntity = new UserEntity();
+		BeanUtils.copyProperties(userPojo, userEntity);
+		UserEntity returnedUserEntity = userDao.save(userEntity);
+		BeanUtils.copyProperties(returnedUserEntity, userPojo);
+
+		return userPojo;
+	}
 }

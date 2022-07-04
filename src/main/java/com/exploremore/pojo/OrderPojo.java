@@ -8,18 +8,20 @@ public class OrderPojo {
 	private int id;
 	private LocalDateTime orderTimestamp;
 	private BigDecimal orderTotal;
-	private int userId;
+	private UserPojo user;
 
 	public OrderPojo() {
 	}
 
-	public OrderPojo(int id, LocalDateTime orderTimestamp, BigDecimal orderTotal, int userId) {
+	public OrderPojo(int id, LocalDateTime orderTimestamp, BigDecimal orderTotal, UserPojo user) {
 		super();
 		this.id = id;
 		this.orderTimestamp = orderTimestamp;
 		this.orderTotal = orderTotal;
-		this.userId = userId;
+		this.user = user;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -45,18 +47,18 @@ public class OrderPojo {
 		this.orderTotal = orderTotal;
 	}
 
-	public int getUserId() {
-		return userId;
+	public UserPojo getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(UserPojo user) {
+		this.user = user;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderPojo [id=" + id + ", orderTimestamp=" + orderTimestamp + ", orderTotal=" + orderTotal + ", userId="
-				+ userId + "]";
+		return "OrderPojo [id=" + id + ", orderTimestamp=" + orderTimestamp + ", orderTotal=" + orderTotal + ", user="
+				+ user + "]";
 	}
 
 }
