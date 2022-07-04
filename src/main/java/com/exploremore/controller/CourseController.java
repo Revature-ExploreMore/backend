@@ -46,11 +46,13 @@ public class CourseController {
 	public CoursePojo addNewCourse(@RequestBody CoursePojo coursePojo) throws GlobalException {
 		return courseService.addNewCourse(coursePojo);
 	}
-	//delete course does not work, need to have it reworked and not actually "deleted"
-	@DeleteMapping("deleteCourse/{id}")
-	public boolean deleteCourse(@PathVariable("id") int id) throws GlobalException {
-		return courseService.deleteCourse(id);
-	}
+	
+//  *** delete course does not work; it will need to integrate with the cart functionality ***
+//	@DeleteMapping("deleteCourse/{id}")
+//	public boolean deleteCourse(@PathVariable("id") int id) throws GlobalException {
+//		return courseService.deleteCourse(id);
+//	}
+	
 	@PutMapping("updateCourse")
 	public CoursePojo updateCourse(@RequestBody CoursePojo coursePojo) throws GlobalException {
 		return courseService.updateCourse(coursePojo);
