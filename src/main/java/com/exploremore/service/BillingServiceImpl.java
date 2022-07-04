@@ -1,5 +1,8 @@
 package com.exploremore.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +27,19 @@ public class BillingServiceImpl implements BillingService{
 		billingPojo.setId(returnedBillingEntity.getId());
 		return billingPojo;
 	}
+
+	@Override
+	public List <BillingPojo> getBillingAddress(int userId) throws GlobalException {
+		List <BillingEntity> billingEntity = billingDao.findByUserIdEquals(userId);
+		List <BillingPojo> allBillingPojo = new ArrayList<>();
+	
+		for(BillingEntity eachEntity : billingEntity ) {
+			
+			BillingPojo billingPojo = new BillingPojo();
+			BeanUtils.copyProperties(eachEntity,billingPojo);
+			allBillingPojo.add(billingPojo);
+		}
+		return allBillingPojo;
+	} 
 	
 }
