@@ -31,6 +31,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo login(UserPojo userPojo) {
+		String pass = userPojo.getPassword();
+		userPojo.setPassword(PasswordHashing.doHashing(pass));
 		List<UserEntity> userEntityLogin = userDao.findByUsernameAndPassword(userPojo.getUsername(), userPojo.getPassword());
 		UserPojo validLoginPojo = null;
 		
