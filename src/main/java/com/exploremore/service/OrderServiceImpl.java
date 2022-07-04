@@ -74,7 +74,6 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public List<OrderPojo> viewOrderById(int id) throws GlobalException, OrderNotFoundException {
 		List<OrderEntity> searchOrderEntity = orderDao.findById(id);
 		List<OrderPojo> searchOrderPojo = new ArrayList<OrderPojo>();
@@ -89,24 +88,10 @@ public class OrderServiceImpl implements OrderService {
 						fetchedOrderEntity.getOrderTimestamp(), fetchedOrderEntity.getOrderTotal(),
 						user);
 
-=======
-	public List<OrderPojo> viewOrderById(int id) {
-		List<OrderEntity> searchOrderEntity = orderDao.findById(id);
-		List<OrderPojo> searchOrderPojo = new ArrayList<OrderPojo>();
-		
-		if(searchOrderEntity.isEmpty()) {
-			//throw exception
-		}
-		else {
-			for(OrderEntity fetchedOrderEntity : searchOrderEntity ) {
-				OrderPojo returnOrderPojo = new OrderPojo(fetchedOrderEntity.getId(), fetchedOrderEntity.getOrderTimestamp(), fetchedOrderEntity.getOrderTotal(), fetchedOrderEntity.getUserId());
-				
->>>>>>> eaef2d4 (pulling changes from development)
 				searchOrderPojo.add(returnOrderPojo);
 			}
 		}
 		return searchOrderPojo;
-<<<<<<< HEAD
 	}
 	@Override
 	public List<OrderCoursePojo> getUserOrders(int userId) {
@@ -136,9 +121,6 @@ public class OrderServiceImpl implements OrderService {
 		}
 		
 		return ordCourPojos;
-=======
-
->>>>>>> eaef2d4 (pulling changes from development)
 	}
 	
 	@Override

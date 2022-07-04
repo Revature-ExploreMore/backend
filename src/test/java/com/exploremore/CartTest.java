@@ -109,4 +109,12 @@ public class CartTest {
 //
 //       assertEquals(1, actualBookPojo.getId());
 //    }
+    
+    @DisplayName("JUnit test for emptyCart() method")
+    @Test
+    public void emptyCart() throws GlobalException{
+    	doNothing().when(cartCourseDaoMock).deleteByCartId(1);
+		cartService.emptyCart(1);
+		verify(cartCourseDaoMock, times(1)).deleteByCartId(1);
+    }
 }
