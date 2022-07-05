@@ -1,5 +1,6 @@
 package com.exploremore.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,8 +28,6 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo register(UserPojo userPojo) {
-		String pass = userPojo.getPassword();
-		userPojo.setPassword(PasswordHashing.doHashing(pass));
 		UserEntity userEntity = new UserEntity();
 		BeanUtils.copyProperties(userPojo, userEntity);
 		userEntity.setPassword(encoder.encode(userPojo.getPassword()));
@@ -39,7 +38,6 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo login(UserPojo userPojo) {
-
 		Optional<UserEntity> userEntOpt = userDao.findByUsername(userPojo.getUsername());
 //		List<UserEntity> userEntityLogin = userDao.findByUsernameAndPassword(userPojo.getUsername(), userPojo.getPassword());
 		String pass = userPojo.getPassword();
@@ -49,6 +47,7 @@ public class UserServiceImpl implements UserService{
 		
 		if(userEntOpt.isEmpty()) {
 			System.out.println("need exception handling here");
+
 		} else {
 			UserEntity user = userEntOpt.get();
 			if(encoder.matches(userPojo.getPassword(), user.getPassword())) {
@@ -87,4 +86,5 @@ public class UserServiceImpl implements UserService{
 
 		return userPojo;
 	}
+
 }
