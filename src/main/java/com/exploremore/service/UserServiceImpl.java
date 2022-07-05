@@ -27,6 +27,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo register(UserPojo userPojo) {
+		String pass = userPojo.getPassword();
+		userPojo.setPassword(PasswordHashing.doHashing(pass));
 		UserEntity userEntity = new UserEntity();
 		BeanUtils.copyProperties(userPojo, userEntity);
 		userEntity.setPassword(encoder.encode(userPojo.getPassword()));
@@ -37,8 +39,12 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo login(UserPojo userPojo) {
+
 		Optional<UserEntity> userEntOpt = userDao.findByUsername(userPojo.getUsername());
 //		List<UserEntity> userEntityLogin = userDao.findByUsernameAndPassword(userPojo.getUsername(), userPojo.getPassword());
+		String pass = userPojo.getPassword();
+		userPojo.setPassword(PasswordHashing.doHashing(pass));
+		List<UserEntity> userEntityLogin = userDao.findByUsernameAndPassword(userPojo.getUsername(), userPojo.getPassword());
 		UserPojo validLoginPojo = null;
 		
 		if(userEntOpt.isEmpty()) {
@@ -56,6 +62,7 @@ public class UserServiceImpl implements UserService{
 			}
 		}
 		
+
 //		if(userEntityLogin.isEmpty()) {
 //			System.out.println("need exception handling here");
 //		} else {
@@ -67,7 +74,17 @@ public class UserServiceImpl implements UserService{
 //					validLoginPojo = loginUserPojo;
 //				}
 //		}
+
 		return validLoginPojo;
 	}
 
+	@Override
+	public UserPojo updateUser(UserPojo userPojo) {
+		UserEntity userEntity = new UserEntity();
+		BeanUtils.copyProperties(userPojo, userEntity);
+		UserEntity returnedUserEntity = userDao.save(userEntity);
+		BeanUtils.copyProperties(returnedUserEntity, userPojo);
+
+		return userPojo;
+	}
 }

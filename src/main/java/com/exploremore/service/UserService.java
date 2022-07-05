@@ -9,5 +9,7 @@ public interface UserService {
 	UserPojo register(UserPojo userpojo);
 	
 	UserPojo login(UserPojo userpojo);
+
+	UserPojo updateUser(UserPojo userPojo);
 	
 }
