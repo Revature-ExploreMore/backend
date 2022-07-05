@@ -3,6 +3,7 @@ package com.exploremore.controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,10 @@ public class UserController {
 	@PostMapping("user-info/register")
 	public UserPojo register(@RequestBody UserPojo userPojo) {
 		return userService.register(userPojo);
-	}	
+	}
+	@PutMapping("user-info/updateUser")
+	public UserPojo updateUser(@RequestBody UserPojo userPojo) {
+		return userService.updateUser(userPojo);
+}
 }
 

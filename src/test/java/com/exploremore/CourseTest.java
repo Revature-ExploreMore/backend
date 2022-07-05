@@ -85,15 +85,16 @@ public class CourseTest {
 		List<CoursePojo> returnedCourses = courseServiceImpl.getAllByCategory("math");
 		assertEquals(2, returnedCourses.size());
 	}
-	
-	//JUnit Testing for Delete Course
-	@DisplayName("JUnit test for deleteCourse method") //test passed
-	@Test
-	public void testDeleteCourse() throws GlobalException, CourseNotFoundException {
-		doNothing().when(courseDao).deleteById(1);
-		courseServiceImpl.deleteCourse(1);
-		verify(courseDao, times(1)).deleteById(1);
-	}
+
+//  *** function was removed from the project ***
+//	JUnit Testing for Delete Course
+//	@DisplayName("JUnit test for deleteCourse method") //test passed
+//	@Test
+//	public void testDeleteCourse() throws GlobalException, CourseNotFoundException {
+//		doNothing().when(courseDao).deleteById(1);
+//		courseServiceImpl.deleteCourse(1);
+//		verify(courseDao, times(1)).deleteById(1);
+//	}
 	
 	//JUnit Testing for Update Course
 	@DisplayName("JUnit test for updateCourse method") 
