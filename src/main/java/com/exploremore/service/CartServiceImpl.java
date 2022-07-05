@@ -109,7 +109,7 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public CartPojo addNewCartToUser(UserPojo user) throws GlobalException{
 		CartEntity cart = new CartEntity(0, LocalDateTime.now(), LocalDateTime.now(), false, 
-				BigDecimal.valueOf(0), user.getId(), 1);
+				BigDecimal.valueOf(0), user.getId(), 12);
 		cart = cartDao.save(cart);
 		CartPojo cartPojo = new CartPojo();
 		BeanUtils.copyProperties(cart, cartPojo);
