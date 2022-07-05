@@ -1,13 +1,14 @@
-2022-06-28 10:50:22,576 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting ExploremoreApplication using Java 15.0.1 on DESKTOP-OJF9H6U with PID 8816 (C:\backend\target\classes started by anilc in C:\backend)
-2022-06-28 10:50:22,583 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.7.1, Spring v5.3.21
-2022-06-28 10:50:22,584 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-06-28 10:50:25,177 INFO com.exploremore.aop.LoggingAop [restartedMain] Entering ExploremoreApplication.com.exploremore.ExploremoreApplication
-2022-06-28 10:50:25,199 INFO com.exploremore.aop.LoggingAop [restartedMain] Exiting ExploremoreApplication.com.exploremore.ExploremoreApplication
-2022-06-28 10:50:25,202 INFO com.exploremore.aop.LoggingAop [restartedMain] Executing ExploremoreApplication.corsFilter
-2022-06-28 10:56:00,346 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting ExploremoreApplication using Java 15.0.1 on DESKTOP-OJF9H6U with PID 8816 (C:\backend\target\classes started by anilc in C:\backend)
-2022-06-28 10:56:00,347 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.7.1, Spring v5.3.21
-2022-06-28 10:56:00,347 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2022-06-28 10:56:02,682 INFO com.exploremore.aop.LoggingAop [restartedMain] Entering ExploremoreApplication.com.exploremore.ExploremoreApplication
-2022-06-28 10:56:02,712 INFO com.exploremore.aop.LoggingAop [restartedMain] Exiting ExploremoreApplication.com.exploremore.ExploremoreApplication
-2022-06-28 10:56:02,712 INFO com.exploremore.aop.LoggingAop [restartedMain] Executing ExploremoreApplication.corsFilter
-2022-06-28 10:56:10,354 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started ExploremoreApplication in 10.245 seconds (JVM running for 80675.816)
+2022-07-04 13:53:20,399 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting ExploremoreApplication using Java 15.0.1 on Nikkas-MacBook-Pro.local with PID 6277 (/Users/nikka0130/ExploreMore/backend/target/classes started by nikka0130 in /Users/nikka0130/ExploreMore/backend)
+2022-07-04 13:53:20,405 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.7.1, Spring v5.3.21
+2022-07-04 13:53:20,406 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-07-04 13:53:22,977 INFO com.exploremore.aop.LoggingAop [restartedMain] Entering ExploremoreApplication.com.exploremore.ExploremoreApplication
+2022-07-04 13:53:23,037 INFO com.exploremore.aop.LoggingAop [restartedMain] Exiting ExploremoreApplication.com.exploremore.ExploremoreApplication
+2022-07-04 13:53:23,037 INFO com.exploremore.aop.LoggingAop [restartedMain] Executing ExploremoreApplication.corsFilter
+2022-07-04 13:53:28,508 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started ExploremoreApplication in 8.615 seconds (JVM running for 9.685)
+2022-07-04 14:04:35,055 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting ExploremoreApplication using Java 15.0.1 on Nikkas-MacBook-Pro.local with PID 6691 (/Users/nikka0130/ExploreMore/backend/target/classes started by nikka0130 in /Users/nikka0130/ExploreMore/backend)
+2022-07-04 14:04:35,061 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.7.1, Spring v5.3.21
+2022-07-04 14:04:35,062 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-07-04 14:04:40,013 INFO com.exploremore.aop.LoggingAop [restartedMain] Entering ExploremoreApplication.com.exploremore.ExploremoreApplication
+2022-07-04 14:04:40,101 INFO com.exploremore.aop.LoggingAop [restartedMain] Exiting ExploremoreApplication.com.exploremore.ExploremoreApplication
+2022-07-04 14:04:40,101 INFO com.exploremore.aop.LoggingAop [restartedMain] Executing ExploremoreApplication.corsFilter
+2022-07-04 14:04:48,018 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started ExploremoreApplication in 13.835 seconds (JVM running for 15.851)
