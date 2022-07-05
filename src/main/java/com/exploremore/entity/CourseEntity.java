@@ -124,13 +124,18 @@ public class CourseEntity {
 		this.imageUrl = imageUrl;
 	}
 
+
+
+
 	public CategoryEntity getCategory() {
 		return category;
+
 	}
 
 	public void setCategory(CategoryEntity category) {
 		this.category = category;
 	}
+
 
 	@Override
 	public String toString() {

@@ -1,3 +1,4 @@
+
 package com.exploremore.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,4 +33,5 @@ public class UserController {
 		return userService.updateUser(userPojo);
 }
 }
+
 

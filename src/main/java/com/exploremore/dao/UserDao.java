@@ -1,3 +1,4 @@
+
 package com.exploremore.dao;
 
 import java.util.List;
@@ -15,3 +16,4 @@ public interface UserDao extends JpaRepository<UserEntity, Integer> {
 	Optional<UserEntity> findByUsername(String username);
 
 }
+

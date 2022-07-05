@@ -1,8 +1,8 @@
 package com.exploremore.entity;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +19,7 @@ public class CartCourseEntity {
 	@Column(name = "id")
 	private int id;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "course_id", nullable=false)
 	private CourseEntity course;
 
@@ -37,8 +37,6 @@ public class CartCourseEntity {
 		this.cart = cart;
 	}
 
-	
-	
 	public int getId() {
 		return id;
 	}
