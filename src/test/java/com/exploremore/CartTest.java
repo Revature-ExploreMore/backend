@@ -93,6 +93,14 @@ public class CartTest {
     	verify(cartCourseDaoMock, times(1)).deleteById(1);
 	}
 	
+	@DisplayName("JUnit test for deleteCartCourseByCartId method")
+    @Test
+    public void testDeleteCartCourseByCartId() throws GlobalException{
+		doNothing().when(cartCourseDaoMock).deleteByCartId(1);
+    	cartService.emptyCart(1);
+    	verify(cartCourseDaoMock, times(1)).deleteByCartId(1);
+	}
+	
     @DisplayName("JUnit test for getCartCourses method")
     @Test
     public void testGetCartCourses() throws GlobalException, EmptyCartException{
@@ -104,6 +112,17 @@ public class CartTest {
         assertNotNull(actualCartCoursePojo);
         assertEquals(2, actualCartCoursePojo.size());
     }
+    
+//    @DisplayName("JUnit test for add course to cart method")
+//    @Test
+//    public void testAddBook() throws ApplicationException{
+//       when(bookDao.saveAndFlush(dummyBookEntity)).thenReturn(dummyBookEntity);
+//
+//       BookPojo sendBookPojo = new BookPojo(1, "Flying Dragons", "Comedy", "Geronimo Stilton", 20, "");
+//       BookPojo actualBookPojo = bookService.addBook(sendBookPojo);
+//
+//       assertEquals(1, actualBookPojo.getId());
+//    }
     
 //    @DisplayName("JUnit test for add new cart to user method")
 //    @Test
