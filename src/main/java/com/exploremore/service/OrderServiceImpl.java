@@ -2,13 +2,11 @@
 package com.exploremore.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,16 +16,14 @@ import com.exploremore.dao.OrderDao;
 import com.exploremore.entity.CourseEntity;
 import com.exploremore.entity.OrderCourseEntity;
 import com.exploremore.entity.OrderEntity;
+import com.exploremore.entity.UserEntity;
 import com.exploremore.exceptions.EmptyOrderList;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.exceptions.OrderNotFoundException;
-import com.exploremore.pojo.OrderPojo;
-
-import com.exploremore.entity.UserEntity;
-import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CategoryPojo;
 import com.exploremore.pojo.CoursePojo;
 import com.exploremore.pojo.OrderCoursePojo;
+import com.exploremore.pojo.OrderCourseSet;
 import com.exploremore.pojo.OrderPojo;
 import com.exploremore.pojo.UserPojo;
 @Service
@@ -126,6 +122,28 @@ public class OrderServiceImpl implements OrderService {
 		}
 		
 		return ordCourPojos;
+	}
+	
+	@Override
+	public Integer addCoursesToOrder(OrderCourseSet ordCourseSet) throws GlobalException {
+		OrderEntity ordEntity = new OrderEntity();
+		BeanUtils.copyProperties(ordCourseSet.getOrder(), ordEntity);
+		ordEntity.setOrderCourses(new HashSet<OrderCourseEntity>());
+		UserEntity userEnt = new UserEntity();
+		BeanUtils.copyProperties(ordCourseSet.getOrder().getUser(), userEnt);
+		ordEntity.setUser(userEnt);
+		OrderPojo orderPojo = addOrder(ordCourseSet.getOrder());
+		ordEntity.setId(orderPojo.getId());
+		for (CoursePojo course : ordCourseSet.getCourses()) {
+			OrderCourseEntity ordCourseEnt = new OrderCourseEntity();
+			CourseEntity courseEnt = new CourseEntity();
+			BeanUtils.copyProperties(course, courseEnt);
+			ordCourseEnt.setCourse(courseEnt);
+			ordCourseEnt.setOrder(ordEntity);
+			ordEntity.getOrderCourses().add(ordCourseEnt);
+		}
+		orderDao.saveAndFlush(ordEntity);
+		return ordEntity.getId();
 	}
 
 
