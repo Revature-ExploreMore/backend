@@ -27,8 +27,6 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo register(UserPojo userPojo) {
-		String pass = userPojo.getPassword();
-		userPojo.setPassword(PasswordHashing.doHashing(pass));
 		UserEntity userEntity = new UserEntity();
 		BeanUtils.copyProperties(userPojo, userEntity);
 		userEntity.setPassword(encoder.encode(userPojo.getPassword()));
@@ -41,10 +39,6 @@ public class UserServiceImpl implements UserService{
 	public UserPojo login(UserPojo userPojo) {
 
 		Optional<UserEntity> userEntOpt = userDao.findByUsername(userPojo.getUsername());
-//		List<UserEntity> userEntityLogin = userDao.findByUsernameAndPassword(userPojo.getUsername(), userPojo.getPassword());
-		String pass = userPojo.getPassword();
-		userPojo.setPassword(PasswordHashing.doHashing(pass));
-		List<UserEntity> userEntityLogin = userDao.findByUsernameAndPassword(userPojo.getUsername(), userPojo.getPassword());
 		UserPojo validLoginPojo = null;
 		
 		if(userEntOpt.isEmpty()) {
@@ -61,19 +55,6 @@ public class UserServiceImpl implements UserService{
 				System.out.println("need exception handling here 2");
 			}
 		}
-		
-
-//		if(userEntityLogin.isEmpty()) {
-//			System.out.println("need exception handling here");
-//		} else {
-//			for(UserEntity fetchedUserEntity : userEntityLogin) {
-//				UserPojo loginUserPojo = new UserPojo(fetchedUserEntity.getId(), fetchedUserEntity.getName(), 
-//					fetchedUserEntity.getEmail(), fetchedUserEntity.getPhoneNumber(), 
-//					fetchedUserEntity.getUsername(), fetchedUserEntity.getPassword(), fetchedUserEntity.isDarkModePreference(), 
-//					fetchedUserEntity.getRegisterDate(), fetchedUserEntity.getRoleId());
-//					validLoginPojo = loginUserPojo;
-//				}
-//		}
 
 		return validLoginPojo;
 	}
