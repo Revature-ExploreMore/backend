@@ -2,8 +2,10 @@ package com.exploremore.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,8 +36,8 @@ public class OrderEntity {
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
 	
-	@OneToMany(mappedBy = "order")
-	Set<OrderCourseEntity> orderCourses;
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	Set<OrderCourseEntity> orderCourses = new HashSet<OrderCourseEntity>();
 
 	public OrderEntity() {
 	}
@@ -46,6 +48,15 @@ public class OrderEntity {
 		this.orderTimestamp = orderTimestamp;
 		this.orderTotal = orderTotal;
 		this.user = user;
+	}
+	public OrderEntity(int id, LocalDateTime orderTimestamp, BigDecimal orderTotal, UserEntity user, 
+			Set<OrderCourseEntity> orderCourses) {
+		super();
+		this.id = id;
+		this.orderTimestamp = orderTimestamp;
+		this.orderTotal = orderTotal;
+		this.user = user;
+		this.orderCourses = orderCourses;
 	}
 
 	public int getId() {
@@ -78,6 +89,16 @@ public class OrderEntity {
 
 	public void setUser(UserEntity user) {
 		this.user = user;
+	}
+	
+	
+
+	public Set<OrderCourseEntity> getOrderCourses() {
+		return orderCourses;
+	}
+
+	public void setOrderCourses(Set<OrderCourseEntity> orderCourses) {
+		this.orderCourses = orderCourses;
 	}
 
 	@Override
