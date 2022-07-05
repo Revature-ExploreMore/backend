@@ -97,7 +97,6 @@ public class CartServiceImpl implements CartService{
 	
 	@Override
     public int addCourseToCart(CartCoursePojo cartCourse) throws GlobalException {
-        System.out.println(cartCourse);
         CoursePojo coursePojo = cartCourse.getCourse();
         CartPojo cartPojo = cartCourse.getCart();
         

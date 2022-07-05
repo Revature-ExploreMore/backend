@@ -95,7 +95,6 @@ public class OrderServiceImpl implements OrderService {
 	}
 	@Override
 	public List<OrderCoursePojo> getUserOrders(int userId) {
-		System.out.println("hello");
 		List<OrderCourseEntity> ordCourEnts = new ArrayList<>();
 		ordCourEnts = orderCourseDao.findOrderCourseByUser(userId);
 		
