@@ -26,10 +26,12 @@ import com.exploremore.entity.CartCourseEntity;
 import com.exploremore.entity.CartEntity;
 import com.exploremore.entity.CategoryEntity;
 import com.exploremore.entity.CourseEntity;
+import com.exploremore.entity.UserEntity;
 import com.exploremore.exceptions.EmptyCartException;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.CartCoursePojo;
 import com.exploremore.pojo.CartPojo;
+import com.exploremore.pojo.UserPojo;
 import com.exploremore.service.CartServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
@@ -48,13 +50,17 @@ public class CartTest {
 	private CartEntity dummyCartEntity;
 	private CourseEntity dummyCourseEntity;
 	private CategoryEntity dummyCategoryEntity;
+	private UserEntity dummyUserEntity;
+	private UserPojo dummyUserPojo;
 
 	@BeforeEach
 	public void setup() {
 		expectedCartPojo = new CartPojo(1, LocalDateTime.parse("2022-06-25T22:37:24.894"), LocalDateTime.parse("2022-06-26T22:37:24.894"), false, BigDecimal.valueOf(100.00), 1, 1);
 		dummyCartEntity = new CartEntity(1, LocalDateTime.parse("2022-06-25T22:37:24.894"), LocalDateTime.parse("2022-06-26T22:37:24.894"), false, BigDecimal.valueOf(100.00), 1, 1);
 		dummyCategoryEntity = new CategoryEntity(1, "Math");
-		dummyCourseEntity= new CourseEntity(1, "Math", "Math rules", 10.00, "https://images.unsplash.com/photo-1632571401005-458e9d244591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80", dummyCategoryEntity);
+		dummyCourseEntity = new CourseEntity(1, "Math", "Math rules", 10.00, "https://images.unsplash.com/photo-1632571401005-458e9d244591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80", dummyCategoryEntity);
+		dummyUserEntity = new UserEntity(1, "Isaac Suttle", "isaac@gmail.com", "13524567890", "isuttle", "Password1!", false, LocalDateTime.parse("2022-06-25T22:37:24.894"), 1);
+		dummyUserPojo = new UserPojo(1, "Isaac Suttle", "isaac@gmail.com", "13524567890", "isuttle", "Password1!", false, LocalDateTime.parse("2022-06-25T22:37:24.894"), 1);
 	}
 	
 	@DisplayName("JUnit test for getCart method")
@@ -101,12 +107,17 @@ public class CartTest {
     
 //    @DisplayName("JUnit test for add new cart to user method")
 //    @Test
-//    public void testAddBook() throws ApplicationException{
-//       when(bookDao.saveAndFlush(dummyBookEntity)).thenReturn(dummyBookEntity);
+//    public void testAddNewCartToUser() throws GlobalException{
+//    	CartEntity cart = new CartEntity(0, LocalDateTime.now(), LocalDateTime.now(), false, 
+//				BigDecimal.valueOf(0), 1, 1);
+//    	lenient().when(cartDaoMock.save(cart)).thenReturn(cart);
 //
-//       BookPojo sendBookPojo = new BookPojo(1, "Flying Dragons", "Comedy", "Geronimo Stilton", 20, "");
-//       BookPojo actualBookPojo = bookService.addBook(sendBookPojo);
+////       CartPojo sendCartPojo = new CartPojo(1, LocalDateTime.now(), LocalDateTime.now(), false, 
+////				BigDecimal.valueOf(0), dummyUserPojo.getId(), 1);
+//       UserPojo sendUserPojo = new UserPojo(1, "Isaac Suttle", "isaac@gmail.com", "13524567890", "isuttle", "Password1!", false, LocalDateTime.parse("2022-06-25T22:37:24.894"), 1);
+//      CartPojo actualCartPojo = cartService.addNewCartToUser(sendUserPojo);
+//      CartPojo returnedCartPojo = actualCartPojo
 //
-//       assertEquals(1, actualBookPojo.getId());
+//       assertEquals(1, actualCartPojo.getId());
 //    }
 }
