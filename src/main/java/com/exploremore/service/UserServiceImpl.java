@@ -1,8 +1,10 @@
 package com.exploremore.service;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Optional;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,5 +71,18 @@ public class UserServiceImpl implements UserService{
 
 		return userPojo;
 	}
+	
+//	@Override
+//	public UserPojo getUser(int id) {
+//		Optional<UserEntity> userEntity = userDao.findById(id);
+//		UserPojo userPojo = null;
+//		if(UserEntity.isPresent()) {
+//			
+//			UserEntity fetchedUserEntity = UserEntity.getId();
+//			userPojo = new UserPojo();
+//			BeanUtils.copyProperties(fetchedUserEntity, userPojo);
+//		}
+//		return userPojo;
+		
+	}
 
-}
