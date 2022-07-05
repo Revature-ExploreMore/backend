@@ -4,4 +4,4 @@ services:
     image: exploremore-backend
     build: .
     ports:
-      - 8484:8484
+      - 8484:7474
