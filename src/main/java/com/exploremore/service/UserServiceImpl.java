@@ -72,17 +72,18 @@ public class UserServiceImpl implements UserService{
 		return userPojo;
 	}
 	
-//	@Override
-//	public UserPojo getUser(int id) {
-//		Optional<UserEntity> userEntity = userDao.findById(id);
-//		UserPojo userPojo = null;
-//		if(UserEntity.isPresent()) {
-//			
-//			UserEntity fetchedUserEntity = UserEntity.getId();
-//			userPojo = new UserPojo();
-//			BeanUtils.copyProperties(fetchedUserEntity, userPojo);
-//		}
-//		return userPojo;
-		
+	@Override
+	public UserPojo getUser(int uId) {
+		Optional<UserEntity> userEntity = userDao.findById(uId);
+		UserPojo userPojo = null;
+		if(userEntity.isPresent()) {
+			
+			UserEntity fetchedUserEntity = userEntity.get();
+			userPojo = new UserPojo();
+			BeanUtils.copyProperties(fetchedUserEntity, userPojo);
+		}
+		return userPojo;
 	}
+		
+}
 

@@ -34,10 +34,10 @@ public class UserController {
 	public UserPojo updateUser(@RequestBody UserPojo userPojo) {
 		return userService.updateUser(userPojo);
 	}
-//	@GetMapping("userInfo/{uid}")
-//	public UserPojo getUser(@PathVariable("uid") int uId) {
-//		return userService.getUser(int id);
-//	}
+	@GetMapping("user-info/{uid}")
+	public UserPojo getUser(@PathVariable("uid") int uId) {
+		return userService.getUser(uId);
+	}
 }
 
 
