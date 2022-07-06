@@ -1,6 +1,9 @@
+
 package com.exploremore.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,6 +33,11 @@ public class UserController {
 	@PutMapping("user-info/updateUser")
 	public UserPojo updateUser(@RequestBody UserPojo userPojo) {
 		return userService.updateUser(userPojo);
+	}
+	@GetMapping("user-info/{uid}")
+	public UserPojo getUser(@PathVariable("uid") int uId) {
+		return userService.getUser(uId);
+	}
 }
-}
+
 

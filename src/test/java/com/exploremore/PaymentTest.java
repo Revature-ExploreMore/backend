@@ -3,6 +3,8 @@ package com.exploremore;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 
 import com.exploremore.dao.PaymentDao;
@@ -57,15 +60,16 @@ public class PaymentTest{
 
        assertEquals(1, actualPaymentPojo.getId());
     }
-	
 	@DisplayName("JUnit test for save GetPayment method")
 	@Test
 	public void testGetPayment() throws GlobalException {
-		when(paymentDao.findByUserId(3)).thenReturn(Optional.of(dummyPaymentEntity));
-    	PaymentPojo actualPaymentPojo = paymentService.getPaymentInfo(3);
-    	assertEquals(expectedPaymentPojo.getId(), actualPaymentPojo.getId());
+		when(paymentDao.findByUserId(3)).thenReturn(List.of(dummyPaymentEntity, dummyPaymentEntity));
+		List<PaymentPojo> actualAllPaymentPojoList = paymentService.getPaymentInfo(3);
+    	
+    	assertNotNull(actualAllPaymentPojoList);
+    	assertEquals(2, actualAllPaymentPojoList.size());
 	}
-	
+
 
 
 }

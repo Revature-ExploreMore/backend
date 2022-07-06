@@ -1,6 +1,10 @@
 package com.exploremore.controller;
 
+import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.exploremore.exceptions.GlobalException;
 import com.exploremore.pojo.PaymentPojo;
 import com.exploremore.service.PaymentService;
+
+
 
 @CrossOrigin
 @RestController
@@ -29,7 +35,7 @@ public class PaymentController {
 	}
 	
 	@GetMapping("payment/{uid}")
-	public PaymentPojo getPaymentInfo(@PathVariable("uid") int userId) throws GlobalException{
+	public List<PaymentPojo> getPaymentInfo(@PathVariable("uid") int userId) throws GlobalException{
 		return paymentService.getPaymentInfo(userId);
 	}
 }

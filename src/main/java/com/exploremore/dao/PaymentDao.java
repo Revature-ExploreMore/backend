@@ -1,5 +1,6 @@
 package com.exploremore.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,6 +14,6 @@ import com.exploremore.entity.PaymentEntity;
 public interface PaymentDao extends JpaRepository<PaymentEntity, Integer>{
 	
 	@Query("SELECT u FROM PaymentEntity u WHERE u.userId=:userId")
-	Optional<PaymentEntity> findByUserId(@Param("userId")int userId);
+	List <PaymentEntity> findByUserId(@Param("userId")int userId);
 	
 }

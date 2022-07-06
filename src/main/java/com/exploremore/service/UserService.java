@@ -12,4 +12,6 @@ public interface UserService {
 
 	UserPojo updateUser(UserPojo userPojo);
 	
+	UserPojo getUser (int id);
+	
 }

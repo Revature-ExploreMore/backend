@@ -1,8 +1,10 @@
 package com.exploremore.service;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Optional;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,11 +42,11 @@ public class UserServiceImpl implements UserService{
 	public UserPojo login(UserPojo userPojo) {
 
 		Optional<UserEntity> userEntOpt = userDao.findByUsername(userPojo.getUsername());
-		List<UserEntity> userEntityLogin = userDao.findByUsernameAndPassword(userPojo.getUsername(), userPojo.getPassword());
 		UserPojo validLoginPojo = null;
 		
 		if(userEntOpt.isEmpty()) {
 			System.out.println("need exception handling here");
+
 		} else {
 			UserEntity user = userEntOpt.get();
 			if(encoder.matches(userPojo.getPassword(), user.getPassword())) {
@@ -57,19 +59,6 @@ public class UserServiceImpl implements UserService{
 				System.out.println("need exception handling here 2");
 			}
 		}
-		
-
-//		if(userEntityLogin.isEmpty()) {
-//			System.out.println("need exception handling here");
-//		} else {
-//			for(UserEntity fetchedUserEntity : userEntityLogin) {
-//				UserPojo loginUserPojo = new UserPojo(fetchedUserEntity.getId(), fetchedUserEntity.getName(), 
-//					fetchedUserEntity.getEmail(), fetchedUserEntity.getPhoneNumber(), 
-//					fetchedUserEntity.getUsername(), fetchedUserEntity.getPassword(), fetchedUserEntity.isDarkModePreference(), 
-//					fetchedUserEntity.getRegisterDate(), fetchedUserEntity.getRoleId());
-//					validLoginPojo = loginUserPojo;
-//				}
-//		}
 		return validLoginPojo;
 	}
 
@@ -82,5 +71,19 @@ public class UserServiceImpl implements UserService{
 
 		return userPojo;
 	}
-
+	
+	@Override
+	public UserPojo getUser(int uId) {
+		Optional<UserEntity> userEntity = userDao.findById(uId);
+		UserPojo userPojo = null;
+		if(userEntity.isPresent()) {
+			
+			UserEntity fetchedUserEntity = userEntity.get();
+			userPojo = new UserPojo();
+			BeanUtils.copyProperties(fetchedUserEntity, userPojo);
+		}
+		return userPojo;
+	}
+		
 }
+

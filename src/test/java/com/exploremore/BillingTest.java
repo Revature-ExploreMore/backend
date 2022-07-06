@@ -1,8 +1,11 @@
 package com.exploremore;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -49,5 +52,17 @@ public class BillingTest {
 
        assertEquals(1, actualBillingPojo.getId());
     }
+	
+	@DisplayName("JUnit test for save GetBilling method")
+	@Test
+	public void testGetBilling() throws GlobalException {
+		when(billingDao.findByUserIdEquals(2)).thenReturn(List.of(dummyBillingEntity, dummyBillingEntity));
+		List<BillingPojo> actualAllBillingPojoList = billingService.getBillingAddress(2);
+    	
+    	assertNotNull(actualAllBillingPojoList);
+    	assertEquals(2, actualAllBillingPojoList.size());
+	}
+
+	
 
 }
