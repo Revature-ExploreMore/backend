@@ -47,7 +47,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 		 errors.put("date", LocalDate.now()+"");
 		 errors.put("errorMessage", ex.getMessage());
 		 System.out.println(errors);
-		 return new ResponseEntity<Object>(errors, HttpStatus.BAD_REQUEST);
+		 return new ResponseEntity<Object>(errors, HttpStatus.FOUND);
 	}
 
 
