@@ -9,6 +9,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import com.exploremore.dao.UserDao;
@@ -24,9 +26,10 @@ public class LoginAndRegisterTest {
 
 	@InjectMocks
 	UserServiceImpl userService;
-
+	
 	private UserPojo expectedPojo;
 	private UserEntity dummyEntity;
+	private PasswordEncoder encoder;
 
 	@BeforeEach
 	public void setup() {
@@ -35,24 +38,21 @@ public class LoginAndRegisterTest {
 		dummyEntity = new UserEntity(1, "Goldendeep", "golden@coolkids.com", "333-343-3434", "golden", "kaur11", false,
 				LocalDateTime.parse("2022-06-25T22:37:24.894"), 2);
 	}
+	
+	@DisplayName("JUnit test for updateUser method")
+    @Test
+    public void testupdateUser() {
+     dummyEntity = new UserEntity(1, "Goldendeep", "golden@coolkids.com", "333-343-3434", "golden", "kaur11", false,
+                LocalDateTime.parse("2022-06-25T22:37:24.894"), 2);
+       when(userDao.save(any(UserEntity.class))).thenReturn(dummyEntity);
 
-	@DisplayName("JUnit Test for User Registration")
-	@Test
-	public void testUserRegistration() {
-		when(userDao.saveAndFlush(any(UserEntity.class))).thenReturn(dummyEntity);
-		UserPojo sentRegistration = new UserPojo(1, "Goldendeep", "golden@coolkids.com", "333-343-3434", "golden",
-				"kaur11", false, LocalDateTime.parse("2022-06-25T22:37:24.894"), 2);
-		UserPojo actualRegistration = userService.register(sentRegistration);
-		assertEquals(1, actualRegistration.getId());
-	}
+       UserPojo sendUserPojo = new UserPojo(1, "Goldendeep", "golden@coolkids.com", "333-343-3434", "golden", "kaur11", false,
+                LocalDateTime.parse("2022-06-25T22:37:24.894"), 2);
+       UserPojo expectedUserPojo = new UserPojo(1, "Goldendeep", "golden@coolkids.com", "333-343-3434", "golden", "kaur11", false,
+                LocalDateTime.parse("2022-06-25T22:37:24.894"), 2);
+       UserPojo actualuserPojo = userService.updateUser(sendUserPojo);
 
-	@DisplayName("JUnit Test for User Login")
-	@Test
-	public void testUserLogin() {
-		when(userDao.findByUsernameAndPassword(dummyEntity.getUsername(), dummyEntity.getPassword()))
-				.thenReturn(List.of(dummyEntity));
-		UserPojo actualRegistration = userService.login(expectedPojo);
-		assertEquals("golden", actualRegistration.getUsername());
-	}
+       assertEquals(expectedUserPojo.getId(), actualuserPojo.getId());
+    }
 
 }

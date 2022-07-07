@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserPojo login(UserPojo userPojo) {
+
 		Optional<UserEntity> userEntOpt = userDao.findByUsername(userPojo.getUsername());
 		UserPojo validLoginPojo = null;
 		
@@ -58,7 +59,6 @@ public class UserServiceImpl implements UserService{
 				System.out.println("need exception handling here 2");
 			}
 		}
-
 		return validLoginPojo;
 	}
 
